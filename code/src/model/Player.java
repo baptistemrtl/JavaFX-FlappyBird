@@ -1,7 +1,5 @@
 package model;
-
-import javafx.scene.image;
-import java.awt.Graphics2D;
+import javafx.scene.image.ImageView;
 
 public class Player {
     private String pseudo;
