@@ -1,7 +1,7 @@
 package model;
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable{
     private double X;
     private double Y;
 
@@ -26,8 +26,22 @@ public class Position {
         Y = y;
     }
 
-    public void setPositionXY(double x, double y) {
+    public void setPosition(double x, double y) {
         setX(x);
         setY(y);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || obj.getClass() != getClass()) return false;
+
+        Position pos = (Position) obj;
+        return getX() == pos.getX() && getY() == pos.getY();
+    }
+
+    @Override
+    public int compareTo(Object o) { // check comment bien implémenter la méthode compareTo (check les Ps de java de l'année dernière)
+        return 0;
     }
 }
