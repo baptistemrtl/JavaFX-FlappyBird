@@ -6,7 +6,7 @@ import model.game.collider.Collider;
 import model.game.element.Bird;
 import model.game.element.Element;
 
-public class BirdDisplacer implements Displacer {
+public class BirdDisplacer extends Displacer {
 
     @Override
     public boolean move(World world, Element element) {

@@ -21,6 +21,7 @@
             <TextField text="PSEUDO"/>
             <Button text="START"/>
             <Button minHeight="120" minWidth="120">
+                <Image url="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-media-playback-start-icon.pnghttps://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-media-playback-start-icon.png"/>
             </Button>
         </FlowPane>
     </center>

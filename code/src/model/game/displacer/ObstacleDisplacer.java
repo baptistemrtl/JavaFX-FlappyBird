@@ -4,7 +4,7 @@ import model.Position;
 import model.game.World;
 import model.game.element.Element;
 
-public class ObstacleDisplacer implements Displacer {
+public class ObstacleDisplacer extends Displacer {
     @Override
     public boolean move(World world, Element element) { // a potentiellement modifier, car pas meme principe que background
         Position pos = element.getPos();
