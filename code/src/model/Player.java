@@ -1,12 +1,17 @@
 package model;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class Player {
-    private StringProperty pseudo;
+    private final SimpleStringProperty pseudo = new SimpleStringProperty();
     private String icon;
-    private IntegerProperty scoreMax;
+    private final SimpleIntegerProperty scoreMax = new SimpleIntegerProperty();
 
     public Player(String pseudo, String icon, int scoreMax) {
         this.pseudo.set(pseudo);
@@ -17,7 +22,6 @@ public class Player {
     public Player(String pseudo,String icon){
         this(pseudo,icon,0);
     }
-
 
     public String getPseudo() {
         return pseudo.get();

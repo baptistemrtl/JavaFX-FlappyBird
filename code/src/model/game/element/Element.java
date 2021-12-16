@@ -1,6 +1,5 @@
 package model.game.element;
 
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Position;
@@ -9,9 +8,13 @@ public abstract class Element {
     private Position pos;
     private int width;
     private int height;
-    private StringProperty image = new SimpleStringProperty();
-        public String getImage(){ return image.get();}
-        public void setImage(String img){ image.set(img);}
+    private final StringProperty image = new SimpleStringProperty();
+        public String getImage() {
+            return image.get();
+        }
+        public void setImage(String img) {
+            image.set(img);
+        }
 
     public Position getPos() {
         return pos;

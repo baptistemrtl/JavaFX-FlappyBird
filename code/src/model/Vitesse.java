@@ -1,8 +1,9 @@
 package model;
 
+// classe potentiellement innutile ! penser a check si pas delete
 public class Vitesse {
-    private double vitesseX = 0;
-    private double vitesseY = 0;
+    private double vitesseX;
+    private double vitesseY;
 
     Vitesse(double x, double y){
         vitesseX = x;

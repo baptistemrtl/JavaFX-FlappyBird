@@ -1,10 +1,12 @@
 package model.game;
 
 import com.sun.source.tree.Tree;
+import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import model.Position;
 import model.game.element.Element;
 
@@ -12,7 +14,7 @@ import java.util.TreeMap;
 
 public class World {
     //private final TreeMap<Position, Element> elements = new TreeMap<>();
-    private ObservableList<Element> elements = FXCollections.observableArrayList();
+    private final ObservableMap<Position, Element> elements = FXCollections.observableHashMap();
     public IntegerProperty timer = new SimpleIntegerProperty();
         public IntegerProperty timerProperty() {
             return timer;
@@ -26,18 +28,18 @@ public class World {
     }*/
 
     public void addElement(Element element){
-        elements.add(element);
+        elements.put(element.getPos(), element);
     }
     public void delElement(Element element){
-        elements.remove(element);
+        elements.remove(element.getPos());
     }
 
     /*public Element asElement(Position pos) {
         return elements.get(pos);
     }*/
 
-    public ObservableList<Element> getElements(){
-        return FXCollections.unmodifiableObservableList(elements);
+    public ObservableMap<Position, Element> getElements(){
+        return FXCollections.unmodifiableObservableMap(elements);
     }
 
     public boolean decrementationTimer(){

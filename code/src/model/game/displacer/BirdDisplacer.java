@@ -11,7 +11,7 @@ public class BirdDisplacer extends Displacer {
     @Override
     public boolean move(World world, Element element) {
         Position pos = element.getPos();
-        pos.setPosition(pos.getX()+1, pos.getY()-1);
+        pos.setY(pos.getY()+1);
         if(!Collider.isCollision(pos, world)) {
             element.setPos(pos);
             return true;
@@ -22,7 +22,7 @@ public class BirdDisplacer extends Displacer {
 
     public boolean fly(World world, Bird bird) {
         Position pos = bird.getPos();
-        pos.setPosition(pos.getX()+1, pos.getY()+5);
+        pos.setY(pos.getY()+5);
         if(!Collider.isCollision(pos, world)) {
             bird.setPos(pos);
             return true;
