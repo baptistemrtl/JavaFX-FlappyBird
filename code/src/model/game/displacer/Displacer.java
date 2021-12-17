@@ -5,5 +5,14 @@ import model.game.collider.Collider;
 import model.game.element.Element;
 
 public abstract class Displacer {
-    public abstract boolean move(World world, Element element);
+
+    private Collider collider;
+
+    public Displacer(Collider collider){
+        this.collider = collider;
+    }
+    public Collider getCollider(){
+        return collider;
+    }
+    public abstract boolean move(Element element);
 }

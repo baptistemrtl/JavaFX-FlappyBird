@@ -8,11 +8,14 @@ import model.game.element.Element;
 
 public class BirdDisplacer extends Displacer {
 
+    public BirdDisplacer(Collider collider){
+        super(collider);
+    }
     @Override
-    public boolean move(World world, Element element) {
+    public boolean move(Element element) {
         Position pos = element.getPos();
         pos.setY(pos.getY()+1);
-        if(!Collider.isCollision(pos, world)) {
+        if(!getCollider().canMove(pos)) {
             element.setPos(pos);
             return true;
         }
@@ -20,10 +23,10 @@ public class BirdDisplacer extends Displacer {
         return false;
     }
 
-    public boolean fly(World world, Bird bird) {
+    public boolean fly(Bird bird) {   // c'est les memes faudra check ça
         Position pos = bird.getPos();
         pos.setY(pos.getY()+5);
-        if(!Collider.isCollision(pos, world)) {
+        if(!getCollider().canMove(pos)) {
             bird.setPos(pos);
             return true;
         }
