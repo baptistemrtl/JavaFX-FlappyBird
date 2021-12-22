@@ -16,6 +16,14 @@ public abstract class Element {
             image.set(img);
         }
 
+
+    public Element(int width, int height, Position pos, String imageUrl){
+        setWidth(width);
+        setHeight(height);
+        setPos(pos);
+        setImage(imageUrl);
+    }
+
     public Position getPos() {
         return pos;
     }

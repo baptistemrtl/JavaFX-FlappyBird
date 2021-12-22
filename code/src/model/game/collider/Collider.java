@@ -22,12 +22,16 @@ public abstract class Collider {
 
     public abstract boolean canMove(Position pos);
 
-    public abstract boolean canMoveBird(Position pos);
+    public abstract boolean checkPos(Position pos);
 
-    public abstract void isPresent(Position pos);
+    public abstract boolean checkCollision(Position pos);
 
     public Collider(World world){
         this.world = world;
+    }
+
+    public World getWorld(){
+        return world;
     }
 
 }
