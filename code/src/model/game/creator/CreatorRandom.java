@@ -15,7 +15,7 @@ public class CreatorRandom extends Creator{
     private final int PIPE_HEIGHT = 180;
     private Random alea = new Random();
 
-    public Obstacle creerObstacle(World world, Position pos){
+    public Obstacle creerObstacle2(World world, Position pos){
         int obstacleGap = alea.nextInt();
 
         Element up_pipe = new Obstacle(PIPE_WIDTH,PIPE_HEIGHT, pos,UP_PIPE);
@@ -25,5 +25,10 @@ public class CreatorRandom extends Creator{
     private void downPosition(Position pos){
         pos.setX(pos.getX()+40);
         pos.setY(pos.getY() );
+    }
+
+    @Override
+    public void creerObstacle(World world) {
+
     }
 }

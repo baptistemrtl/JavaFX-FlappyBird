@@ -1,5 +1,7 @@
 package model.game.creator;
 
+import model.game.World;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -48,5 +50,10 @@ public class CreatorSimple extends Creator{
         }
 
         return world;
+    }
+
+    @Override
+    public void creerObstacle(World world) {
+
     }
 }
