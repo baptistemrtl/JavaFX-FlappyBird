@@ -5,7 +5,7 @@ public class Position implements Comparable<Position> {
     private double X;
     private double Y;
 
-    Position(double x, double y) {
+    public Position(double x, double y) {
         X = x;
         Y = y;
     }

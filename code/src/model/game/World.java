@@ -1,16 +1,14 @@
 package model.game;
 
-import com.sun.source.tree.Tree;
-import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import model.Position;
+import model.game.element.Bird;
 import model.game.element.Element;
 
-import java.util.TreeMap;
+import java.util.Map;
 
 public class World {
     //private final TreeMap<Position, Element> elements = new TreeMap<>();
@@ -23,10 +21,6 @@ public class World {
         public void setTimer(int timer) {this.timer.set(timer); }
 
 
-    /*public void addElement(Element element) {
-        elements.put(element.getPos(), element);
-    }*/
-
     public void addElement(Element element){
         elements.put(element.getPos(), element);
     }
@@ -34,9 +28,14 @@ public class World {
         elements.remove(element.getPos());
     }
 
-    /*public Element asElement(Position pos) {
-        return elements.get(pos);
-    }*/
+    public Bird getCurrentBird(){
+            for(Map.Entry<Position, Element> entry : elements.entrySet()){
+                if (entry.getValue() instanceof Bird){
+                    return (Bird) entry.getValue();
+                }
+            }
+            return null;
+    }
 
     public ObservableMap<Position, Element> getElements(){
         return FXCollections.unmodifiableObservableMap(elements);

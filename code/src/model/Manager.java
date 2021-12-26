@@ -13,6 +13,7 @@ import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
 import model.game.creator.Creator;
 import model.game.creator.CreatorRandom;
+import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
 import model.game.element.Bird;
@@ -26,7 +27,7 @@ public class Manager implements InvalidationListener {
     private Bird currentBird;
     private Collider collider;
     private Boucleur boucleur;
-    private Creator creator;
+    private CreatorSimple creator;
     private Log currentLog;
     private Displacer birdDeplaceur ;
     //private Displacer obstacleDeplaceur = new ObstacleDisplacer(); à modif car l'obstacle s'en fou de connaître un collider
@@ -47,11 +48,18 @@ public class Manager implements InvalidationListener {
         currentWorld = new World();
         collider = new ColliderSimple(currentWorld);
         boucleur = new BoucleurSimple();
-        creator = new CreatorRandom();
+        creator = new CreatorSimple("/testFinishedWorlds/world1.txt");
         //displacer
-        // currentBird = creator.createBird
+
 
     }
+
+    public void creerMonde(){
+        currentWorld = creator.readWorldFile();
+        currentBird = currentWorld.getCurrentBird();
+    }
+
+    public World getCurrentWorld(){ return currentWorld; }
 
     public void dataLoad(){
         currentLog = new LogSimple((ObservableList<Player>) loader.loadData());
@@ -79,7 +87,7 @@ public class Manager implements InvalidationListener {
     public void invalidated(Observable observable) {
 
         if (compteurBoucl == 20){
-            creator.creerObstacle(currentWorld);
+            //creator.creerObstacle(currentWorld);
             compteurBoucl = 0;
         }
         compteurBoucl++;

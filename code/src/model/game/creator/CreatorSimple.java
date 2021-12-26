@@ -1,6 +1,9 @@
 package model.game.creator;
 
+import model.Position;
 import model.game.World;
+import model.game.element.Bird;
+import model.game.element.Obstacle;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,25 +23,36 @@ public class CreatorSimple extends Creator{
     int width;
     int height;
 
-    public CreatorSimple(String path, int width, int height){
+    public CreatorSimple(String path){
         this.path= path;
-        this.width = width;
-        this.height = height;
     }
 
-    public int[][] readWorldFile(){
+    public World readWorldFile(){
         BufferedReader reader;
-        int w=0, h=0;
+        double w=0.0, h=0.0;
         String line;
-        int[][] world = new int [height][width];
+        World monde = new World();
         try{
             reader = new BufferedReader(new FileReader(path));
             while((line =  reader.readLine()) != null){
                 for(char bloc : line.toCharArray()){
-                    world[h][w]= (int) bloc;
-                    w++;
+                    switch(bloc){
+                        case 1:
+                            monde.addElement(new Obstacle(50,50,new Position(w,h),"/image/up_pipe.png"));
+                            w+=50;
+                            break;
+                        case 3:
+                            monde.addElement(new Obstacle(50,50,new Position(w,h),"/image/down_pipe.png"));
+                            w+=50;
+                            break;
+                        case 2:
+                            monde.addElement(new Bird(50,50,new Position(w,h),"image/bird.png"));
+                            break;
+                        default:
+                            w+=50;
+                    }
                 }
-                h++;
+                h+=50;
                 w=0;
             }
         } catch (FileNotFoundException e) {
@@ -49,11 +63,7 @@ public class CreatorSimple extends Creator{
             e.printStackTrace();
         }
 
-        return world;
+        return monde;
     }
 
-    @Override
-    public void creerObstacle(World world) {
-
-    }
 }

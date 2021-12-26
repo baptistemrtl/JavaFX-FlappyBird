@@ -7,5 +7,4 @@ import java.util.Random;
 
 public abstract class Creator {
 
-    public  abstract void creerObstacle(World world);
 }

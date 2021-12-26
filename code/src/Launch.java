@@ -14,5 +14,6 @@ public class Launch extends Application {
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }
