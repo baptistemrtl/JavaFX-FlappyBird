@@ -20,6 +20,7 @@ public class CreatorRandom extends Creator{
 
         Element up_pipe = new Obstacle(PIPE_WIDTH,PIPE_HEIGHT, pos,UP_PIPE);
         Element down_pipe = new Obstacle(PIPE_WIDTH,PIPE_HEIGHT, pos,DOWN_PIPE);
+        return null;
     }
 
     private void downPosition(Position pos){
@@ -27,7 +28,7 @@ public class CreatorRandom extends Creator{
         pos.setY(pos.getY() );
     }
 
-    @Override
+
     public void creerObstacle(World world) {
 
     }

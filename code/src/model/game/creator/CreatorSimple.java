@@ -38,15 +38,15 @@ public class CreatorSimple extends Creator{
                 for(char bloc : line.toCharArray()){
                     switch(bloc){
                         case 1:
-                            monde.addElement(new Obstacle(50,50,new Position(w,h),"/image/up_pipe.png"));
+                            monde.addElement(new Obstacle(150,150,new Position(w,h),"rsrc/image/up_pipe.png"));
                             w+=50;
                             break;
                         case 3:
-                            monde.addElement(new Obstacle(50,50,new Position(w,h),"/image/down_pipe.png"));
+                            monde.addElement(new Obstacle(150,150,new Position(w,h),"rsrc/image/down_pipe.png"));
                             w+=50;
                             break;
                         case 2:
-                            monde.addElement(new Bird(50,50,new Position(w,h),"image/bird.png"));
+                            monde.addElement(new Bird(150,150,new Position(w,h),"rsrc/image/bird.png"));
                             break;
                         default:
                             w+=50;

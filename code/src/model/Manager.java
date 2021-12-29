@@ -48,7 +48,7 @@ public class Manager implements InvalidationListener {
         currentWorld = new World();
         collider = new ColliderSimple(currentWorld);
         boucleur = new BoucleurSimple();
-        creator = new CreatorSimple("/testFinishedWorlds/world1.txt");
+        creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
         //displacer
 
 
