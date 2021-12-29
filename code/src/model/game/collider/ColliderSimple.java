@@ -30,9 +30,10 @@ public class ColliderSimple extends Collider{
 
 
     @Override
-    public boolean checkCollision(Position pos) { //Va parcourir les entités du monde
+    public boolean checkCollision(Position pos) { // Va parcourir les entités du monde, Pos = position actuelle de l'oiseau
         ObservableMap<Position, Element> elements = this.getWorld().getElements();
-        Rectangle rBird = new Rectangle((int)pos.getX(),(int)pos.getY(),20,20); // taille de l'oiseau à la place du 10
+        Bird bird = getWorld().getCurrentBird();
+        Rectangle rBird = new Rectangle((int)pos.getX(),(int)pos.getY(),bird.getWidth(),bird.getHeight());
         for (Map.Entry<Position, Element> entry : elements.entrySet()){
             Element element = entry.getValue();
             if (element instanceof Obstacle){

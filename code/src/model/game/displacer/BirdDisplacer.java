@@ -13,20 +13,16 @@ public class BirdDisplacer extends Displacer {
     }
     @Override
     public boolean move(Element element) {
-        Position pos = element.getPos();
-        pos.setY(pos.getY()+1);
-        if(!getCollider().canMove(pos)) {
-            element.setPos(pos);
-            return true;
-        }
-
-        return false;
+       if (element instanceof Bird){
+           return fly((Bird) element);
+       }
+       return false;
     }
 
     public boolean fly(Bird bird) {   // c'est les memes faudra check ça
         Position pos = bird.getPos();
-        pos.setY(pos.getY()+5);
-        if(!getCollider().canMove(pos)) {
+        pos.setY(pos.getY()+10);
+        if(getCollider().canMove(pos)) {
             bird.setPos(pos);
             return true;
         }
