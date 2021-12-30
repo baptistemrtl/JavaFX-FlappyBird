@@ -20,7 +20,7 @@ public class ColliderSimple extends Collider{
     }
     @Override
     public boolean canMove(Position pos) {
-       return checkPos(pos) && checkCollision(pos);
+       return checkCollision(pos);
     }
 
     @Override
@@ -32,7 +32,10 @@ public class ColliderSimple extends Collider{
     @Override
     public boolean checkCollision(Position pos) { // Va parcourir les entités du monde, Pos = position actuelle de l'oiseau
         ObservableMap<Position, Element> elements = this.getWorld().getElements();
-        Bird bird = getWorld().getCurrentBird();
+        Bird bird = getWorld().getCurrentBird(); // BIRD NULL
+        if (bird == null){
+            bird = new Bird(50,50, new Position(100,150),"image/bird.png");
+        }
         Rectangle rBird = new Rectangle((int)pos.getX(),(int)pos.getY(),bird.getWidth(),bird.getHeight());
         for (Map.Entry<Position, Element> entry : elements.entrySet()){
             Element element = entry.getValue();

@@ -49,8 +49,7 @@ public class Manager implements InvalidationListener {
         collider = new ColliderSimple(currentWorld);
         boucleur = new BoucleurSimple();
         creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
-        //displacer
-
+        birdDeplaceur = new BirdDisplacer(collider);
 
     }
 
@@ -86,9 +85,9 @@ public class Manager implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
 
-        if (compteurBoucl == 20){
-            //creator.creerObstacle(currentWorld);
-            compteurBoucl = 0;
+        if (compteurBoucl == 150){
+            birdDeplaceur.move(currentBird);
+            compteurBoucl=0;
         }
         compteurBoucl++;
     }

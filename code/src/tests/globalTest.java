@@ -17,7 +17,7 @@ public class globalTest {
 
     public static void main(String args[]){
         // Déclaration des variables nécessaires
-        Position deplacement = new Position(200,200);
+        Position deplacement = new Position(0,200);
         Position start = new Position(0,0);
         World world = new World();
         world.addElement(new Obstacle(150,150,deplacement,""));

@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import model.Manager;
 import model.Position;
 import model.game.World;
+import model.game.element.Background;
 import model.game.element.Bird;
 import model.game.element.Element;
 
@@ -32,6 +33,14 @@ public class Game {
         man.creerMonde();
         World world = man.getCurrentWorld();
         Bird currentBird = world.getCurrentBird();
+        Background bg = new Background(900,900,new Position(0,0),"image/background2.png");
+
+        ImageView background = new ImageView(bg.getImage());
+        background.setFitHeight(bg.getHeight());
+        background.setFitWidth(bg.getWidth());
+        background.setX(bg.getPos().getX());
+        background.setY(bg.getPos().getY());
+        gameBp.getChildren().add(background);
 
         if (currentBird != null){
             ImageView bird = new ImageView(new Image(currentBird.getImage()));
@@ -55,6 +64,7 @@ public class Game {
                 gameBp.getChildren().add(obstacle);
             }
         }
+        man.startBoucle();
     }
 
     public void miseAJour(Object obj) {
