@@ -1,16 +1,19 @@
 package view;
 
+
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import launcher.Launch;
 import model.Manager;
 import model.Position;
 import model.game.World;
 import model.game.element.Background;
 import model.game.element.Bird;
 import model.game.element.Element;
+import model.game.element.Obstacle;
 
 import java.util.Map;
 
@@ -24,12 +27,11 @@ public class Game {
     @FXML
     private ImageView gameIv;
 
-    private ImageView elementBoy;
     @FXML
     public void initialize() throws Exception{
         gameIv.setFitWidth(800);
         gameIv.setFitHeight(600);
-        Manager man = new Manager();
+        Manager man = Launch.getManager();
         man.creerMonde();
         World world = man.getCurrentWorld();
         Bird currentBird = world.getCurrentBird();
@@ -65,14 +67,26 @@ public class Game {
             }
         }
         man.startBoucle();
+        for (Map.Entry<Position,Element> entry : elements.entrySet()){
+            update(entry.getValue());
+        }
     }
 
-    public void miseAJour(Object obj) {
-
-        if (obj instanceof Bird) {
-            ImageView bird = new ImageView();
-            bird.setImage(new Image("image/bird.png"));
+    public void update(Element element) {
+        Manager man = Launch.getManager();
+        ImageView elementIv = new ImageView();
+        elementIv.setImage(new Image(element.getImage()));
+        if (element instanceof Bird){
+            elementIv.setFitWidth(man.getCurrentBird().getWidth());
+            elementIv.setFitHeight(man.getCurrentBird().getHeight());
         }
+        if (element instanceof Obstacle){
+            elementIv.setFitWidth(element.getWidth());
+            elementIv.setFitHeight(element.getHeight());
+        }
+        gameBp.getChildren().add(elementIv);
+        elementIv.layoutXProperty().bind(element.getPos().xProperty());
+        elementIv.layoutYProperty().bind(element.getPos().yProperty());
     }
 
 }

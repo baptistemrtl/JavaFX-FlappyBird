@@ -7,7 +7,8 @@ import model.game.element.Element;
 
 public class ObstacleDisplacer extends Displacer {
 
-    public ObstacleDisplacer(Collider collider){
+
+    public ObstacleDisplacer(Collider collider) {
         super(collider);
     }
 

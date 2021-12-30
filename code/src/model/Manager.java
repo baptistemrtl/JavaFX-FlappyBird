@@ -6,6 +6,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import model.game.*;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
@@ -16,9 +17,16 @@ import model.game.creator.CreatorRandom;
 import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
+import model.game.displacer.ObstacleDisplacer;
 import model.game.element.Bird;
+import model.game.element.Element;
+import model.game.element.Obstacle;
 import model.game.logs.Log;
 import model.game.logs.LogSimple;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Manager implements InvalidationListener {
 
@@ -29,7 +37,8 @@ public class Manager implements InvalidationListener {
     private Boucleur boucleur;
     private CreatorSimple creator;
     private Log currentLog;
-    private Displacer birdDeplaceur ;
+    private BirdDisplacer birdDeplaceur ;
+    private Displacer obstacleDisplacer;
     //private Displacer obstacleDeplaceur = new ObstacleDisplacer(); à modif car l'obstacle s'en fou de connaître un collider
     private LoaderBinaire loader;
     private SaverBinaire saver;
@@ -50,16 +59,34 @@ public class Manager implements InvalidationListener {
         boucleur = new BoucleurSimple();
         creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
         birdDeplaceur = new BirdDisplacer(collider);
+        obstacleDisplacer = new ObstacleDisplacer(null);
 
     }
 
     public void creerMonde(){
         currentWorld = creator.readWorldFile();
+        collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
     }
 
+    public Bird getCurrentBird(){ return currentWorld.getCurrentBird(); }
     public World getCurrentWorld(){ return currentWorld; }
+    public List<Obstacle> getAllObstacles(){
+        List<Obstacle> list = new ArrayList<Obstacle>();
+        ObservableMap<Position, Element> elements = currentWorld.getElements();
+        for (Map.Entry<Position,Element> entry : elements.entrySet()){
+           if (elements instanceof Obstacle){
+               list.add((Obstacle) elements);
+           }
+        }
+        return list;
+    }
 
+    public Log getLog(){
+        return this.currentLog;
+    }
+
+    //Persistance
     public void dataLoad(){
         currentLog = new LogSimple((ObservableList<Player>) loader.loadData());
     }
@@ -68,10 +95,7 @@ public class Manager implements InvalidationListener {
         saver.saveData(currentLog.getPlayers());
     }
 
-    public Log getLog(){
-        return this.currentLog;
-    }
-
+    //Boucle
     public void startBoucle() {
         boucleur.addListener(this);
         boucleur.setRunning(true);
@@ -84,11 +108,19 @@ public class Manager implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
+        ObservableMap<Position, Element> elements = currentWorld.getElements();
+        if (compteurBoucl == 1){
+            for (Map.Entry<Position,Element> entry : elements.entrySet()){
+                if (entry.getValue() instanceof Obstacle){
+                    obstacleDisplacer.move((Obstacle) entry.getValue());
+                }
 
-        if (compteurBoucl == 150){
-            birdDeplaceur.move(currentBird);
+            }
+            birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
         compteurBoucl++;
     }
+
+
 }

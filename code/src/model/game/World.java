@@ -37,6 +37,11 @@ public class World {
             return null;
     }
 
+    public void replaceCurrentBird(Bird bird){
+            Position cbPos = getCurrentBird().getPos();
+            elements.replace(cbPos,bird);
+    }
+
     public ObservableMap<Position, Element> getElements(){
         return FXCollections.unmodifiableObservableMap(elements);
     }

@@ -34,4 +34,6 @@ public abstract class Collider {
         return world;
     }
 
+    public void setWorld(World world){ this.world = world; }
+
 }

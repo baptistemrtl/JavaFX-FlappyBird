@@ -1,30 +1,25 @@
 package model;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
 import java.util.Objects;
 
 public class Position implements Comparable<Position> {
-    private double X;
-    private double Y;
+    private DoubleProperty x = new SimpleDoubleProperty();
+        public double getX(){ return x.get(); }
+        public void setX(double x2){ x.set(x2); }
+    public DoubleProperty xProperty(){ return x; }
+
+    private DoubleProperty y = new SimpleDoubleProperty();
+        public double getY(){ return y.get(); }
+        public void setY(double y2){ y.set(y2); }
+    public DoubleProperty yProperty(){ return y; }
 
     public Position(double x, double y) {
-        X = x;
-        Y = y;
+        setX(x);
+        setY(y);
     }
 
-    public double getX() {
-        return X;
-    }
-
-    public void setX(double x) {
-        X = x;
-    }
-
-    public double getY() {
-        return Y;
-    }
-
-    public void setY(double y) {
-        Y = y;
-    }
 
     public void setPosition(double x, double y) {
         setX(x);
@@ -42,12 +37,12 @@ public class Position implements Comparable<Position> {
 
     @Override // vue que plus treeMap (hashMap mtn) remplacer compareTo par HashCode
     public int compareTo(Position o) {
-        if(X != o.X) {
-            return X > o.X ? 1 : -1;
+        if(getX() != o.getX()) {
+            return getX() > o.getX() ? 1 : -1;
         }
 
-        if (Y != o.Y) {
-            return Y > o.Y ? 1 : -1;
+        if (getY() != o.getY()) {
+            return getY() > o.getY() ? 1 : -1;
         }
 
         return 0;

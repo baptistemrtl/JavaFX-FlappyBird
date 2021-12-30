@@ -14,5 +14,6 @@ public abstract class Displacer {
     public Collider getCollider(){
         return collider;
     }
+    public void setCollider(Collider collider){ this.collider = collider; }
     public abstract boolean move(Element element);
 }

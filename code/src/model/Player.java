@@ -13,10 +13,12 @@ public class Player {
     private final StringProperty pseudo = new SimpleStringProperty();
         public String getPseudo(){ return pseudo.get(); }
         public void setPseudo(String psd){ pseudo.set(psd); }
+    public StringProperty pseudoProperty(){ return pseudo; }
 
     private IntegerProperty scoreMax = new SimpleIntegerProperty();
         public int getScoreMax(){ return scoreMax.get(); }
         public void setScoreMax(int smax){ scoreMax.set(smax);}
+    public IntegerProperty scoreProperty(){ return scoreMax; }
 
     public Player(String pseudo, int scoreMax) {
         setPseudo(pseudo);
