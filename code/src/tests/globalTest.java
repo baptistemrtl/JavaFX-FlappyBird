@@ -12,10 +12,9 @@ import model.game.element.Obstacle;
 
 import java.util.Map;
 
-
 public class globalTest {
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         // Déclaration des variables nécessaires
         Position deplacement = new Position(0,200);
         Position start = new Position(0,0);
@@ -45,7 +44,7 @@ public class globalTest {
         //Test de la collision
         int i = 1;
         boolean coll = displacer.move(bird);
-        while (coll == true){
+        while (coll){
             System.out.println("Bird" + i + " deplacement -> x :" + bird.getPos().getX() + " y :" + bird.getPos().getY());
             ++i;
             coll = displacer.move(bird);

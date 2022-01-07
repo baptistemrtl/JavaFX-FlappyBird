@@ -2,18 +2,19 @@ package Persistance;
 
 import model.Player;
 
+
 import java.io.*;
 import java.util.List;
 
-public class SaverBinaire implements Save{
+public class SaverBinaire implements Save {
 
-    private String filePath;
+    private final String filePath;
 
-    public SaverBinaire(String filePath){
+    public SaverBinaire(String filePath) {
         this.filePath = filePath;
     }
 
-    public SaverBinaire(){
+    public SaverBinaire() {
         this("");
     }
 
@@ -30,8 +31,6 @@ public class SaverBinaire implements Save{
             oos.close();
             buff.close(); // ou bien fermer le file tout court
             file.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

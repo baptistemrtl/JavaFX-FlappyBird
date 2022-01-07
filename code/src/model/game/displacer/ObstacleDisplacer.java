@@ -1,7 +1,6 @@
 package model.game.displacer;
 
 import model.Position;
-import model.game.World;
 import model.game.collider.Collider;
 import model.game.element.Element;
 

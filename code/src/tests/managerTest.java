@@ -1,6 +1,5 @@
 package tests;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import model.Manager;
 import model.Position;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 public class managerTest {
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         Manager man = new Manager();
         man.creerMonde();
         World world = man.getCurrentWorld();

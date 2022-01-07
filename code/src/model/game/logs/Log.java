@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class Log {
 
-    private List<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
     public abstract void addPlayer(Player player);
 

@@ -1,19 +1,12 @@
 package model;
+
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import model.game.*;
+import model.game.World;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
-import model.game.creator.Creator;
-import model.game.creator.CreatorRandom;
 import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
@@ -23,6 +16,13 @@ import model.game.element.Element;
 import model.game.element.Obstacle;
 import model.game.logs.Log;
 import model.game.logs.LogSimple;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class Manager implements InvalidationListener {
     public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant); }
 
 
-    public Manager(){
+    public Manager() {
         currentWorld = new World();
         collider = new ColliderSimple(currentWorld);
         boucleur = new BoucleurSimple();
@@ -63,22 +63,30 @@ public class Manager implements InvalidationListener {
 
     }
 
-    public void creerMonde(){
+    public void creerMonde() {
         currentWorld = creator.readWorldFile();
         collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
     }
 
-    public Bird getCurrentBird(){ return currentWorld.getCurrentBird(); }
-    public World getCurrentWorld(){ return currentWorld; }
-    public List<Obstacle> getAllObstacles(){
-        List<Obstacle> list = new ArrayList<Obstacle>();
+    public Bird getCurrentBird() {
+        return currentWorld.getCurrentBird();
+    }
+
+    public World getCurrentWorld() {
+        return currentWorld;
+    }
+
+    public List<Obstacle> getAllObstacles() {
+        List<Obstacle> list = new ArrayList<>();
         ObservableMap<Position, Element> elements = currentWorld.getElements();
-        for (Map.Entry<Position,Element> entry : elements.entrySet()){
-           if (elements instanceof Obstacle){
-               list.add((Obstacle) elements);
-           }
+
+        for (Element obstacle : elements.values()){
+            if (obstacle instanceof Obstacle){
+                list.add((Obstacle) obstacle);
+            }
         }
+
         return list;
     }
 
@@ -116,11 +124,13 @@ public class Manager implements InvalidationListener {
                 }
 
             }
-            birdDeplaceur.drop(getCurrentBird());
+//            birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
         compteurBoucl++;
     }
 
-
+    public void keyMove(){
+        birdDeplaceur.move(getCurrentBird());
+    }
 }

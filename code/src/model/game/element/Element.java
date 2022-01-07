@@ -17,7 +17,7 @@ public abstract class Element {
         }
 
 
-    public Element(int width, int height, Position pos, String imageUrl){
+    public Element(int width, int height, Position pos, String imageUrl) {
         setWidth(width);
         setHeight(height);
         setPos(pos);

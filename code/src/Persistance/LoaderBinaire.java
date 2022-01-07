@@ -1,7 +1,8 @@
 package Persistance;
 
-import javafx.collections.FXCollections;
 import model.Player;
+
+import javafx.collections.FXCollections;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -10,33 +11,33 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoaderBinaire implements Load{
+public class LoaderBinaire implements Load {
 
-    private String filePath;
+    private final String filePath;
 
-    public LoaderBinaire(String filePath){
+    public LoaderBinaire(String filePath) {
         this.filePath = filePath;
     }
 
-    public LoaderBinaire(){
+    public LoaderBinaire() {
         this("");
     }
 
     @Override
     public List<Player> loadData() {
         List<Player> players = new ArrayList<>();
-        try{
+        try {
             File file = new File(filePath);
-            if(!file.exists())
-            {
+            if(!file.exists()) {
                 throw new Exception("Le fichier n'existe pas");
             }
+
             FileInputStream fis = new FileInputStream(filePath);
             BufferedInputStream buff = new BufferedInputStream(fis);
             ObjectInputStream o = new ObjectInputStream(buff);
-            String pseudo= (String)o.readObject();
-            while(pseudo!=null) //tant qu'il y a quelquechose à lire
-            {
+            String pseudo = (String)o.readObject();
+
+            while(pseudo!=null) { //tant qu'il y a quelque chose à lire
                 //String pseudo= (String)o.readObject();
                 String motDePAsse=(String) o.readObject();
                 int scoreMax = (int)o.readObject();
@@ -45,10 +46,9 @@ public class LoaderBinaire implements Load{
                 pseudo = (String)o.readObject();
             }
         }
-        catch(Exception e){
+        catch(Exception e) {
             e.printStackTrace();
         }
         return FXCollections.observableArrayList(players);
     }
-
 }

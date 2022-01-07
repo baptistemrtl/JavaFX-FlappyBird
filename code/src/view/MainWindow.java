@@ -1,20 +1,16 @@
 package view;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import model.Manager;
-import model.Position;
-import model.game.World;
-import model.game.element.Bird;
-import javafx.fxml.FXML;
 
+import java.util.Objects;
+import model.Manager;
 
 
 public class MainWindow {
@@ -25,14 +21,6 @@ public class MainWindow {
     private ImageView flopflop;
 
     @FXML
-    private Button playButton;
-
-    @FXML
-    private TextField pseudoJoueur;
-
-
-
-    @FXML
     public void initialize(){
         flopflop = new ImageView(gameTitle);
     }
@@ -41,7 +29,7 @@ public class MainWindow {
         Manager man = new Manager();
 
         Stage primaryStage = new Stage();
-        Parent racine = FXMLLoader.load(getClass().getResource("/FXML/Game.fxml"));
+        Parent racine = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")));
         Scene scene = new Scene(racine);
         primaryStage.setScene(scene);
         primaryStage.show();

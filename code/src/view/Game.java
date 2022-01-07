@@ -5,6 +5,8 @@ import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import launcher.Launch;
 import model.Manager;
@@ -19,7 +21,7 @@ import java.util.Map;
 
 
 public class Game {
-
+    Manager man = Launch.getManager();
 
     @FXML
     private BorderPane gameBp;
@@ -31,7 +33,7 @@ public class Game {
     public void initialize() throws Exception{
         gameIv.setFitWidth(800);
         gameIv.setFitHeight(600);
-        Manager man = Launch.getManager();
+//        Manager man = Launch.getManager();
         man.creerMonde();
         World world = man.getCurrentWorld();
         Bird currentBird = world.getCurrentBird();
@@ -50,7 +52,6 @@ public class Game {
             bird.setFitWidth(currentBird.getWidth());
             bird.setX(currentBird.getPos().getX());
             bird.setY(currentBird.getPos().getY());
-            gameBp.getChildren().add(bird);
         }
 
 
@@ -58,22 +59,23 @@ public class Game {
         if (elements != null){
             for (Map.Entry<Position,Element> entry : elements.entrySet()){
                 Element obs = entry.getValue();
-                ImageView obstacle = new ImageView(new Image(obs.getImage()));
-                obstacle.setFitWidth(obs.getWidth());
-                obstacle.setFitHeight(obs.getHeight());
-                obstacle.setX(obs.getPos().getX());
-                obstacle.setY(obs.getPos().getY());
-                gameBp.getChildren().add(obstacle);
+                if(obs instanceof Obstacle){
+                    ImageView obstacle = new ImageView(new Image(obs.getImage()));
+                    obstacle.setFitWidth(obs.getWidth());
+                    obstacle.setFitHeight(obs.getHeight());
+                    obstacle.setX(obs.getPos().getX());
+                    obstacle.setY(obs.getPos().getY());
+                }
             }
         }
-        man.startBoucle();
         for (Map.Entry<Position,Element> entry : elements.entrySet()){
             update(entry.getValue());
         }
+        man.startBoucle();
     }
 
     public void update(Element element) {
-        Manager man = Launch.getManager();
+//        Manager man = Launch.getManager();
         ImageView elementIv = new ImageView();
         elementIv.setImage(new Image(element.getImage()));
         if (element instanceof Bird){
@@ -89,4 +91,10 @@ public class Game {
         elementIv.layoutYProperty().bind(element.getPos().yProperty());
     }
 
+    @FXML
+    public void move(KeyEvent event){
+        if(event.getCode() == KeyCode.SPACE){
+            man.keyMove();
+        }
+    }
 }

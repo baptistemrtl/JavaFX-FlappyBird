@@ -13,7 +13,7 @@ public class CreatorRandom extends Creator{
     private String UP_PIPE = "/image/up_pipe.png";
     private final int PIPE_WIDTH = 40;
     private final int PIPE_HEIGHT = 180;
-    private Random alea = new Random();
+    private final Random alea = new Random();
 
     public Obstacle creerObstacle2(World world, Position pos){
         int obstacleGap = alea.nextInt();

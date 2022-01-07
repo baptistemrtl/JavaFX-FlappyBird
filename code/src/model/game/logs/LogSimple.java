@@ -1,11 +1,12 @@
 package model.game.logs;
 
+import model.Player;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Player;
 
 public class LogSimple extends Log{
 
@@ -22,14 +23,13 @@ public class LogSimple extends Log{
         setMesUtilisateurs(players);
     }
 
-
     @Override
     public boolean logged(Player player) {  // Mieux
         return (players.contains(player));
     }
 
     @Override
-    public void addPlayer(Player player){
+    public void addPlayer(Player player) {
         players.add(player);
     }
 }

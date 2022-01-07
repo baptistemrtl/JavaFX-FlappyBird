@@ -1,16 +1,14 @@
 package model.game.collider;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableMap;
-import jdk.jshell.spi.ExecutionControl;
+
 import model.Position;
 import model.game.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
-import java.awt.*;
+import java.awt.*; // changer avec javafx
 import java.util.Map;
 
 public class ColliderSimple extends Collider{
@@ -42,7 +40,7 @@ public class ColliderSimple extends Collider{
             if (element instanceof Obstacle){
                 Position elemPos = entry.getKey();
                 Rectangle rPipe = new Rectangle((int)elemPos.getX(),(int)elemPos.getY(),element.getWidth(),element.getHeight());
-                if (rBird.intersects(rPipe)){
+                if (rBird.intersects(rPipe)){ // passer avec javafx et regarder le Bounds
                     return false;
                 }
             }

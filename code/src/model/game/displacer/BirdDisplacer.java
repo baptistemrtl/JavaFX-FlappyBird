@@ -1,7 +1,6 @@
 package model.game.displacer;
 
 import model.Position;
-import model.game.World;
 import model.game.collider.Collider;
 import model.game.element.Bird;
 import model.game.element.Element;
@@ -12,12 +11,13 @@ public class BirdDisplacer extends Displacer {
     private final int B = -2;
     private final int C = -3;
 
-    public BirdDisplacer(Collider collider){
+    public BirdDisplacer(Collider collider) {
         super(collider);
     }
+
     @Override
     public boolean move(Element element) {
-       if (element instanceof Bird){
+       if (element instanceof Bird) {
            return fly((Bird) element);
        }
        return false;
