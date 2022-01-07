@@ -1,5 +1,6 @@
 package model.game;
 
+import javafx.collections.ObservableList;
 import model.Position;
 import model.game.element.Bird;
 import model.game.element.Element;
@@ -9,10 +10,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class World {
-    //private final TreeMap<Position, Element> elements = new TreeMap<>();
+
     private final ObservableMap<Position, Element> elements = FXCollections.observableHashMap();
     public IntegerProperty timer = new SimpleIntegerProperty();
         public IntegerProperty timerProperty() { return timer; }
@@ -21,10 +24,14 @@ public class World {
 
 
     public void addElement(Element element) {
-        elements.put(element.getPos(), element);
+            elements.put(element.getPos(), element);
     }
     public void delElement(Element element) {
-        elements.remove(element.getPos());
+            elements.remove(element.getPos());
+    }
+
+    public ObservableMap<Position,Element> getValues(){
+        return FXCollections.unmodifiableObservableMap(elements);
     }
 
     public Bird getCurrentBird() {

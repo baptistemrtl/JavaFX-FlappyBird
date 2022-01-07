@@ -2,6 +2,8 @@ package model;
 
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.game.World;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
@@ -30,6 +32,8 @@ import java.util.Map;
 
 public class Manager implements InvalidationListener {
 
+    private Boolean gameOver;
+
     private Player currentPlayer;
     private World currentWorld;
     private Bird currentBird;
@@ -39,7 +43,7 @@ public class Manager implements InvalidationListener {
     private Log currentLog;
     private BirdDisplacer birdDeplaceur ;
     private Displacer obstacleDisplacer;
-    //private Displacer obstacleDeplaceur = new ObstacleDisplacer(); à modif car l'obstacle s'en fou de connaître un collider
+    //private Displacer obstacleDeplaceur = new ObstacleDisplacer();
     private LoaderBinaire loader;
     private SaverBinaire saver;
 
@@ -63,10 +67,16 @@ public class Manager implements InvalidationListener {
 
     }
 
+    public Boolean isGameOver() {
+        return gameOver;
+    }
+
     public void creerMonde() {
         currentWorld = creator.readWorldFile();
         collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
+
+        System.out.println(getCurrentBird().getImage());
     }
 
     public Bird getCurrentBird() {
@@ -130,7 +140,9 @@ public class Manager implements InvalidationListener {
         compteurBoucl++;
     }
 
-    public void keyMove(){
-        birdDeplaceur.move(getCurrentBird());
+    public void keyMove(KeyCode keyCode){
+        System.out.println("keyMMove");
+        birdDeplaceur.move(currentWorld.getCurrentBird());
+        System.out.println(currentWorld.getCurrentBird().getImage()); // Exception current Bird Null
     }
 }

@@ -1,8 +1,10 @@
 package view;
 
 
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -31,13 +33,17 @@ public class Game {
 
     @FXML
     public void initialize() throws Exception{
+        Scene scene = gameBp.getScene();
+        if (scene == null){
+            System.out.println("null");
+        }
         gameIv.setFitWidth(800);
         gameIv.setFitHeight(600);
-//        Manager man = Launch.getManager();
+//      Manager man = Launch.getManager();
         man.creerMonde();
         World world = man.getCurrentWorld();
         Bird currentBird = world.getCurrentBird();
-        Background bg = new Background(900,900,new Position(0,0),"image/background2.png");
+        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
 
         ImageView background = new ImageView(bg.getImage());
         background.setFitHeight(bg.getHeight());
@@ -72,6 +78,13 @@ public class Game {
             update(entry.getValue());
         }
         man.startBoucle();
+        man.getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
+            System.out.println("change");
+            ObservableMap<? extends Position, ? extends Element> map = change.getMap();
+            for (Map.Entry<? extends Position, ? extends Element> entry : map.entrySet()){
+                update(entry.getValue());
+            }
+        });
     }
 
     public void update(Element element) {
@@ -93,8 +106,7 @@ public class Game {
 
     @FXML
     public void move(KeyEvent event){
-        if(event.getCode() == KeyCode.SPACE){
-            man.keyMove();
-        }
+        System.out.println("move");
+            man.keyMove(event.getCode());
     }
 }

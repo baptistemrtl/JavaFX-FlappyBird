@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<BorderPane prefWidth="600" prefHeight="700" stylesheets="@../css/background.css"
+<BorderPane prefWidth="650" prefHeight="700" stylesheets="@../css/background.css"
             xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.MainWindow">
@@ -25,7 +25,7 @@
             <ImageView fx:id="flopflop" fitHeight="196.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true"
                        GridPane.rowIndex="1"/>
             <Button  mnemonicParsing="false" prefHeight="28.0" prefWidth="82.0" text="Quitter"
-                    textFill="#943a3a" GridPane.rowIndex="2"/>
+                    textFill="#943a3a" GridPane.rowIndex="2" fx:id="leaveButton"/>
             <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="168.0"
                     text="Meilleurs scores" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -38,7 +38,8 @@
                     <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
                 <Button onAction="#startGame" mnemonicParsing="false" prefHeight="64.0"
-                        prefWidth="261.0" text="JOUER" GridPane.rowIndex="2">
+                        prefWidth="261.0" text="JOUER" GridPane.rowIndex="2"
+                        fx:id="startButton">
                     <font>
                         <Font name="GentiumAlt" size="29.0"/>
                     </font>

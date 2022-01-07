@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -21,6 +22,9 @@ public class MainWindow {
     private ImageView flopflop;
 
     @FXML
+    private Button startButton;
+
+    @FXML
     public void initialize(){
         flopflop = new ImageView(gameTitle);
     }
@@ -28,11 +32,13 @@ public class MainWindow {
     private void lancerPartie() throws Exception {
         Manager man = new Manager();
 
-        Stage primaryStage = new Stage();
-        Parent racine = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")));
-        Scene scene = new Scene(racine);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        Stage stage=(Stage) startButton.getScene().getWindow();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/FXML/Game.fxml")));
+       // scene.getStylesheets().add(getClass().getResource("/CSS/background.css").toExternalForm());
+        scene.setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML
