@@ -42,9 +42,9 @@ public class Game {
 //      Manager man = Launch.getManager();
         man.creerMonde();
         World world = man.getCurrentWorld();
-        Bird currentBird = world.getCurrentBird();
-        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
+        Bird currentBird = man.getCurrentBird();
 
+       Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
         background.setFitHeight(bg.getHeight());
         background.setFitWidth(bg.getWidth());

@@ -14,4 +14,6 @@ public abstract class Log {
     public abstract List<Player> getPlayers();
 
     public abstract boolean logged(Player player);
+
+    public abstract Player searchPlayer(String pseudo);
 }

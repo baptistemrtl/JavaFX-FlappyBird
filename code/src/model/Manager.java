@@ -64,6 +64,7 @@ public class Manager implements InvalidationListener {
         creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
         birdDeplaceur = new BirdDisplacer(collider);
         obstacleDisplacer = new ObstacleDisplacer(null);
+        currentLog = new LogSimple();
 
     }
 
@@ -71,16 +72,30 @@ public class Manager implements InvalidationListener {
         return gameOver;
     }
 
+    //Initialisation
+
+    public void setCurrentPlayer(String pseudo){
+        currentPlayer = currentLog.searchPlayer(pseudo);
+        if (currentPlayer == null){
+            currentPlayer = new Player(pseudo);
+            currentLog.addPlayer(currentPlayer);
+           // saver.saveData(currentLog.getPlayers());
+        }
+        System.out.println(currentPlayer.getPseudo());
+    }
+
     public void creerMonde() {
         currentWorld = creator.readWorldFile();
         collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
-
-        System.out.println(getCurrentBird().getImage());
     }
 
     public Bird getCurrentBird() {
         return currentWorld.getCurrentBird();
+    }
+
+    public void setCurrentBird(Bird bird){
+        currentWorld.replaceCurrentBird(bird);
     }
 
     public World getCurrentWorld() {
@@ -141,8 +156,10 @@ public class Manager implements InvalidationListener {
     }
 
     public void keyMove(KeyCode keyCode){
+        System.out.println(getCurrentBird().getImage());
         System.out.println("keyMMove");
-        birdDeplaceur.move(currentWorld.getCurrentBird());
-        System.out.println(currentWorld.getCurrentBird().getImage()); // Exception current Bird Null
+        /*currentBird = getCurrentBird();
+        birdDeplaceur.move(currentBird);
+        setCurrentBird(currentBird);*/
     }
 }

@@ -8,6 +8,9 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogSimple extends Log{
 
     public ObservableList<Player> olPlayers = FXCollections.observableArrayList();
@@ -23,9 +26,23 @@ public class LogSimple extends Log{
         setMesUtilisateurs(players);
     }
 
+    public LogSimple(){
+        setMesUtilisateurs(FXCollections.observableArrayList());
+    }
+
     @Override
     public boolean logged(Player player) {  // Mieux
         return (players.contains(player));
+    }
+
+    @Override
+    public Player searchPlayer(String pseudo) {
+        for (Player player : getPlayers()){
+            if (player.getPseudo() == pseudo){
+                return player;
+            }
+        }
+        return null;
     }
 
     @Override
