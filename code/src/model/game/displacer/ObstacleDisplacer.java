@@ -20,6 +20,9 @@ public class ObstacleDisplacer extends Displacer {
             element.setPos(pos);
             return true;
         }
+        Position pos = element.getPos();
+        pos.setX(pos.getX()-5);
+        element.setPos(pos);
         return false;
     }
 }

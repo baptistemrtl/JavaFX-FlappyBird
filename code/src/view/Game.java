@@ -23,7 +23,8 @@ import java.util.Map;
 
 
 public class Game {
-    Manager man = Launch.getManager();
+
+    private Manager man = Launch.getManager();
 
     @FXML
     private BorderPane gameBp;
@@ -33,16 +34,11 @@ public class Game {
 
     @FXML
     public void initialize() throws Exception{
-        Scene scene = gameBp.getScene();
-        if (scene == null){
-            System.out.println("null");
-        }
         gameIv.setFitWidth(800);
         gameIv.setFitHeight(600);
-//      Manager man = Launch.getManager();
-        man.creerMonde();
-        World world = man.getCurrentWorld();
-        Bird currentBird = man.getCurrentBird();
+        //Manager man = Launch.getManager();
+        World world = Launch.getManager().getCurrentWorld();
+        Bird currentBird = Launch.getManager().getCurrentBird();
 
        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
@@ -77,8 +73,8 @@ public class Game {
         for (Map.Entry<Position,Element> entry : elements.entrySet()){
             update(entry.getValue());
         }
-        man.startBoucle();
-        man.getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
+        Launch.getManager().startBoucle();
+        Launch.getManager().getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
             System.out.println("change");
             ObservableMap<? extends Position, ? extends Element> map = change.getMap();
             for (Map.Entry<? extends Position, ? extends Element> entry : map.entrySet()){
@@ -88,12 +84,12 @@ public class Game {
     }
 
     public void update(Element element) {
-//        Manager man = Launch.getManager();
+       //Manager man = Launch.getManager();
         ImageView elementIv = new ImageView();
         elementIv.setImage(new Image(element.getImage()));
         if (element instanceof Bird){
-            elementIv.setFitWidth(man.getCurrentBird().getWidth());
-            elementIv.setFitHeight(man.getCurrentBird().getHeight());
+            elementIv.setFitWidth(Launch.getManager().getCurrentBird().getWidth());
+            elementIv.setFitHeight(Launch.getManager().getCurrentBird().getHeight());
         }
         if (element instanceof Obstacle){
             elementIv.setFitWidth(element.getWidth());
@@ -107,6 +103,6 @@ public class Game {
     @FXML
     public void move(KeyEvent event){
         System.out.println("move");
-            man.keyMove(event.getCode());
+           // Launch.getManager().keyMove(event.getCode());
     }
 }

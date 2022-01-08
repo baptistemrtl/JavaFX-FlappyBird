@@ -33,12 +33,13 @@ import java.util.Map;
 public class Manager implements InvalidationListener {
 
     private Boolean gameOver;
+    private Boolean isMoving;
 
     private Player currentPlayer;
-    private World currentWorld;
+    private World currentWorld = new World();
     private Bird currentBird;
     private Collider collider;
-    private Boucleur boucleur;
+    private Boucleur boucleur = new BoucleurSimple();
     private CreatorSimple creator;
     private Log currentLog;
     private BirdDisplacer birdDeplaceur ;
@@ -58,12 +59,12 @@ public class Manager implements InvalidationListener {
 
 
     public Manager() {
-        currentWorld = new World();
-        collider = new ColliderSimple(currentWorld);
-        boucleur = new BoucleurSimple();
         creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
+        currentWorld = creator.readWorldFile();
+        collider = new ColliderSimple(currentWorld);
+        currentBird = currentWorld.getCurrentBird();
         birdDeplaceur = new BirdDisplacer(collider);
-        obstacleDisplacer = new ObstacleDisplacer(null);
+        obstacleDisplacer = new ObstacleDisplacer(collider);
         currentLog = new LogSimple();
 
     }
@@ -84,11 +85,6 @@ public class Manager implements InvalidationListener {
         System.out.println(currentPlayer.getPseudo());
     }
 
-    public void creerMonde() {
-        currentWorld = creator.readWorldFile();
-        collider.setWorld(currentWorld);
-        currentBird = currentWorld.getCurrentBird();
-    }
 
     public Bird getCurrentBird() {
         return currentWorld.getCurrentBird();
@@ -149,17 +145,15 @@ public class Manager implements InvalidationListener {
                 }
 
             }
-//            birdDeplaceur.drop(getCurrentBird());
+            birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
         compteurBoucl++;
     }
 
     public void keyMove(KeyCode keyCode){
-        System.out.println(getCurrentBird().getImage());
-        System.out.println("keyMMove");
-        /*currentBird = getCurrentBird();
-        birdDeplaceur.move(currentBird);
-        setCurrentBird(currentBird);*/
+        if (!birdDeplaceur.move(currentBird)){
+            stopBoucle();
+        }
     }
 }

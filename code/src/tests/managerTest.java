@@ -14,7 +14,6 @@ public class managerTest {
 
     public static void main(String[] args){
         Manager man = new Manager();
-        man.creerMonde();
         World world = man.getCurrentWorld();
         ObservableMap<Position, Element> elements = world.getElements();
         for(Map.Entry<Position, Element> entry : elements.entrySet()){

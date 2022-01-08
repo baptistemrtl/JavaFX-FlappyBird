@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import launcher.Launch;
 import model.Manager;
 import model.Position;
 import model.game.element.Background;
@@ -31,7 +33,6 @@ public class MainWindow {
     private TextField pseudoJoueur;
     @FXML
     private Button scoreboardButton;
-
 
     @FXML
     public void initialize(){
@@ -53,12 +54,12 @@ public class MainWindow {
     }
 
     private void lancerPartie() throws Exception {
-        Manager man = new Manager();
-        man.setCurrentPlayer(pseudoJoueur.getText());
+        Manager man = Launch.getManager();
+        Launch.getManager().setCurrentPlayer(pseudoJoueur.getText());
         Stage stage=(Stage) startButton.getScene().getWindow();
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/FXML/Game.fxml")));
         scene.getStylesheets().add(getClass().getResource("/CSS/background.css").toExternalForm());
-        scene.setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
+        scene.setOnKeyPressed(keyEvent -> Launch.getManager().keyMove(keyEvent.getCode()));
         stage.setScene(scene);
         stage.setWidth(450);
         stage.setHeight(700);

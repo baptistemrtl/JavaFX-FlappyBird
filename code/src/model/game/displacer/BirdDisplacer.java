@@ -25,7 +25,7 @@ public class BirdDisplacer extends Displacer {
 
     public boolean fly(Bird bird) {   // c'est les memes faudra check ça
         Position pos = bird.getPos();
-        pos.setY(pos.getY()+10);
+        pos.setY(pos.getY()-10);
         if(getCollider().canMove(pos)) {
             bird.setPos(pos);
             return true;
@@ -36,7 +36,7 @@ public class BirdDisplacer extends Displacer {
 
     public boolean drop(Bird bird){
         Position pos = bird.getPos();
-        pos.setY(pos.getY()-10);
+        pos.setY(pos.getY()+5);
         if(getCollider().canMove(pos)) {
             bird.setPos(pos);
             return true;

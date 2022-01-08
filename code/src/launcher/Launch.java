@@ -11,19 +11,9 @@ import java.util.Objects;
 
 public class Launch extends Application {
 
-    private  static Manager man;
+    private  static Manager man = new Manager();
 
-    static {
-        try {
-            man = new Manager();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Manager getManager() {
-        return man;
-    }
+    public static Manager getManager() { return man; }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,5 +22,11 @@ public class Launch extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+
+    @Override
+    public void stop() throws Exception{
+        man.stopBoucle();
+        super.stop();
     }
 }
