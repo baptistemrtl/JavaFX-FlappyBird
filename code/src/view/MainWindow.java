@@ -24,6 +24,7 @@ import model.game.element.Background;
 public class MainWindow {
 
     private final Image gameTitle = new Image("image/flopflop.png");
+    private final Manager man = Launch.getManager();
 
     @FXML
     private BorderPane mainBp;
@@ -47,18 +48,17 @@ public class MainWindow {
         ImageView flopflop = new ImageView(new Image("image/flopflop.png"));
         flopflop.setFitHeight(150);
         flopflop.setFitWidth(300);
-        flopflop.setX(00);
-        flopflop.setY(00);
+        flopflop.setX(0);
+        flopflop.setY(0);
         mainBp.getChildren().add(flopflop);
 
     }
 
     private void lancerPartie() throws Exception {
-        Manager man = Launch.getManager();
-        Launch.getManager().setCurrentPlayer(pseudoJoueur.getText());
+        man.setCurrentPlayer(pseudoJoueur.getText());
         Stage stage=(Stage) startButton.getScene().getWindow();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/FXML/Game.fxml")));
-        scene.getStylesheets().add(getClass().getResource("/CSS/background.css").toExternalForm());
+        Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml"))));
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         scene.setOnKeyPressed(keyEvent -> Launch.getManager().keyMove(keyEvent.getCode()));
         stage.setScene(scene);
         stage.setWidth(450);
@@ -76,8 +76,8 @@ public class MainWindow {
     @FXML
     public void openScoreboard(ActionEvent actionEvent) throws IOException {
             Stage stage=(Stage) scoreboardButton.getScene().getWindow();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/FXML/ScoreBoard.fxml")));
-            scene.getStylesheets().add(getClass().getResource("/CSS/background.css").toExternalForm());
+            Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/ScoreBoard.fxml"))));
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
             stage.setScene(scene);
             stage.setWidth(450);
             stage.setHeight(700);

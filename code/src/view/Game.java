@@ -1,15 +1,5 @@
 package view;
 
-
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableMap;
-import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import launcher.Launch;
 import model.Manager;
 import model.Position;
@@ -19,6 +9,15 @@ import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
+import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableMap;
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+
+import java.util.Collection;
 import java.util.Map;
 
 
@@ -36,9 +35,8 @@ public class Game {
     public void initialize() throws Exception{
         gameIv.setFitWidth(800);
         gameIv.setFitHeight(600);
-        //Manager man = Launch.getManager();
-        World world = Launch.getManager().getCurrentWorld();
-        Bird currentBird = Launch.getManager().getCurrentBird();
+        World world = man.getCurrentWorld();
+        Bird currentBird = man.getCurrentBird();
 
        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
@@ -56,23 +54,21 @@ public class Game {
             bird.setY(currentBird.getPos().getY());
         }
 
-
-        ObservableMap<Position, Element> elements = world.getElements();
-        if (elements != null){
-            for (Map.Entry<Position,Element> entry : elements.entrySet()){
-                Element obs = entry.getValue();
-                if(obs instanceof Obstacle){
-                    ImageView obstacle = new ImageView(new Image(obs.getImage()));
-                    obstacle.setFitWidth(obs.getWidth());
-                    obstacle.setFitHeight(obs.getHeight());
-                    obstacle.setX(obs.getPos().getX());
-                    obstacle.setY(obs.getPos().getY());
-                }
+        Collection<Element> elements = world.getElements().values();
+        for (Element obs : elements){
+            if(obs instanceof Obstacle){
+                ImageView obstacle = new ImageView(new Image(obs.getImage()));
+                obstacle.setFitWidth(obs.getWidth());
+                obstacle.setFitHeight(obs.getHeight());
+                obstacle.setX(obs.getPos().getX());
+                obstacle.setY(obs.getPos().getY());
             }
         }
-        for (Map.Entry<Position,Element> entry : elements.entrySet()){
-            update(entry.getValue());
+
+        for (Element obs : elements) {
+            update(obs);
         }
+
         Launch.getManager().startBoucle();
         Launch.getManager().getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
             System.out.println("change");
@@ -84,17 +80,18 @@ public class Game {
     }
 
     public void update(Element element) {
-       //Manager man = Launch.getManager();
         ImageView elementIv = new ImageView();
         elementIv.setImage(new Image(element.getImage()));
-        if (element instanceof Bird){
+        if (element instanceof Bird) {
             elementIv.setFitWidth(Launch.getManager().getCurrentBird().getWidth());
             elementIv.setFitHeight(Launch.getManager().getCurrentBird().getHeight());
         }
-        if (element instanceof Obstacle){
+
+        if (element instanceof Obstacle) {
             elementIv.setFitWidth(element.getWidth());
             elementIv.setFitHeight(element.getHeight());
         }
+
         gameBp.getChildren().add(elementIv);
         elementIv.layoutXProperty().bind(element.getPos().xProperty());
         elementIv.layoutYProperty().bind(element.getPos().yProperty());
