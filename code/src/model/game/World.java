@@ -1,5 +1,6 @@
 package model.game;
 
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import model.Position;
 import model.game.element.Bird;
@@ -19,6 +20,12 @@ import java.util.Map;
 public class World {
 
     private final ObservableMap<Position, Element> elements = FXCollections.observableHashMap();
+    private ObservableList<Element> list;
+
+    public World(){
+        list = FXCollections.observableArrayList(eventShowable ->
+                new Observable[]{eventShowable.getPos().xProperty(),eventShowable.getPos().yProperty() });
+    }
 
     public IntegerProperty timer = new SimpleIntegerProperty();
         public IntegerProperty timerProperty() { return timer; }
@@ -39,7 +46,7 @@ public class World {
     }
 
     public ObservableMap<Position,Element> getValues(){
-        return FXCollections.unmodifiableObservableMap(elements);
+        return FXCollections.observableMap(elements);
     }
 
     public Bird getCurrentBird() {
@@ -58,6 +65,15 @@ public class World {
 
     public ObservableMap<Position, Element> getElements() {
             return FXCollections.unmodifiableObservableMap(elements);
+    }
+
+    public ObservableList<Element> getValuesList(){
+        for(Map.Entry<Position, Element> entry : elements.entrySet()) {
+            if (entry.getValue() instanceof Obstacle) {
+                list.add(entry.getValue());
+            }
+        }
+        return FXCollections.unmodifiableObservableList(list);
     }
 
     private List getAllObstacles(){

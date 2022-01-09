@@ -1,5 +1,7 @@
 package view;
 
+import javafx.collections.ListChangeListener;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -22,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -50,6 +53,7 @@ public class Game {
         background.setY(bg.getPos().getY());
         gameBp.getChildren().add(0,background);
 
+        Launch.getManager().startBoucle();
         /*TextField scoreTF = new TextField();
         scoreTF.setLayoutX(175);
         scoreTF.setLayoutY(0);
@@ -79,18 +83,59 @@ public class Game {
             }
         }
 
-        for (Element obs : elements) {
-            update(obs);
-        }
-
-        Launch.getManager().startBoucle();
-        Launch.getManager().getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
+        /*Launch.getManager().getCurrentWorld().getValues().addListener((MapChangeListener.Change<? extends Position,? extends Element> change)-> {
             System.out.println("change");
+
+            //Ajout
+            ObservableMap<? extends Position, ? extends Element> add = (ObservableMap<? extends Position, ? extends Element>) change.getValueAdded();
+            for (Map.Entry<? extends Position, ? extends Element> entry : add.entrySet()){
+                System.out.println("add");
+                update(entry.getValue());
+            }
+
+            //Modification
             ObservableMap<? extends Position, ? extends Element> map = change.getMap();
             for (Map.Entry<? extends Position, ? extends Element> entry : map.entrySet()){
                 update(entry.getValue());
             }
+
+            //Suppression
+            ObservableMap<? extends Position, ? extends Element> del = (ObservableMap<? extends Position, ? extends Element>) change.getValueRemoved();
+            for (Map.Entry<? extends Position, ? extends Element> entry : map.entrySet()){
+                System.out.println("del");
+                Iterator<Node> iterator = gameBp.getChildren().iterator();
+                while(iterator.hasNext()){
+                    Node leNode = iterator.next();
+                    if (leNode.getUserData() == entry.getValue()){
+                        iterator.remove();
+                    }
+                }
+            }
+
+        });*/
+
+        Launch.getManager().getCurrentWorld().getValuesList().addListener((ListChangeListener.Change<? extends Element> change)-> {
+            while (change.next()) {
+                for (Element elm : change.getAddedSubList()) {
+                    update(elm);
+                }
+            }
+            for (Element elm : change.getRemoved()) {
+                Iterator<Node> iterator = gameBp.getChildren().iterator();
+                while(iterator.hasNext()){
+                    Node leNode = iterator.next();
+                    if (leNode.getUserData() == elm){
+                        iterator.remove();
+                    }
+                }
+            }
         });
+
+
+        for (Element obs : elements) {
+            update(obs);
+        }
+
     }
 
     public void update(Element element) {

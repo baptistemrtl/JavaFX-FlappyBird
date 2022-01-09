@@ -149,15 +149,16 @@ public class Manager implements InvalidationListener {
                         birdDeplaceur.setEnableMove(false);
                         stopBoucle();
                     }
-                    /*
+
                     if (currentWorld.getFirstDownPipe().getPos().getX() < (currentWorld.getFirstDownPipe().getWidth())*-1){
                         currentWorld.delElement(currentWorld.getFirstUpPipe());
                         currentWorld.delElement(currentWorld.getFirstDownPipe());
                         currentWorld.addListElement(creator.createObstacle(currentWorld));
+                        System.out.println("op");
 
                         //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
                     }
-                    */
+
                 }
 
             }
