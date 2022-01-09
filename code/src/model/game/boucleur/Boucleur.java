@@ -12,11 +12,11 @@ public abstract class Boucleur implements Runnable, Observable {
     private boolean running = false;
     private int timer = 50;
 
-    public int getTimer(){
+    public int getTimer() {
         return timer;
     }
 
-    public void setTimer(int time){
+    public void setTimer(int time) {
         timer = time;
     }
 

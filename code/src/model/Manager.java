@@ -2,8 +2,6 @@ package model;
 
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import model.game.World;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
@@ -11,7 +9,6 @@ import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
 import model.game.creator.Creator;
 import model.game.creator.CreatorRandom;
-import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
 import model.game.displacer.ObstacleDisplacer;
@@ -27,6 +24,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +52,17 @@ public class Manager implements InvalidationListener {
     private int compteurCrea = 0;
 
     public IntegerProperty scoreCourant = new SimpleIntegerProperty();
+
     public IntegerProperty ScoreCourantProperty() {
         return scoreCourant;
     }
-    public int getScoreCourant() {return scoreCourant.get();}
-    public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant); }
+    public int getScoreCourant() {
+        return scoreCourant.get();
+    }
 
+    public void setScoreCourant(int scoreCourant) {
+        this.scoreCourant.set(scoreCourant);
+    }
 
     public Manager() {
         creator = new CreatorRandom();
@@ -69,7 +72,6 @@ public class Manager implements InvalidationListener {
         birdDeplaceur = new BirdDisplacer(collider);
         obstacleDisplacer = new ObstacleDisplacer(collider);
         currentLog = new LogSimple();
-
     }
 
     public Boolean isGameOver() {
@@ -78,22 +80,22 @@ public class Manager implements InvalidationListener {
 
     //Initialisation
 
-    public void setCurrentPlayer(String pseudo){
+    public void setCurrentPlayer(String pseudo) {
         currentPlayer = currentLog.searchPlayer(pseudo);
-        if (currentPlayer == null){
+        if (currentPlayer == null) {
             currentPlayer = new Player(pseudo);
             currentLog.addPlayer(currentPlayer);
            // saver.saveData(currentLog.getPlayers());
         }
+
         System.out.println(currentPlayer.getPseudo());
     }
-
 
     public Bird getCurrentBird() {
         return currentWorld.getCurrentBird();
     }
 
-    public void setCurrentBird(Bird bird){
+    public void setCurrentBird(Bird bird) {
         currentWorld.replaceCurrentBird(bird);
     }
 
@@ -105,7 +107,7 @@ public class Manager implements InvalidationListener {
         List<Obstacle> list = new ArrayList<>();
         ObservableMap<Position, Element> elements = currentWorld.getElements();
 
-        for (Element obstacle : elements.values()){
+        for (Element obstacle : elements.values()) {
             if (obstacle instanceof Obstacle){
                 list.add((Obstacle) obstacle);
             }
@@ -114,16 +116,16 @@ public class Manager implements InvalidationListener {
         return list;
     }
 
-    public Log getLog(){
+    public Log getLog() {
         return this.currentLog;
     }
 
     //Persistance
-    public void dataLoad(){
+    public void dataLoad() {
         currentLog = new LogSimple((ObservableList<Player>) loader.loadData());
     }
 
-    public void dataSave(){
+    public void dataSave() {
         saver.saveData(currentLog.getPlayers());
     }
 
@@ -135,7 +137,7 @@ public class Manager implements InvalidationListener {
         new Thread(boucleur).start();
     }
 
-    public void stopBoucle(){
+    public void stopBoucle() {
         boucleur.setRunning(false);
     }
 

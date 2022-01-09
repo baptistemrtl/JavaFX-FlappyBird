@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import model.game.element.Obstacle;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class World {
 
     private final ObservableMap<Position, Element> elements = FXCollections.observableHashMap();
-    private ObservableList<Element> list;
+    private final ObservableList<Element> list; // check si possible avec map
 
     public World(){
         list = FXCollections.observableArrayList(eventShowable ->
@@ -36,8 +36,8 @@ public class World {
     public void addElement(Element element) {
             elements.put(element.getPos(), element);
     }
-    public void addListElement(List<Element> elementList){
-            for(Element e : elementList){
+    public void addListElement(List<Element> elementList) {
+            for(Element e : elementList) {
                 addElement(e);
             }
     }
@@ -45,8 +45,8 @@ public class World {
             elements.remove(element.getPos());
     }
 
-    public ObservableMap<Position,Element> getValues(){
-        return FXCollections.observableMap(elements);
+    public ObservableMap<Position,Element> getValues() {
+        return FXCollections.unmodifiableObservableMap(elements);
     }
 
     public Bird getCurrentBird() {
@@ -67,7 +67,7 @@ public class World {
             return FXCollections.unmodifiableObservableMap(elements);
     }
 
-    public ObservableList<Element> getValuesList(){
+    public ObservableList<Element> getValuesList() {
         for(Map.Entry<Position, Element> entry : elements.entrySet()) {
             if (entry.getValue() instanceof Obstacle) {
                 list.add(entry.getValue());
@@ -76,55 +76,50 @@ public class World {
         return FXCollections.unmodifiableObservableList(list);
     }
 
-    private List getAllObstacles(){
-        List<Obstacle> obstacles = new ArrayList();
+    private Map<Position, Obstacle> getAllObstacles(){
+        Map<Position, Obstacle> obstacles = new HashMap<>();
         for(Map.Entry<Position, Element> entry : elements.entrySet()) {
             if (entry.getValue() instanceof Obstacle) {
-                obstacles.add((Obstacle) entry.getValue());
+                obstacles.put(entry.getKey(), (Obstacle) entry.getValue());
             }
         }
+
         return obstacles;
     }
 
-    public Obstacle getLastObstacle(){
-        List list = getAllObstacles();
-        Iterator<Obstacle> iterator = list.iterator();
-        Obstacle last = iterator.next();
-        while (iterator.hasNext()){
-            last = iterator.next();
-        }
-        return last;
+    public Obstacle getLastObstacle() {
+            return (Obstacle) getAllObstacles().values().toArray()[getNumberOfObstacle()-1];
     }
 
     public int getNumberOfObstacle(){
         int i = 0;
-        for(Map.Entry<Position, Element> entry : elements.entrySet()) {
-            if (entry.getValue() instanceof Obstacle) {
+        for(Element obstacle : elements.values()) {
+            if (obstacle instanceof Obstacle) {
                 ++i;
             }
         }
+
         return i;
     }
 
-    public Obstacle getFirstDownPipe(){
+    public Obstacle getFirstDownPipe() {
         Obstacle obs = getLastObstacle();
-        for(Map.Entry<Position, Element> entry : elements.entrySet()) {
-            if (entry.getValue() instanceof Obstacle) {
-                if (entry.getValue().getPos().getY() == 0){
-                    if (entry.getValue().getPos().getX() <= obs.getPos().getX()){
-                        obs = (Obstacle) entry.getValue();
-                    }
+        for(Map.Entry<Position, Obstacle> entry : getAllObstacles().entrySet()) {
+            if (entry.getKey().getY() == 0) {
+                if (entry.getKey().getX() <= obs.getPos().getX()) { // unique ou nom ?
+                    obs = entry.getValue();
                 }
             }
         }
+
         return obs;
     }
 
-    public Obstacle getFirstUpPipe(){
+    public Obstacle getFirstUpPipe() {
         Obstacle obs = getFirstDownPipe();
-        for(Map.Entry<Position, Element> entry : elements.entrySet()){
-            if (entry.getValue().getPos().getX() == obs.getPos().getX()){
-                return (Obstacle) entry.getValue();
+        for(Map.Entry<Position, Obstacle> entry : getAllObstacles().entrySet()) {
+            if (entry.getKey().getX() == obs.getPos().getX()) {
+                return entry.getValue();
             }
         }
         return null;

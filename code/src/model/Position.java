@@ -3,7 +3,7 @@ package model;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class Position implements Comparable<Position> {
+public class Position {
     private DoubleProperty x = new SimpleDoubleProperty();
         public double getX() { return x.get(); }
         public void setX(double x2) { x.set(x2); }
@@ -33,16 +33,12 @@ public class Position implements Comparable<Position> {
         return getX() == pos.getX() && getY() == pos.getY();
     }
 
-    @Override // vue que plus treeMap (hashMap mtn) remplacer compareTo par HashCode
-    public int compareTo(Position o) {
-        if(getX() != o.getX()) {
-            return getX() > o.getX() ? 1 : -1;
-        }
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Double.hashCode(getX());
+        result = 31 * result + Double.hashCode(getY());
 
-        if (getY() != o.getY()) {
-            return getY() > o.getY() ? 1 : -1;
-        }
-
-        return 0;
+        return result;
     }
 }

@@ -53,7 +53,7 @@ public class Game {
         background.setY(bg.getPos().getY());
         gameBp.getChildren().add(0,background);
 
-        Launch.getManager().startBoucle();
+        man.startBoucle();
         /*TextField scoreTF = new TextField();
         scoreTF.setLayoutX(175);
         scoreTF.setLayoutY(0);
@@ -121,16 +121,9 @@ public class Game {
                 }
             }
             for (Element elm : change.getRemoved()) {
-                Iterator<Node> iterator = gameBp.getChildren().iterator();
-                while(iterator.hasNext()){
-                    Node leNode = iterator.next();
-                    if (leNode.getUserData() == elm){
-                        iterator.remove();
-                    }
-                }
+                gameBp.getChildren().removeIf(leNode -> leNode.getUserData() == elm);
             }
         });
-
 
         for (Element obs : elements) {
             update(obs);

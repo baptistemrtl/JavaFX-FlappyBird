@@ -38,8 +38,7 @@ public class CreatorRandom extends Creator{
         int nb = world.getNumberOfObstacle();
         Obstacle last = new Obstacle();
         if (nb > 0){
-            Obstacle obs = world.getLastObstacle();
-            last = obs;
+            last = world.getLastObstacle();
             /*
             int randomHeight = (int) (Math.random() * (windowHeight-MIN_PIPE_HEIGHT-pipeHeightDiff));
             Obstacle upNew = new Obstacle(PIPE_WIDTH, randomHeight,new Position(last.getPos().getX()+last.getWidth() + pipeWidthDiff, windowHeight), "image/up_pipe.png");
