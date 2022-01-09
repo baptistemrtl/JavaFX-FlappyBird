@@ -1,5 +1,9 @@
 package view;
 
+import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import launcher.Launch;
 import model.Manager;
 import model.Position;
@@ -38,13 +42,23 @@ public class Game {
         World world = man.getCurrentWorld();
         Bird currentBird = man.getCurrentBird();
 
-       Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
+        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
         background.setFitHeight(bg.getHeight());
         background.setFitWidth(bg.getWidth());
         background.setX(bg.getPos().getX());
         background.setY(bg.getPos().getY());
-        gameBp.getChildren().add(background);
+        gameBp.getChildren().add(0,background);
+
+        /*TextField scoreTF = new TextField();
+        scoreTF.setLayoutX(175);
+        scoreTF.setLayoutY(0);
+        scoreTF.setMinWidth(100);
+        scoreTF.setMinHeight(200);
+        scoreTF.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        scoreTF.textProperty().bind(man.scoreCourant.asString());
+        gameBp.getChildren().add(2,scoreTF);*/
+
 
         if (currentBird != null){
             ImageView bird = new ImageView(new Image(currentBird.getImage()));
@@ -85,14 +99,15 @@ public class Game {
         if (element instanceof Bird) {
             elementIv.setFitWidth(Launch.getManager().getCurrentBird().getWidth());
             elementIv.setFitHeight(Launch.getManager().getCurrentBird().getHeight());
+            gameBp.getChildren().add(2,elementIv);
         }
 
         if (element instanceof Obstacle) {
             elementIv.setFitWidth(element.getWidth());
             elementIv.setFitHeight(element.getHeight());
+            gameBp.getChildren().add(1,elementIv);
         }
 
-        gameBp.getChildren().add(elementIv);
         elementIv.layoutXProperty().bind(element.getPos().xProperty());
         elementIv.layoutYProperty().bind(element.getPos().yProperty());
     }

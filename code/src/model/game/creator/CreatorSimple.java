@@ -3,12 +3,14 @@ package model.game.creator;
 import model.Position;
 import model.game.World;
 import model.game.element.Bird;
+import model.game.element.Element;
 import model.game.element.Obstacle;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Classe qui va créer un monde à partir d'un fichier
@@ -19,15 +21,14 @@ import java.io.IOException;
 
 public class CreatorSimple extends Creator {
 
-    String path;
+    final String path = "rsrc/testFinishedWorlds/world1.txt";
     int width;
     int height;
 
-    public CreatorSimple(String path) {
-        this.path= path;
+    public CreatorSimple() {
     }
 
-    public World readWorldFile() {
+    public World createWorld() {
         BufferedReader reader;
         double w=0.0, h=0.0;
         String line;
@@ -38,11 +39,11 @@ public class CreatorSimple extends Creator {
                 for(char bloc : line.toCharArray()){
                     switch (bloc) {
                         case '1' -> {
-                            monde.addElement(new Obstacle(50, 300, new Position(w, h), "image/down_pipe.png"));
+                            monde.addElement(new Obstacle(50, 270, new Position(w, h), "image/down_pipe.png"));
                             w += 150;
                         }
                         case '3' -> {
-                            monde.addElement(new Obstacle(50, 300, new Position(w, h), "image/up_pipe.png"));
+                            monde.addElement(new Obstacle(50, 270, new Position(w,h+100), "image/up_pipe.png"));
                             w += 150;
                         }
                         case '2' -> monde.addElement(new Bird(50, 50, new Position(w, h), "image/bird.png"));
@@ -57,5 +58,10 @@ public class CreatorSimple extends Creator {
         }
 
         return monde;
+    }
+
+    @Override
+    public List<Element> createObstacle(World world) {
+        return null;
     }
 }

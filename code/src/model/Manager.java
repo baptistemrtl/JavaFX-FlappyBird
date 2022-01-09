@@ -9,6 +9,8 @@ import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
+import model.game.creator.Creator;
+import model.game.creator.CreatorRandom;
 import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
@@ -40,7 +42,7 @@ public class Manager implements InvalidationListener {
     private Bird currentBird;
     private Collider collider;
     private Boucleur boucleur = new BoucleurSimple();
-    private CreatorSimple creator;
+    private Creator creator;
     private Log currentLog;
     private BirdDisplacer birdDeplaceur ;
     private Displacer obstacleDisplacer;
@@ -49,6 +51,7 @@ public class Manager implements InvalidationListener {
     private SaverBinaire saver;
 
     private int compteurBoucl = 0;
+    private int compteurCrea = 0;
 
     public IntegerProperty scoreCourant = new SimpleIntegerProperty();
     public IntegerProperty ScoreCourantProperty() {
@@ -59,8 +62,8 @@ public class Manager implements InvalidationListener {
 
 
     public Manager() {
-        creator = new CreatorSimple("rsrc/testFinishedWorlds/world1.txt");
-        currentWorld = creator.readWorldFile();
+        creator = new CreatorRandom();
+        currentWorld = creator.createWorld();
         collider = new ColliderSimple(currentWorld);
         currentBird = currentWorld.getCurrentBird();
         birdDeplaceur = new BirdDisplacer(collider);
@@ -128,6 +131,7 @@ public class Manager implements InvalidationListener {
     public void startBoucle() {
         boucleur.addListener(this);
         boucleur.setRunning(true);
+        birdDeplaceur.setEnableMove(true);
         new Thread(boucleur).start();
     }
 
@@ -141,19 +145,35 @@ public class Manager implements InvalidationListener {
         if (compteurBoucl == 1){
             for (Map.Entry<Position,Element> entry : elements.entrySet()){
                 if (entry.getValue() instanceof Obstacle){
-                    obstacleDisplacer.move((Obstacle) entry.getValue());
+                    if(!obstacleDisplacer.move((Obstacle) entry.getValue())){
+                        birdDeplaceur.setEnableMove(false);
+                        stopBoucle();
+                    }
+                    /*
+                    if (currentWorld.getFirstDownPipe().getPos().getX() < (currentWorld.getFirstDownPipe().getWidth())*-1){
+                        currentWorld.delElement(currentWorld.getFirstUpPipe());
+                        currentWorld.delElement(currentWorld.getFirstDownPipe());
+                        currentWorld.addListElement(creator.createObstacle(currentWorld));
+
+                        //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
+                    }
+                    */
                 }
 
             }
             birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
+        compteurCrea++;
         compteurBoucl++;
     }
 
     public void keyMove(KeyCode keyCode){
-        if (!birdDeplaceur.move(currentBird)){
-            stopBoucle();
+        if (keyCode == KeyCode.SPACE){
+            if (!birdDeplaceur.move(currentBird)){
+                birdDeplaceur.setEnableMove(false);
+                stopBoucle();
+            }
         }
     }
 }

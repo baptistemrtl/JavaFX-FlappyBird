@@ -10,6 +10,15 @@ import java.util.List;
 public abstract class Boucleur implements Runnable, Observable {
     private final List<InvalidationListener> listeners = new ArrayList<>();
     private boolean running = false;
+    private int timer = 50;
+
+    public int getTimer(){
+        return timer;
+    }
+
+    public void setTimer(int time){
+        timer = time;
+    }
 
     public void setRunning(boolean running) {
         this.running = running;
