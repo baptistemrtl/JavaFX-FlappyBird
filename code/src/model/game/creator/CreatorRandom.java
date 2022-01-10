@@ -49,10 +49,9 @@ public class CreatorRandom extends Creator{
             */
         }
         else{
-            Obstacle obs = new Obstacle(PIPE_WIDTH,MIN_PIPE_HEIGHT,new Position(200,-100),"image/down_pipe.png");
-            last = obs;
-            world.addElement(obs);
-            list.add(obs);
+            last = new Obstacle(PIPE_WIDTH,MIN_PIPE_HEIGHT,new Position(200,-100),"image/down_pipe.png");
+            world.addElement(last);
+            list.add(last);
             return list;
         }
         int randomHeight = (int) (Math.random() * (windowHeight-MIN_PIPE_HEIGHT-pipeHeightDiff));

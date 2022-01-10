@@ -13,7 +13,6 @@ import javafx.collections.ObservableMap;
 import model.game.element.Obstacle;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +87,18 @@ public class World {
     }
 
     public Obstacle getLastObstacle() {
-            return (Obstacle) getAllObstacles().values().toArray()[getNumberOfObstacle()-1];
+        Map<Position, Obstacle> obstacles = getAllObstacles();
+        Position pos = obstacles.keySet().stream().findFirst().get();
+        Obstacle obs = null;
+
+        for(Map.Entry<Position, Obstacle> entry : obstacles.entrySet()) {
+            if (entry.getKey().getX() >= pos.getX()) { // unique ou nom ?
+                obs = entry.getValue();
+                pos = entry.getKey();
+            }
+        }
+
+        return obs;
     }
 
     public int getNumberOfObstacle(){

@@ -145,25 +145,24 @@ public class Manager implements InvalidationListener {
     public void invalidated(Observable observable) {
         ObservableMap<Position, Element> elements = currentWorld.getElements();
         if (compteurBoucl == 1){
-            for (Map.Entry<Position,Element> entry : elements.entrySet()){
-                if (entry.getValue() instanceof Obstacle){
-                    if(!obstacleDisplacer.move((Obstacle) entry.getValue())){
+            for (Element element : elements.values()){
+                if (element instanceof Obstacle){
+                    if(!obstacleDisplacer.move(element)){
                         birdDeplaceur.setEnableMove(false);
                         stopBoucle();
                     }
-
-                    if (currentWorld.getFirstDownPipe().getPos().getX() < (currentWorld.getFirstDownPipe().getWidth())*-1){
-                        currentWorld.delElement(currentWorld.getFirstUpPipe());
-                        currentWorld.delElement(currentWorld.getFirstDownPipe());
-                        currentWorld.addListElement(creator.createObstacle(currentWorld));
-                        System.out.println("op");
-
-                        //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
-                    }
-
                 }
-
             }
+
+            if (currentWorld.getFirstDownPipe().getPos().getX() < (currentWorld.getFirstDownPipe().getWidth())*-1){
+                currentWorld.delElement(currentWorld.getFirstUpPipe());
+                currentWorld.delElement(currentWorld.getFirstDownPipe());
+                currentWorld.addListElement(creator.createObstacle(currentWorld));
+                System.out.println("op");
+
+                //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
+            }
+
             birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
