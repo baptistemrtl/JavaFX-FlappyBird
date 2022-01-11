@@ -1,7 +1,7 @@
 package model.game.creator;
 
 import model.Position;
-import model.game.World;
+import model.game.World.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
@@ -23,7 +23,7 @@ public class CreatorRandom extends Creator{
     private final Random alea = new Random();
 
     private Double birdFirstX = 100.0;
-    private Double birdFirstY = 100.0;
+    private Double birdFirstY = 350.0;
     private int birdFirstWidth = 50;
     private int birdFirstHeight = 50;
     private String birdImage = "image/bird.png";
@@ -33,26 +33,16 @@ public class CreatorRandom extends Creator{
 
 
 
-    public List<Element> createObstacle(World world) {
+    public void createObstacle(World world) {
         List<Element> list = new ArrayList<Element>();
-        int nb = world.getNumberOfObstacle();
-        Obstacle last = new Obstacle();
-        if (nb > 0){
-            last = world.getLastObstacle();
-            /*
-            int randomHeight = (int) (Math.random() * (windowHeight-MIN_PIPE_HEIGHT-pipeHeightDiff));
-            Obstacle upNew = new Obstacle(PIPE_WIDTH, randomHeight,new Position(last.getPos().getX()+last.getWidth() + pipeWidthDiff, windowHeight), "image/up_pipe.png");
-            Obstacle downNew = new Obstacle(PIPE_WIDTH,windowHeight-upNew.getHeight()-pipeHeightDiff,new Position(upNew.getPos().getX(),0), "image/down_pipe.png");
-            world.addElement(upNew);
-            world.addElement(downNew);
-            return world;
-            */
-        }
-        else{
-            last = new Obstacle(PIPE_WIDTH,MIN_PIPE_HEIGHT,new Position(200,-100),"image/down_pipe.png");
-            world.addElement(last);
+        Element last = world.getLastElementX();
+        if (last == null){
+            last = new Obstacle(PIPE_WIDTH,MIN_PIPE_HEIGHT,new Position(200,0),"image/down_pipe.png");
             list.add(last);
-            return list;
+            last = new Obstacle(PIPE_WIDTH,MIN_PIPE_HEIGHT,new Position(200,700),"image/up_pipe.png");
+            list.add(last);
+            world.addListElement(list);
+            return;
         }
         int randomHeight = (int) (Math.random() * (windowHeight-MIN_PIPE_HEIGHT-pipeHeightDiff));
         Obstacle downNew = new Obstacle(PIPE_WIDTH,randomHeight,new Position(last.getPos().getX()+last.getWidth() + pipeWidthDiff,0), "image/down_pipe.png");
@@ -61,7 +51,7 @@ public class CreatorRandom extends Creator{
         world.addElement(downNew);
         list.add(downNew);
         list.add(upNew);
-        return list;
+        world.addListElement(list);
 
     }
 
@@ -70,10 +60,8 @@ public class CreatorRandom extends Creator{
         World world = new World();
         world.addElement(new Bird(birdFirstWidth,birdFirstHeight, new Position(birdFirstX,birdFirstY),birdImage));
         for (int i = 0; i < numberOfInstance ; ++i){
-            List<Element> list = createObstacle(world);
-            world.addListElement(list);
+            createObstacle(world);
         }
-
         return world;
     }
 }

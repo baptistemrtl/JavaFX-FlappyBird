@@ -1,11 +1,10 @@
 package model.game.collider;
 
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
-import java.awt.*;
-import java.lang.Math.*;
 import model.Position;
-import model.game.World;
+import model.game.World.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
@@ -31,7 +30,7 @@ public class ColliderSimple extends Collider{
     @Override
     public boolean checkCollision(Position pos) { // Va parcourir les entités du monde, Pos = position actuelle de l'oiseau
 
-        ObservableMap<Position, Element> elements = this.getWorld().getElements();
+        ObservableList<Element> elements = this.getWorld().getElements();
         Bird bird = getWorld().getCurrentBird();
 
 
@@ -49,12 +48,10 @@ public class ColliderSimple extends Collider{
         return true;*/
 
 
-        for (Map.Entry<Position, Element> entry : elements.entrySet()){
-            Element element = entry.getValue();
-            if (element instanceof Obstacle){
-                Position elemPos = entry.getKey();
-                if (bird.getPos().getX()+40 >= element.getPos().getX() && bird.getPos().getX() <= element.getPos().getX()+element.getWidth()){
-                    if (bird.getPos().getY()+30 >= element.getPos().getY() && bird.getPos().getY()+30 <= element.getPos().getY()+element.getHeight()){
+        for (Element elm : elements){
+            if (elm instanceof Obstacle){
+                if (bird.getPos().getX()+40 >= elm.getPos().getX() && bird.getPos().getX() <= elm.getPos().getX()+elm.getWidth()){
+                    if (bird.getPos().getY()+30 >= elm.getPos().getY() && bird.getPos().getY()+30 <= elm.getPos().getY()+elm.getHeight()){
                         return false;
                     }
                 }

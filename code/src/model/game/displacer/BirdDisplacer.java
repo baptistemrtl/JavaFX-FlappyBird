@@ -1,5 +1,6 @@
 package model.game.displacer;
 
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Path;
@@ -13,9 +14,11 @@ public class BirdDisplacer extends Displacer{
 
     private double velocityX;
     private double velocityY;
+    private Node birdIv;
 
     public BirdDisplacer(Collider collider) {
         super(collider);
+
     }
 
     public void setVelocity(double velocityX, double velocityY) {

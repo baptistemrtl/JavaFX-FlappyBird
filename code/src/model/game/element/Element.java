@@ -47,4 +47,13 @@ public abstract class Element {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+
+        Element other = (Element) obj;
+        return other.getPos() == this.getPos();
+    }
 }

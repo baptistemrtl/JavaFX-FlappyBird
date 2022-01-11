@@ -1,8 +1,9 @@
-package model;
+package model.game.manager;
 
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
-import model.game.World;
+import model.Player;
+import model.game.World.World;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurSimple;
 import model.game.collider.Collider;
@@ -28,7 +29,6 @@ import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Manager implements InvalidationListener {
 
@@ -80,6 +80,12 @@ public class Manager implements InvalidationListener {
 
     //Initialisation
 
+    public void createWorld(){
+        currentWorld = creator.createWorld();
+        collider = new ColliderSimple(currentWorld);
+        currentBird = currentWorld.getCurrentBird();
+    }
+
     public void setCurrentPlayer(String pseudo) {
         currentPlayer = currentLog.searchPlayer(pseudo);
         if (currentPlayer == null) {
@@ -95,9 +101,6 @@ public class Manager implements InvalidationListener {
         return currentWorld.getCurrentBird();
     }
 
-    public void setCurrentBird(Bird bird) {
-        currentWorld.replaceCurrentBird(bird);
-    }
 
     public World getCurrentWorld() {
         return currentWorld;
@@ -105,9 +108,9 @@ public class Manager implements InvalidationListener {
 
     public List<Obstacle> getAllObstacles() {
         List<Obstacle> list = new ArrayList<>();
-        ObservableMap<Position, Element> elements = currentWorld.getElements();
+        ObservableList<Element> elements = currentWorld.getElements();
 
-        for (Element obstacle : elements.values()) {
+        for (Element obstacle : elements) {
             if (obstacle instanceof Obstacle){
                 list.add((Obstacle) obstacle);
             }
@@ -131,6 +134,7 @@ public class Manager implements InvalidationListener {
 
     //Boucle
     public void startBoucle() {
+        gameOver = true;
         boucleur.addListener(this);
         boucleur.setRunning(true);
         birdDeplaceur.setEnableMove(true);
@@ -143,25 +147,34 @@ public class Manager implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
-        ObservableMap<Position, Element> elements = currentWorld.getElements();
         if (compteurBoucl == 1){
-            for (Element element : elements.values()){
+            for (Element element : getCurrentWorld().getElements()){
                 if (element instanceof Obstacle){
                     if(!obstacleDisplacer.move(element)){
                         birdDeplaceur.setEnableMove(false);
                         stopBoucle();
+                        gameOver = false;
+                    }
+                    if (element.getPos().getX() < -200){
+                        System.out.println("<0");
+                        creator.createObstacle(currentWorld);
+                        currentWorld.delElement(element);
+                        return;
                     }
                 }
             }
-
-            if (currentWorld.getFirstDownPipe().getPos().getX() < (currentWorld.getFirstDownPipe().getWidth())*-1){
-                currentWorld.delElement(currentWorld.getFirstUpPipe());
-                currentWorld.delElement(currentWorld.getFirstDownPipe());
+            /*
+            if (currentWorld.getFirstDownPipe().getPos().getX() < 0){
+                currentWorld.getElements().remove(down.getPos());
+                currentWorld.getElements().remove(up.getPos());
                 currentWorld.addListElement(creator.createObstacle(currentWorld));
-                System.out.println("op");
 
                 //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
-            }
+            }*/
+
+            /*if (compteurCrea%20 == 0){
+                creator.createObstacle(currentWorld);
+            }*/
 
             birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
@@ -174,6 +187,7 @@ public class Manager implements InvalidationListener {
         if (keyCode == KeyCode.SPACE){
             if (!birdDeplaceur.move(currentBird)){
                 birdDeplaceur.setEnableMove(false);
+                gameOver = false;
                 stopBoucle();
             }
         }

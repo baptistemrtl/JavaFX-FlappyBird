@@ -1,23 +1,19 @@
 package tests;
 
-import javafx.collections.ObservableMap;
-import model.Manager;
-import model.Position;
-import model.game.World;
+import javafx.collections.ObservableList;
+import model.game.manager.Manager;
+import model.game.World.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
-
-import java.util.Map;
 
 public class managerTest {
 
     public static void main(String[] args){
         Manager man = new Manager();
         World world = man.getCurrentWorld();
-        ObservableMap<Position, Element> elements = world.getElements();
-        for(Map.Entry<Position, Element> entry : elements.entrySet()){
-            Element elm = entry.getValue();
+        ObservableList<Element> elements = world.getElements();
+        for(Element elm : elements){
             if (elm instanceof Obstacle){
                 System.out.println("Obstacle");
             }

@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Boucleur implements Runnable, Observable {
     private final List<InvalidationListener> listeners = new ArrayList<>();
     private boolean running = false;
-    private int timer = 50;
+    private int timer = 60;
 
     public int getTimer() {
         return timer;
@@ -38,7 +38,6 @@ public abstract class Boucleur implements Runnable, Observable {
         listeners.remove(listener);
     }
 
-    public void beep() {
-        listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
-    }
+    public void beep() {listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));}
+
 }

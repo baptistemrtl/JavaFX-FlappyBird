@@ -10,9 +10,7 @@
             minWidth="450" minHeight="700"
             fx:id="gameBp"
             onKeyPressed="#move">
-    <top>
-        <ImageView fx:id="gameIv"/>
-    </top>
+
 </BorderPane>
 
 

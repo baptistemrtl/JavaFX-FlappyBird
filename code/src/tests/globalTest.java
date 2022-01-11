@@ -1,12 +1,12 @@
 package tests;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import model.*;
-import model.game.*;
+import model.game.World.World;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
 import model.game.creator.Creator;
 import model.game.creator.CreatorRandom;
-import model.game.creator.CreatorSimple;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
 import model.game.element.Bird;
@@ -15,7 +15,6 @@ import model.game.element.Obstacle;
 
 import java.util.Map;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 public class globalTest {
@@ -32,9 +31,8 @@ public class globalTest {
         world.addElement(bird);
 
         //Verification de ce que contient le monde -> OK
-        ObservableMap<Position, Element> elements = world.getElements();
-        for (Map.Entry<Position, Element> entry : elements.entrySet()){
-            Element element = entry.getValue();
+        ObservableList<Element> elements = world.getElements();
+        for (Element element : elements){
             if (element instanceof Obstacle){
                 System.out.println("Obstacle -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
@@ -61,8 +59,7 @@ public class globalTest {
         Creator creator = new CreatorRandom();
         World world1 = creator.createWorld();
         elements = world1.getElements();
-        for (Map.Entry<Position, Element> entry : elements.entrySet()){
-            Element element = entry.getValue();
+        for (Element element : elements){
             if (element instanceof Bird){
                 System.out.println("Bird -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }

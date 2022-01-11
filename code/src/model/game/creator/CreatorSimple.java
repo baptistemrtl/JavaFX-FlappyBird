@@ -1,15 +1,13 @@
 package model.game.creator;
 
 import model.Position;
-import model.game.World;
+import model.game.World.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -61,7 +59,6 @@ public class CreatorSimple extends Creator {
     }
 
     @Override
-    public List<Element> createObstacle(World world) {
-        return null;
+    public void createObstacle(World world) {
     }
 }
