@@ -1,8 +1,11 @@
 package model.game.renderer;
 
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import launcher.Launch;
 import model.Position;
 import model.game.World.World;
 import model.game.element.Background;
@@ -13,16 +16,13 @@ import model.game.element.Obstacle;
 public class Renderer {
 
     public void renderWorld(BorderPane pane, World world) {
+
+        System.out.println("World");
         renderBackground(pane);
         for (Element element : world.getElements()) {
-            for(Node node : pane.getChildren()) {
-                if (node instanceof ImageView) {
-                    if (node.getUserData() == element) {
-                        renderImageView(pane,(ImageView) node,element);
-                    }
-                }
-            }
+            renderImageView(pane,element);
         }
+
     }
 
     public void renderBackground(BorderPane gameBp) {
@@ -40,7 +40,9 @@ public class Renderer {
         gameBp.getChildren().add(0,background);
     }
 
-    public void renderImageView(BorderPane gameBp,ImageView elementIv,Element element) {
+    public void renderImageView(BorderPane gameBp,Element element) {
+        ImageView elementIv = new ImageView();
+        elementIv.setImage(new Image(element.getImage()));
         if (element.getPos().getX() < 0) {
             gameBp.getChildren().remove(elementIv);
             return;

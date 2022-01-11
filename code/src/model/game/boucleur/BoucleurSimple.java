@@ -1,5 +1,7 @@
 package model.game.boucleur;
 
+import javafx.application.Platform;
+
 public class BoucleurSimple extends Boucleur{
 
     @Override
@@ -7,11 +9,16 @@ public class BoucleurSimple extends Boucleur{
         while(isRunning()) {
             beep();
             try {
-                Thread.sleep(getTimer());
+                Thread.sleep(50);
             }
             catch (InterruptedException e){
                 setRunning(false);
             }
         }
+    }
+
+    @Override
+    public void beep() {
+        listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
     }
 }

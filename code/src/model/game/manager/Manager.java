@@ -5,6 +5,7 @@ import Persistance.SaverBinaire;
 import model.Player;
 import model.game.World.World;
 import model.game.boucleur.Boucleur;
+import model.game.boucleur.BoucleurCreation;
 import model.game.boucleur.BoucleurSimple;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
@@ -26,6 +27,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.scene.input.KeyCode;
+import model.game.renderer.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,7 @@ public class Manager implements InvalidationListener {
     private Bird currentBird;
     private Collider collider;
     private Boucleur boucleur = new BoucleurSimple();
+    private Boucleur creaBoucleur = new BoucleurCreation();
     private Creator creator;
     private Log currentLog;
     private BirdDisplacer birdDeplaceur ;
@@ -47,22 +50,19 @@ public class Manager implements InvalidationListener {
     //private Displacer obstacleDeplaceur = new ObstacleDisplacer();
     private LoaderBinaire loader;
     private SaverBinaire saver;
+    private Renderer renderer = new Renderer();
 
     private int compteurBoucl = 0;
     private int compteurCrea = 0;
 
     public IntegerProperty scoreCourant = new SimpleIntegerProperty();
-
     public IntegerProperty ScoreCourantProperty() {
         return scoreCourant;
     }
     public int getScoreCourant() {
         return scoreCourant.get();
     }
-
-    public void setScoreCourant(int scoreCourant) {
-        this.scoreCourant.set(scoreCourant);
-    }
+    public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant);}
 
     public Manager() {
         creator = new CreatorRandom();
@@ -137,45 +137,28 @@ public class Manager implements InvalidationListener {
         gameOver = true;
         boucleur.addListener(this);
         boucleur.setRunning(true);
+        creaBoucleur.setRunning(true);
         birdDeplaceur.setEnableMove(true);
+        System.out.println("started");
         new Thread(boucleur).start();
     }
 
     public void stopBoucle() {
+        System.out.println("stop");
         boucleur.setRunning(false);
     }
 
     @Override
     public void invalidated(Observable observable) {
-        if (compteurBoucl == 1) {
             for (Element element : getCurrentWorld().getElements()) {
                 if (element instanceof Obstacle) {
                     if(!obstacleDisplacer.move(element)) {
                         birdDeplaceur.setEnableMove(false);
+                        System.out.println("a");
                         stopBoucle();
                         gameOver = false;
                     }
-                    if (element.getPos().getX() < -200) {
-                        System.out.println("<0");
-                        creator.createObstacle(currentWorld);
-                        currentWorld.delElement(element);
-                        return;
-                    }
                 }
-            }
-            /*
-            if (currentWorld.getFirstDownPipe().getPos().getX() < 0){
-                currentWorld.getElements().remove(down.getPos());
-                currentWorld.getElements().remove(up.getPos());
-                currentWorld.addListElement(creator.createObstacle(currentWorld));
-
-                //  /!\ Problème : il faut passer sur une ObservableList qui soit dans l'ordre de suppresion et d'ajout.
-            }*/
-
-            /*if (compteurCrea%20 == 0){
-                creator.createObstacle(currentWorld);
-            }*/
-
             birdDeplaceur.drop(getCurrentBird());
             compteurBoucl=0;
         }
@@ -184,6 +167,10 @@ public class Manager implements InvalidationListener {
     }
 
     public void keyMove(KeyCode keyCode) {
+        if (!gameOver){
+            System.out.println("move impossible");
+            return;
+        }
         if (keyCode == KeyCode.SPACE) {
             if (!birdDeplaceur.move(currentBird)) {
                 birdDeplaceur.setEnableMove(false);

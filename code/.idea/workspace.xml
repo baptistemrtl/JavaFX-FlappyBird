@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/rsrc/FXML/Game.fxml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/creator/Creator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/launcher/Launch.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/element/Element.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/element/Bird.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/view/MainWindow.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/rsrc/css/background.css" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="22bfNSBakS7gXNPuEi1VWwifw8L" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../projetdalsou/projet-java-fx" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
+  </component>
+  <component name="RunManager" selected="Application.Projet">
+    <configuration name="Projet" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="launcher.Launch" />
+      <module name="flop_flop" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_VARIABLE} --add-modules javafx.fxml,javafx.controls,javafx.graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="tests.globalTest" />
+      <module name="flop_flop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Projet" />
+      <item itemvalue="Application.Test" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="" />
+      <created>1640111167469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640111167469</updated>
+      <workItem from="1640111169444" duration="1143000" />
+      <workItem from="1640115384881" duration="2402000" />
+      <workItem from="1640189302905" duration="7297000" />
+      <workItem from="1640203242041" duration="1708000" />
+      <workItem from="1640289470060" duration="5609000" />
+      <workItem from="1640551114084" duration="2415000" />
+      <workItem from="1640607974783" duration="1595000" />
+      <workItem from="1640790701834" duration="461000" />
+      <workItem from="1640791462720" duration="372000" />
+      <workItem from="1640791870619" duration="3212000" />
+      <workItem from="1640806916572" duration="1017000" />
+      <workItem from="1640808027291" duration="1200000" />
+      <workItem from="1640872714437" duration="266000" />
+      <workItem from="1640880375577" duration="2986000" />
+      <workItem from="1640897482460" duration="4577000" />
+      <workItem from="1640902118901" duration="11000" />
+      <workItem from="1640902296020" duration="904000" />
+      <workItem from="1641516397802" duration="448000" />
+      <workItem from="1641588315919" duration="4867000" />
+      <workItem from="1641608938086" duration="5003000" />
+      <workItem from="1641646891619" duration="2690000" />
+      <workItem from="1641684258278" duration="2000" />
+      <workItem from="1641684463104" duration="2502000" />
+      <workItem from="1641691252245" duration="12076000" />
+      <workItem from="1641756921322" duration="2653000" />
+      <workItem from="1641820145385" duration="4000" />
+      <workItem from="1641820262633" duration="21573000" />
+      <workItem from="1641869407860" duration="68000" />
+      <workItem from="1641870176158" duration="345000" />
+      <workItem from="1641928236696" duration="6270000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

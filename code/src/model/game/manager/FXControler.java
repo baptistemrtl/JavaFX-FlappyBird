@@ -44,25 +44,8 @@ public class FXControler {
     public void initializeGame(Button restartButton, Button homeButton) {
         initNodes(restartButton,homeButton);
         renderer = getRendererSupplier().createRenderer();
-        if (Launch.getManager().getCurrentWorld() == null) {
-            Launch.getManager().createWorld();
-        }
+        Launch.getManager().createWorld();
         renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
-
-        Launch.getManager().getCurrentWorld().getElements().addListener((ListChangeListener.Change<? extends Element> change)-> {
-            while (change.next()) {
-                for (Element elm : change.getAddedSubList()) {
-                    Launch.getManager().getCurrentWorld().addElement(elm);
-                    renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
-                }
-                for (Element elm : change.getRemoved()) {
-                    gameBorderPane.getChildren().removeIf(leNode -> leNode.getUserData() == elm);
-                }
-            }
-            renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
-
-        });
-        Launch.getManager().startBoucle();
     }
 
     private void initNodes(Button restartButton, Button homeButton){
@@ -84,7 +67,7 @@ public class FXControler {
     }
 
     //Getters & Setters
-
+    public Renderer getRenderer(){ return renderer; }
     public RendererSupplier getRendererSupplier() {
         return rendererSupplier;
     }
@@ -95,7 +78,6 @@ public class FXControler {
     public void setGameBorderPane(BorderPane gameBorderPane) {
         this.gameBorderPane = gameBorderPane;
     }
-
     public BorderPane getGameBorderPane() {
         return gameBorderPane;
     }

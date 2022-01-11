@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 import launcher.Launch;
+import model.game.element.Element;
+import model.game.manager.FXControler;
 import model.game.manager.Manager;
 import model.Position;
 import model.game.element.Background;
@@ -26,14 +28,10 @@ public class MainWindow {
     private final Image gameTitle = new Image("image/flopflop.png");
     private final Manager man = Launch.getManager();
 
-    @FXML
-    private BorderPane mainBp;
-    @FXML
-    private Button startButton;
-    @FXML
-    private TextField pseudoJoueur;
-    @FXML
-    private Button scoreboardButton;
+    @FXML private Button startButton;
+    @FXML private TextField pseudoJoueur;
+    @FXML private Button scoreboardButton;
+    @FXML private BorderPane gameBp;
 
     @FXML
     public void initialize() {
@@ -44,21 +42,23 @@ public class MainWindow {
         background.setFitWidth(bg.getWidth());
         background.setX(bg.getPos().getX());
         background.setY(bg.getPos().getY());
-        mainBp.getChildren().add(0,background);
+        gameBp.getChildren().add(0,background);
 
         ImageView flopflop = new ImageView(new Image("image/flopflop.png"));
         flopflop.setFitHeight(150);
         flopflop.setFitWidth(300);
         flopflop.setX(80);
         flopflop.setY(0);
-        mainBp.getChildren().add(1,flopflop);
+        gameBp.getChildren().add(1,flopflop);
 
+       // Launch.getManager().createWorld();
     }
 
     @FXML
     public void startGame(ActionEvent actionEvent) throws Exception {
         actionEvent.consume();
         Launch.getNavigator().navigateTo("Game",(Stage) startButton.getScene().getWindow());
+        Launch.getManager().startBoucle();
     }
 
 

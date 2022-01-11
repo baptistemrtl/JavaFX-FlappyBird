@@ -12,7 +12,7 @@ public class ObstacleDisplacer extends Displacer {
     }
 
     @Override
-    public boolean move(Element element) { // a potentiellement modifier, car pas meme principe que background
+    public boolean move(Element element) {
         Collider col = getCollider();
         if(col.checkCollision(col.getWorld().getCurrentBird().getPos())){
             Position pos = element.getPos();

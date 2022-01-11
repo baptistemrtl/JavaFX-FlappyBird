@@ -1,6 +1,7 @@
 package view;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import launcher.Launch;
 import model.game.manager.FXControler;
@@ -25,13 +26,18 @@ public class Game {
 
     @FXML
     private BorderPane gameBp;
+    @FXML
+    private Button restartButton;
+    @FXML
+    private Button homeButton;
 
     private Stage stage;
+
 
     @FXML
     public void initialize() throws Exception {
         FXControler fxControler = new FXControler(gameBp,Launch.getStage());
-        System.out.println("sheesh");
+        fxControler.initializeGame(restartButton,homeButton);
     }
 
 
