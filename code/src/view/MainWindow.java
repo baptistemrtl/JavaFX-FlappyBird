@@ -36,7 +36,7 @@ public class MainWindow {
     private Button scoreboardButton;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
 
         Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
@@ -56,7 +56,7 @@ public class MainWindow {
     }
 
     @FXML
-    public void startGame(ActionEvent actionEvent) throws Exception{
+    public void startGame(ActionEvent actionEvent) throws Exception {
         actionEvent.consume();
         Launch.getNavigator().navigateTo("Game",(Stage) startButton.getScene().getWindow());
     }

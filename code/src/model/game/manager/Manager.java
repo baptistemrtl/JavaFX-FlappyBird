@@ -147,15 +147,15 @@ public class Manager implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
-        if (compteurBoucl == 1){
-            for (Element element : getCurrentWorld().getElements()){
-                if (element instanceof Obstacle){
-                    if(!obstacleDisplacer.move(element)){
+        if (compteurBoucl == 1) {
+            for (Element element : getCurrentWorld().getElements()) {
+                if (element instanceof Obstacle) {
+                    if(!obstacleDisplacer.move(element)) {
                         birdDeplaceur.setEnableMove(false);
                         stopBoucle();
                         gameOver = false;
                     }
-                    if (element.getPos().getX() < -200){
+                    if (element.getPos().getX() < -200) {
                         System.out.println("<0");
                         creator.createObstacle(currentWorld);
                         currentWorld.delElement(element);
@@ -183,9 +183,9 @@ public class Manager implements InvalidationListener {
         compteurBoucl++;
     }
 
-    public void keyMove(KeyCode keyCode){
-        if (keyCode == KeyCode.SPACE){
-            if (!birdDeplaceur.move(currentBird)){
+    public void keyMove(KeyCode keyCode) {
+        if (keyCode == KeyCode.SPACE) {
+            if (!birdDeplaceur.move(currentBird)) {
                 birdDeplaceur.setEnableMove(false);
                 gameOver = false;
                 stopBoucle();

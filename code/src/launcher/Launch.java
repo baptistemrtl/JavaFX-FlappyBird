@@ -31,7 +31,9 @@ public class Launch extends Application {
         }
     }
 
-    public static Navigator getNavigator() { return nav; }
+    public static Navigator getNavigator() {
+        return nav;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -48,7 +50,7 @@ public class Launch extends Application {
     }
 
     @Override
-    public void stop() throws Exception{
+    public void stop() throws Exception {
         man.stopBoucle();
         super.stop();
     }

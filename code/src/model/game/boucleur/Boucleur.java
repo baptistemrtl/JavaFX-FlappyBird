@@ -38,6 +38,8 @@ public abstract class Boucleur implements Runnable, Observable {
         listeners.remove(listener);
     }
 
-    public void beep() {listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));}
+    public void beep() {
+        listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
+    }
 
 }

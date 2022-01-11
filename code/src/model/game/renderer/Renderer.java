@@ -12,12 +12,12 @@ import model.game.element.Obstacle;
 
 public class Renderer {
 
-    public void renderWorld(BorderPane pane, World world){
+    public void renderWorld(BorderPane pane, World world) {
         renderBackground(pane);
-        for (Element element : world.getElements()){
-            for(Node node : pane.getChildren()){
-                if (node != null && node instanceof ImageView){
-                    if (node.getUserData() == element){
+        for (Element element : world.getElements()) {
+            for(Node node : pane.getChildren()) {
+                if (node instanceof ImageView) {
+                    if (node.getUserData() == element) {
                         renderImageView(pane,(ImageView) node,element);
                     }
                 }
@@ -25,9 +25,9 @@ public class Renderer {
         }
     }
 
-    public void renderBackground(BorderPane gameBp){
-        for (Node node : gameBp.getChildren()){
-            if (node.getUserData() instanceof Background){
+    public void renderBackground(BorderPane gameBp) {
+        for (Node node : gameBp.getChildren()) {
+            if (node.getUserData() instanceof Background) {
                 return;
             }
         }
@@ -40,19 +40,20 @@ public class Renderer {
         gameBp.getChildren().add(0,background);
     }
 
-    public void renderImageView(BorderPane gameBp,ImageView elementIv,Element element){
-        if (element.getPos().getX() < 0){
+    public void renderImageView(BorderPane gameBp,ImageView elementIv,Element element) {
+        if (element.getPos().getX() < 0) {
             gameBp.getChildren().remove(elementIv);
             return;
         }
+
         elementIv.setFitWidth(element.getWidth());
         elementIv.setFitHeight(element.getHeight());
         if (element instanceof Bird) {
             gameBp.getChildren().add(2,elementIv);
-        }
-        if (element instanceof Obstacle) {
+        }else if (element instanceof Obstacle) {
             gameBp.getChildren().add(1,elementIv);
         }
+
         elementIv.layoutXProperty().bindBidirectional(element.getPos().xProperty());
         elementIv.layoutYProperty().bindBidirectional(element.getPos().yProperty());
     }

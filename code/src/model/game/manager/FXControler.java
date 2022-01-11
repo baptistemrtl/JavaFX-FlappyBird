@@ -1,15 +1,14 @@
 package model.game.manager;
 
-import javafx.collections.ListChangeListener;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import launcher.Launch;
-import model.game.World.World;
 import model.game.element.Element;
 import model.game.renderer.Renderer;
 import model.game.renderer.RendererSupplier;
+
+import javafx.collections.ListChangeListener;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class FXControler {
 
@@ -26,7 +25,7 @@ public class FXControler {
     private Renderer renderer;
 
 
-    public FXControler(BorderPane pane, Stage stage){
+    public FXControler(BorderPane pane, Stage stage) {
         rendererSupplier = Renderer::new;
         gameBorderPane = pane;
         mainStage = stage;
@@ -42,10 +41,10 @@ public class FXControler {
     Game Management
      */
 
-    public void initializeGame(Button restartButton, Button homeButton){
+    public void initializeGame(Button restartButton, Button homeButton) {
         initNodes(restartButton,homeButton);
         renderer = getRendererSupplier().createRenderer();
-        if (Launch.getManager().getCurrentWorld() == null){
+        if (Launch.getManager().getCurrentWorld() == null) {
             Launch.getManager().createWorld();
         }
         renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
@@ -68,14 +67,14 @@ public class FXControler {
 
     private void initNodes(Button restartButton, Button homeButton){
         restartButton.setOnAction(e -> {
-            if (Launch.getManager().isGameOver()){
+            if (Launch.getManager().isGameOver()) {
                 //restart
             }
         });
         restartButton.opacityProperty().set(0);
         restartButton.disableProperty().set(true);
         homeButton.setOnAction(e -> {
-                if (Launch.getManager().isGameOver()){
+                if (Launch.getManager().isGameOver()) {
                     //stop
                     Launch.getNavigator().navigateTo("MainWindow",mainStage);
                 }

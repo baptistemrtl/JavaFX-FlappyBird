@@ -29,7 +29,7 @@ public class Game {
     private Stage stage;
 
     @FXML
-    public void initialize() throws Exception{
+    public void initialize() throws Exception {
         FXControler fxControler = new FXControler(gameBp,Launch.getStage());
         System.out.println("sheesh");
     }

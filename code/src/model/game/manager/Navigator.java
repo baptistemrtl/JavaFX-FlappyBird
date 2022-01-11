@@ -1,20 +1,17 @@
 package model.game.manager;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
+import launcher.Launch;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import launcher.Launch;
 
 import java.io.IOException;
 import java.util.*;
 
 public class Navigator {
 
-    private Map<String, Scene> mapScenes = new HashMap<>();
+    private final Map<String, Scene> mapScenes = new HashMap<>();
     private Scene onUseScene;
 
     public Navigator() throws IOException {
@@ -24,12 +21,11 @@ public class Navigator {
         setDefaultScene();
     }
 
-    public void navigateTo(String scene, Stage stage){
+    public void navigateTo(String scene, Stage stage) {
         Scene selectedScene = mapScenes.get(scene);
-        if (selectedScene == null){
+        if (selectedScene == null) {
             setDefaultScene();
-        }
-        else{
+        } else {
             setOnUseScene(selectedScene);
             onUseScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         }
@@ -37,7 +33,7 @@ public class Navigator {
         stage.setWidth(450);
         stage.setHeight(700);
         stage.show();
-        if (scene == "Game"){
+        if (Objects.equals(scene, "Game")) {
             onUseScene.setOnKeyPressed(keyEvent -> Launch.getManager().keyMove(keyEvent.getCode()));
             Launch.getManager().startBoucle();
         }
@@ -47,18 +43,19 @@ public class Navigator {
         this.onUseScene = onUseScene;
     }
 
-    private void setDefaultScene(){
+    private void setDefaultScene() {
         onUseScene = mapScenes.get("MainWindow");
     }
 
-    private Scene getDefaultScene(){
+    private Scene getDefaultScene() {
         return mapScenes.get("MainWindow");
     }
 
     public Scene getOnUseScene() {
-        if (onUseScene == null){
+        if (onUseScene == null) {
             setDefaultScene();
         }
+
         return onUseScene;
     }
 }
