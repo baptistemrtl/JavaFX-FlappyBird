@@ -10,7 +10,7 @@ import model.game.element.Obstacle;
 
 public class ColliderSimple extends Collider{
 
-    public ColliderSimple(World world){
+    public ColliderSimple(World world) {
         super(world);
     }
     @Override
@@ -47,15 +47,16 @@ public class ColliderSimple extends Collider{
 
         for (Element elm : elements){
             if (elm instanceof Obstacle){
-                if (bird.getPos().getX()+40 >= elm.getPos().getX() && bird.getPos().getX() <= elm.getPos().getX()+elm.getWidth()){
-                    if (bird.getPos().getY()+30 >= elm.getPos().getY() && bird.getPos().getY()+30 <= elm.getPos().getY()+elm.getHeight()){
+                if (bird.getPos().getX()+40 >= elm.getPos().getX() &&
+                        bird.getPos().getX() <= elm.getPos().getX()+elm.getWidth()) {
+                    if (bird.getPos().getY()+30 >= elm.getPos().getY() &&
+                            bird.getPos().getY()+30 <= elm.getPos().getY()+elm.getHeight()) {
                         return false;
                     }
                 }
             }
         }
+
         return true;
-
-
     }
 }

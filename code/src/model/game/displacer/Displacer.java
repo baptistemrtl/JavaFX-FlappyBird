@@ -8,11 +8,11 @@ public abstract class Displacer {
     private Collider collider;
     private Boolean enableMove;
 
-    public Boolean isEnableMove(){
+    public Boolean isEnableMove() {
         return enableMove;
     }
 
-    public void setEnableMove(Boolean bool){
+    public void setEnableMove(Boolean bool) {
         enableMove = bool;
     }
     public Displacer(Collider collider) {

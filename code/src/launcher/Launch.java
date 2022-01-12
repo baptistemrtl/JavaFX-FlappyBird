@@ -17,7 +17,7 @@ public class Launch extends Application {
     private static Stage stage;
     public static Stage getStage(){ return stage; }
 
-    private static Manager man = new Manager();
+    private static final Manager man = new Manager();
 
     public static Manager getManager() { return man; }
 

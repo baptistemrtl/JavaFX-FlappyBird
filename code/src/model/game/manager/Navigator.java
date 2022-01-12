@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Navigator {
 
@@ -15,7 +17,7 @@ public class Navigator {
     private Scene onUseScene;
 
     public Navigator() throws IOException {
-        mapScenes.put("Game",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")))));
+        mapScenes.put("Game",new Scene(FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml"))))));
         mapScenes.put("MainWindow",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainWindow.fxml")))));
         mapScenes.put("ScoreBoard", new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/ScoreBoard.fxml")))));
         setDefaultScene();

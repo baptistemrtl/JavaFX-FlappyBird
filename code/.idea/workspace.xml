@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="" />
+    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flop_flop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flop_flop.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launcher/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launcher/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/World/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/boucleur/Boucleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/boucleur/Boucleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/collider/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/collider/Collider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/collider/ColliderSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/collider/ColliderSimple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/creator/Creator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/Creator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/displacer/Displacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/Displacer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/displacer/ObstacleDisplacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/ObstacleDisplacer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,18 +44,22 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/rsrc/FXML/Game.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/model/game/creator/Creator.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/launcher/Launch.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/model/game/element/Element.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/element/Element.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/model/game/element/Bird.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/view/MainWindow.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/rsrc/css/background.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/rsrc/FXML/Game.fxml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/launcher/Launch.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/creator/Creator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/view/MainWindow.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="22bfNSBakS7gXNPuEi1VWwifw8L" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,10 +68,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../projetdalsou/projet-java-fx" />
+    <property name="last_opened_file_path" value="$PATH_VARIABLE$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
@@ -68,6 +87,19 @@
     <configuration name="Test" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="tests.globalTest" />
       <module name="flop_flop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="flop_flop" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="flop_flop" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,5 +152,46 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="004d9f5a-47a3-43bb-8d78-73d599a4dcc7">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/Samuel/Desktop/IUT/Cours/S3/P2/javaFX/javafx_project/code/.idea" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="004d9f5a-47a3-43bb-8d78-73d599a4dcc7" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
 </project>

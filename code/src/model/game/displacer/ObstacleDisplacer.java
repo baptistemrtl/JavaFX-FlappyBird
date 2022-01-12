@@ -14,12 +14,14 @@ public class ObstacleDisplacer extends Displacer {
     @Override
     public boolean move(Element element) {
         Collider col = getCollider();
-        if(col.checkCollision(col.getWorld().getCurrentBird().getPos())){
+        if(col.canMove(col.getWorld().getCurrentBird().getPos())) {
             Position pos = element.getPos();
             pos.setX(pos.getX()-5);
             element.setPos(pos);
+
             return true;
         }
+
         return false;
     }
 }

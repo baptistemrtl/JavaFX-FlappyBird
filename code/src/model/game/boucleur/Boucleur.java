@@ -1,6 +1,5 @@
 package model.game.boucleur;
 
-import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 

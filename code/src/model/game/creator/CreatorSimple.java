@@ -19,11 +19,6 @@ import java.util.List;
 public class CreatorSimple extends Creator {
 
     final String path = "rsrc/testFinishedWorlds/world1.txt";
-    int width;
-    int height;
-
-    public CreatorSimple() {
-    }
 
     @Override
     public List<Element> createWorld() {
@@ -31,7 +26,7 @@ public class CreatorSimple extends Creator {
         double w=0.0, h=0.0;
         String line;
         List<Element> elements = new ArrayList<>();
-        try{
+        try {
             reader = new BufferedReader(new FileReader(path));
             while((line =  reader.readLine()) != null){
                 for(char bloc : line.toCharArray()){
@@ -61,6 +56,4 @@ public class CreatorSimple extends Creator {
     public void createObstacle(List<Element> elements) {
 
     }
-
-
 }
