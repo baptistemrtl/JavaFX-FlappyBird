@@ -1,12 +1,10 @@
 package model.game.renderer;
 
-import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import launcher.Launch;
-import model.Position;
+import model.game.element.Position;
 import model.game.World.World;
 import model.game.element.Background;
 import model.game.element.Bird;
@@ -16,13 +14,10 @@ import model.game.element.Obstacle;
 public class Renderer {
 
     public void renderWorld(BorderPane pane, World world) {
-
-        System.out.println("World");
         renderBackground(pane);
         for (Element element : world.getElements()) {
             renderImageView(pane,element);
         }
-
     }
 
     public void renderBackground(BorderPane gameBp) {
@@ -43,10 +38,10 @@ public class Renderer {
     public void renderImageView(BorderPane gameBp,Element element) {
         ImageView elementIv = new ImageView();
         elementIv.setImage(new Image(element.getImage()));
-        if (element.getPos().getX() < 0) {
+        /*if (element.getPos().getX() < 0) {
             gameBp.getChildren().remove(elementIv);
             return;
-        }
+        }*/
 
         elementIv.setFitWidth(element.getWidth());
         elementIv.setFitHeight(element.getHeight());
@@ -55,7 +50,6 @@ public class Renderer {
         }else if (element instanceof Obstacle) {
             gameBp.getChildren().add(1,elementIv);
         }
-
         elementIv.layoutXProperty().bindBidirectional(element.getPos().xProperty());
         elementIv.layoutYProperty().bindBidirectional(element.getPos().yProperty());
     }

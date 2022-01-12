@@ -2,7 +2,6 @@ package model.game.element;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.Position;
 
 public abstract class Element {
     private Position pos;

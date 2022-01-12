@@ -19,7 +19,6 @@ public abstract class Displacer {
         this.collider = collider;
     }
 
-
     public Collider getCollider() {
         return collider;
     }

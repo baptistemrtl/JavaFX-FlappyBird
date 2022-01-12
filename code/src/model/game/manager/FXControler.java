@@ -46,6 +46,16 @@ public class FXControler {
         renderer = getRendererSupplier().createRenderer();
         Launch.getManager().createWorld();
         renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
+        for (Element elem : Launch.getManager().getCurrentWorld().getElements()){
+            System.out.println(elem.getImage());
+        }
+        Launch.getManager().getCurrentWorld().getElements().addListener((ListChangeListener.Change<? extends Element> change)-> {
+            while (change.next()) {
+                for (Element obs : change.getAddedSubList()) {
+                    renderer.renderImageView(gameBorderPane,obs);
+                }
+            }
+        });
     }
 
     private void initNodes(Button restartButton, Button homeButton){
@@ -58,11 +68,11 @@ public class FXControler {
         restartButton.disableProperty().set(true);
         homeButton.setOnAction(e -> {
                 if (Launch.getManager().isGameOver()) {
-                    //stop
-                    Launch.getNavigator().navigateTo("MainWindow",mainStage);
+                    System.out.println("try");
+                   // Launch.getNavigator().navigateTo("MainWindow",mainStage);
                 }
         });
-        homeButton.opacityProperty().set(0);
+       homeButton.opacityProperty().set(0);
         homeButton.disableProperty().set(true);
     }
 
@@ -74,7 +84,6 @@ public class FXControler {
     public void setRendererSupplier(RendererSupplier newRendererSupplier) {
         rendererSupplier = newRendererSupplier;
     }
-
     public void setGameBorderPane(BorderPane gameBorderPane) {
         this.gameBorderPane = gameBorderPane;
     }

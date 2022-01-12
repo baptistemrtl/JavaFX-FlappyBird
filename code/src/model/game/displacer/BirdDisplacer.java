@@ -3,9 +3,7 @@ package model.game.displacer;
 import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.QuadCurveTo;
-import model.Position;
+import model.game.element.Position;
 import model.game.collider.Collider;
 import model.game.element.Bird;
 import model.game.element.Element;
@@ -55,20 +53,18 @@ public class BirdDisplacer extends Displacer{
     }
 
     public boolean fly(Bird bird) {   // c'est les memes faudra check ça
-        Position pos = bird.getPos();
-        pos.setY(pos.getY()-10);
-        Position other = new Position(pos.getX(),pos.getY());
-        if(getCollider().canMove(other)) {
+        Position pos = bird.getPos();       // Position other = new Position(pos.getX(),pos.getY());
+        if(getCollider().canMove(pos)) {
+            pos.setY(pos.getY()-35);
             bird.setPos(pos);
             return true;
         }
-
         return false;
     }
 
     public boolean drop(Bird bird){
         Position pos = bird.getPos();
-        pos.setY(pos.getY()+5);
+        pos.setY(pos.getY()+10);
         if(getCollider().canMove(pos)) {
             bird.setPos(pos);
             return true;

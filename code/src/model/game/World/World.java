@@ -1,55 +1,50 @@
 package model.game.World;
 
-import javafx.beans.Observable;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import model.Position;
+import launcher.Launch;
+import model.game.creator.Creator;
+import model.game.creator.CreatorRandom;
 import model.game.element.Bird;
 import model.game.element.Element;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import model.game.element.Obstacle;
 
 import java.util.*;
 
 public class World {
 
-    private ObservableList<Element> elements;
+    private ObservableList<Element> elements = FXCollections.observableArrayList();
+    private Creator creator = new CreatorRandom();
 
     public World(){
-        elements = FXCollections.observableArrayList(eventShowable ->
-                new Observable[]{eventShowable.getPos().xProperty(),eventShowable.getPos().yProperty() });
+
+        elements = FXCollections.observableArrayList(creator.createWorld());
+        for (Element elem : elements){
+            System.out.println(elem.getImage());
+        }
     }
 
+    public void restartWorld(){
+        elements = FXCollections.observableArrayList(creator.createWorld());
+    }
 
+    public void addObstacles(){
+        creator.createObstacle(elements);
+    }
 
     public void addElement(Element element) {
-            /*if (elements.size() == 0){
-                elements.add(element);
-            }
-            int index = 0;
-            for (Element value : elements){
-                if (element.getPos().getX() <= value.getPos().getX()){
-                    elements.add(index,element);
-                }
-                ++index;
-
-            }*/
-
-        elements.add(element);
+            elements.add(element);
     }
 
     public void addListElement(List<Element> elementList) {
-        System.out.println("addList");
             for(Element e : elementList) {
                 addElement(e);
             }
     }
 
     public void delElement(Element element) {
-        System.out.println("del");
             elements.remove(element.getPos());
     }
 
@@ -63,23 +58,7 @@ public class World {
     }
 
     public ObservableList<Element> getElements() {
-            return FXCollections.observableList(elements);
-    }
-
-    public Element getLastElementX(){
-        int maxX = 0;
-        int index = 0;
-        if (elements.isEmpty()){
-            return null;
-        }
-        for (Element elm : elements){
-            if (elm.getPos().getX() > maxX){
-                maxX = (int) elm.getPos().getY();
-                ++index;
-            }
-        }
-        return elements.get(index-1);
-
+            return elements;
     }
 
     private int getIndexOfObstacles(Obstacle obs, LinkedList<Obstacle> obstacles){

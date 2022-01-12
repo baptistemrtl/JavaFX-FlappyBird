@@ -9,8 +9,7 @@
             prefHeight="700.0" prefWidth="450.0"
             maxWidth="450" maxHeight="700"
             minWidth="450" minHeight="700"
-            fx:id="gameBp"
-            onKeyPressed="#move">
+            fx:id="gameBp">
     <top>
         <Button fx:id="restartButton">
             restart

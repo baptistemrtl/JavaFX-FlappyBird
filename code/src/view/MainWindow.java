@@ -2,8 +2,6 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -12,15 +10,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import launcher.Launch;
-import model.game.element.Element;
-import model.game.manager.FXControler;
 import model.game.manager.Manager;
-import model.Position;
+import model.game.element.Position;
 import model.game.element.Background;
-import model.game.manager.Navigator;
 
 
 public class MainWindow {
@@ -58,6 +52,7 @@ public class MainWindow {
     public void startGame(ActionEvent actionEvent) throws Exception {
         actionEvent.consume();
         Launch.getNavigator().navigateTo("Game",(Stage) startButton.getScene().getWindow());
+        Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
         Launch.getManager().startBoucle();
     }
 

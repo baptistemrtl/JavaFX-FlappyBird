@@ -1,4 +1,4 @@
-package model;
+package model.game.element;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

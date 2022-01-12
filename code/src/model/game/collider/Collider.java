@@ -1,6 +1,6 @@
 package model.game.collider;
 
-import model.Position;
+import model.game.element.Position;
 import model.game.World.World;
 
 import javafx.beans.property.DoubleProperty;

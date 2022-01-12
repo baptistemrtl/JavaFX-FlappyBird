@@ -1,15 +1,12 @@
 package model.game.collider;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
-import model.Position;
+import model.game.element.Position;
 import model.game.World.World;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
-
-import java.util.Map;
 
 public class ColliderSimple extends Collider{
 
@@ -23,7 +20,7 @@ public class ColliderSimple extends Collider{
 
     @Override
     public boolean checkPos(Position pos){
-       return pos.getY() > 0 && pos.getY() < 700;
+       return pos.getY() >= 0 && pos.getY() <= 700;
     }
 
 

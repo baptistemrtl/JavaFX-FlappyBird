@@ -1,13 +1,12 @@
 package model.game.creator;
 
-import model.Position;
-import model.game.World.World;
-import model.game.element.Bird;
+import model.game.element.Position;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,25 +25,25 @@ public class CreatorSimple extends Creator {
     public CreatorSimple() {
     }
 
-    public World createWorld() {
+    @Override
+    public List<Element> createWorld() {
         BufferedReader reader;
         double w=0.0, h=0.0;
         String line;
-        World monde = new World();
+        List<Element> elements = new ArrayList<>();
         try{
             reader = new BufferedReader(new FileReader(path));
             while((line =  reader.readLine()) != null){
                 for(char bloc : line.toCharArray()){
                     switch (bloc) {
                         case '1' -> {
-                            monde.addElement(new Obstacle(50, 270, new Position(w, h), "image/down_pipe.png"));
+                            elements.add(new Obstacle(50, 270, new Position(w, h), "image/down_pipe.png"));
                             w += 150;
                         }
                         case '3' -> {
-                            monde.addElement(new Obstacle(50, 270, new Position(w,h+100), "image/up_pipe.png"));
+                            elements.add(new Obstacle(50, 270, new Position(w,h+100), "image/up_pipe.png"));
                             w += 150;
                         }
-                        case '2' -> monde.addElement(new Bird(50, 50, new Position(w, h), "image/bird.png"));
                         default -> w += 50;
                     }
                 }
@@ -55,10 +54,13 @@ public class CreatorSimple extends Creator {
             e.printStackTrace();
         }
 
-        return monde;
+        return elements;
     }
 
     @Override
-    public void createObstacle(World world) {
+    public void createObstacle(List<Element> elements) {
+
     }
+
+
 }

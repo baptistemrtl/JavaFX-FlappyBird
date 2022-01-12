@@ -2,15 +2,15 @@ package model.game.manager;
 
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableBooleanValue;
 import model.Player;
 import model.game.World.World;
 import model.game.boucleur.Boucleur;
-import model.game.boucleur.BoucleurCreation;
 import model.game.boucleur.BoucleurSimple;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
-import model.game.creator.Creator;
-import model.game.creator.CreatorRandom;
 import model.game.displacer.BirdDisplacer;
 import model.game.displacer.Displacer;
 import model.game.displacer.ObstacleDisplacer;
@@ -25,32 +25,30 @@ import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.scene.input.KeyCode;
-import model.game.renderer.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Manager implements InvalidationListener {
 
-    private Boolean gameOver;
-    private Boolean isMoving;
+
+    private BooleanProperty gameOver = new SimpleBooleanProperty();
+        public Boolean getGameOver(){ return gameOver.get();}
+        public void setGameOver(Boolean bool){ gameOver.set(bool);}
+        public BooleanProperty gameOverProperty(){ return gameOver; }
 
     private Player currentPlayer;
-    private World currentWorld = new World();
+    private World currentWorld;
     private Bird currentBird;
-    private Collider collider;
-    private Boucleur boucleur = new BoucleurSimple();
-    private Boucleur creaBoucleur = new BoucleurCreation();
-    private Creator creator;
+    private final Collider collider;
+    private final Boucleur boucleur = new BoucleurSimple();
     private Log currentLog;
-    private BirdDisplacer birdDeplaceur ;
-    private Displacer obstacleDisplacer;
-    //private Displacer obstacleDeplaceur = new ObstacleDisplacer();
+    private final BirdDisplacer birdDeplaceur ;
+    private final  Displacer obstacleDisplacer;
+
     private LoaderBinaire loader;
     private SaverBinaire saver;
-    private Renderer renderer = new Renderer();
 
     private int compteurBoucl = 0;
     private int compteurCrea = 0;
@@ -65,8 +63,7 @@ public class Manager implements InvalidationListener {
     public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant);}
 
     public Manager() {
-        creator = new CreatorRandom();
-        currentWorld = creator.createWorld();
+        currentWorld = new World();
         collider = new ColliderSimple(currentWorld);
         currentBird = currentWorld.getCurrentBird();
         birdDeplaceur = new BirdDisplacer(collider);
@@ -75,14 +72,14 @@ public class Manager implements InvalidationListener {
     }
 
     public Boolean isGameOver() {
-        return gameOver;
+        return gameOver.get();
     }
 
     //Initialisation
 
     public void createWorld(){
-        currentWorld = creator.createWorld();
-        collider = new ColliderSimple(currentWorld);
+        currentWorld.restartWorld();
+        collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
     }
 
@@ -134,17 +131,14 @@ public class Manager implements InvalidationListener {
 
     //Boucle
     public void startBoucle() {
-        gameOver = true;
+        setGameOver(true);
         boucleur.addListener(this);
         boucleur.setRunning(true);
-        creaBoucleur.setRunning(true);
         birdDeplaceur.setEnableMove(true);
-        System.out.println("started");
         new Thread(boucleur).start();
     }
 
     public void stopBoucle() {
-        System.out.println("stop");
         boucleur.setRunning(false);
     }
 
@@ -152,29 +146,31 @@ public class Manager implements InvalidationListener {
     public void invalidated(Observable observable) {
             for (Element element : getCurrentWorld().getElements()) {
                 if (element instanceof Obstacle) {
-                    if(!obstacleDisplacer.move(element)) {
+                    if (!obstacleDisplacer.move(element)) {
                         birdDeplaceur.setEnableMove(false);
-                        System.out.println("a");
                         stopBoucle();
-                        gameOver = false;
+                        setGameOver(false);
                     }
                 }
+            }
+        if (compteurBoucl%2 == 1){
             birdDeplaceur.drop(getCurrentBird());
-            compteurBoucl=0;
         }
-        compteurCrea++;
+        if (compteurBoucl%50 == 0){
+            currentWorld.addObstacles();
+            collider.setWorld(currentWorld);
+        }
         compteurBoucl++;
     }
 
     public void keyMove(KeyCode keyCode) {
-        if (!gameOver){
-            System.out.println("move impossible");
+        if (!getGameOver()){
             return;
         }
         if (keyCode == KeyCode.SPACE) {
             if (!birdDeplaceur.move(currentBird)) {
                 birdDeplaceur.setEnableMove(false);
-                gameOver = false;
+                gameOver.set(false);
                 stopBoucle();
             }
         }

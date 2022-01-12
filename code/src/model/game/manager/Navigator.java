@@ -35,7 +35,6 @@ public class Navigator {
         stage.show();
         if (Objects.equals(scene, "Game")) {
             onUseScene.setOnKeyPressed(keyEvent -> Launch.getManager().keyMove(keyEvent.getCode()));
-            Launch.getManager().startBoucle();
         }
     }
 
