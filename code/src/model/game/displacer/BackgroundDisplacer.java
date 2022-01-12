@@ -6,6 +6,7 @@ import model.game.element.Element;
 
 public class BackgroundDisplacer extends Displacer {
 
+//    TODO: check use of this method
     public BackgroundDisplacer(Collider collider) {
         super(collider);
     }

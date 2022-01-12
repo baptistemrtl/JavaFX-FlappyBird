@@ -4,17 +4,13 @@
     <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flop_flop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flop_flop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launcher/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launcher/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/World/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/boucleur/Boucleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/boucleur/Boucleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/collider/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/collider/Collider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/collider/ColliderSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/collider/ColliderSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/creator/Creator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/Creator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/CreatorRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/displacer/Displacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/Displacer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/displacer/BackgroundDisplacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/BackgroundDisplacer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/displacer/BirdDisplacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/BirdDisplacer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/displacer/ObstacleDisplacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/displacer/ObstacleDisplacer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/element/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/element/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/logs/LogSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/logs/LogSimple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +29,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="3f560351a43f5d356c7dd80ad7da1332f9792bd3" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -42,6 +43,27 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1641967503" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/model/game/creator/CreatorSimple.java" root0="FORCE_HIGHLIGHTING" />
@@ -148,6 +170,14 @@
       <workItem from="1641870176158" duration="345000" />
       <workItem from="1641928236696" duration="6270000" />
     </task>
+    <task id="LOCAL-00001" summary="rapide cleanup">
+      <created>1641967419535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641967419535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,20 +189,17 @@
         <entry key="004d9f5a-47a3-43bb-8d78-73d599a4dcc7">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="structure">
-                    <value>
-                      <list>
-                        <option value="dir:C:/Users/Samuel/Desktop/IUT/Cours/S3/P2/javaFX/javafx_project/code/.idea" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -188,10 +215,9 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="004d9f5a-47a3-43bb-8d78-73d599a4dcc7" value="TOOL_WINDOW" />
-      </map>
-    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="rapide cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="rapide cleanup" />
   </component>
 </project>

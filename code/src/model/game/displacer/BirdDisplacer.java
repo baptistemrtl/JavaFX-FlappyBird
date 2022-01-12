@@ -57,20 +57,22 @@ public class BirdDisplacer extends Displacer{
         if(getCollider().canMove(pos)) {
             pos.setY(pos.getY()-35);
             bird.setPos(pos);
+
             return true;
         }
         return false;
     }
 
-    public boolean drop(Bird bird){
+//    TODO: check usage of return
+    public boolean drop(Bird bird) {
         Position pos = bird.getPos();
         pos.setY(pos.getY()+10);
         if(getCollider().canMove(pos)) {
             bird.setPos(pos);
+
             return true;
         }
 
         return false;
     }
-
 }

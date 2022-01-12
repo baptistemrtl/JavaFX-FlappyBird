@@ -1,5 +1,6 @@
 package model.game.element;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -8,13 +9,9 @@ public abstract class Element {
     private int width;
     private int height;
     private final StringProperty image = new SimpleStringProperty();
-        public String getImage() {
-            return image.get();
-        }
-        public void setImage(String img) {
-            image.set(img);
-        }
-
+        public String getImage() { return image.get(); }
+        public void setImage(String img) { image.set(img); }
+    public StringProperty imageProperty() { return image; }
 
     public Element(int width, int height, Position pos, String imageUrl) {
         setWidth(width);
@@ -48,11 +45,11 @@ public abstract class Element {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (this == obj) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Element element)) return false;
 
-        Element other = (Element) obj;
-        return other.getPos() == this.getPos();
+        return getWidth() == element.getWidth() && getHeight() == element.getHeight() &&
+                getPos().equals(element.getPos()) && getImage().equals(element.getImage());
     }
 }

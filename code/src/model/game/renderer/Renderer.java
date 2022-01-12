@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+
 import model.game.element.Position;
 import model.game.World.World;
 import model.game.element.Background;
@@ -50,6 +51,7 @@ public class Renderer {
         }else if (element instanceof Obstacle) {
             gameBp.getChildren().add(1,elementIv);
         }
+
         elementIv.layoutXProperty().bindBidirectional(element.getPos().xProperty());
         elementIv.layoutYProperty().bindBidirectional(element.getPos().yProperty());
     }

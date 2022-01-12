@@ -25,12 +25,11 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || obj.getClass() != getClass()) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position position)) return false;
 
-        Position pos = (Position) obj;
-        return getX() == pos.getX() && getY() == pos.getY();
+        return getX() == position.getX() && getY() == position.getY();
     }
 
     @Override

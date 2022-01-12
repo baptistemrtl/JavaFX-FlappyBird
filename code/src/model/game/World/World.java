@@ -15,11 +15,11 @@ import java.util.*;
 
 public class World {
 
-    private ObservableList<Element> elements;
+    private final ObservableList<Element> elements;
 
     public World() {
         elements = FXCollections.observableArrayList(creator.createWorld());
-        for (Element elem : elements){
+        for (Element elem : elements) {
             System.out.println(elem.getImage());
         }
     }
@@ -52,6 +52,7 @@ public class World {
                 return (Bird) element;
             }
         }
+
         return null;
     }
 
@@ -68,11 +69,13 @@ public class World {
                     return index;
                 }
         }
-        
+
         return index;
     }
 
     private void sortList(List<Element> elements) {
         elements.sort(Comparator.comparingDouble(o -> o.getPos().getX()));
     }
+
+
 }

@@ -8,26 +8,20 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LogSimple extends Log{
 
     public ObservableList<Player> olPlayers = FXCollections.observableArrayList();
-    public ListProperty<Player> players = new SimpleListProperty<>(olPlayers);
-    public ReadOnlyListProperty<Player> playersProperty() {
-        return players;
-    }
-    public ObservableList<Player> getPlayers() { return players.get(); }
-    public void setMesUtilisateurs(ObservableList<Player> mesUtilisateurs) {
-        this.players.set(mesUtilisateurs); }
+    private final ListProperty<Player> players = new SimpleListProperty<>(olPlayers);
+        public ObservableList<Player> getPlayers() { return players.get(); }
+        public void setPlayers(ObservableList<Player> players) { this.players.set(players); }
+    public ReadOnlyListProperty<Player> playersProperty() { return players; }
 
     public LogSimple(ObservableList<Player> players) {
-        setMesUtilisateurs(players);
+        setPlayers(players);
     }
 
-    public LogSimple(){
-        setMesUtilisateurs(FXCollections.observableArrayList());
+    public LogSimple() {
+        setPlayers(FXCollections.observableArrayList());
     }
 
     @Override
@@ -38,7 +32,7 @@ public class LogSimple extends Log{
     @Override
     public Player searchPlayer(String pseudo) {
         for (Player player : getPlayers()){
-            if (player.getPseudo() == pseudo){
+            if (player.getPseudo().equals(pseudo)) {
                 return player;
             }
         }
