@@ -1,21 +1,23 @@
 package model.game.World;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 
-import launcher.Launch;
 import model.game.creator.Creator;
 import model.game.creator.CreatorRandom;
 import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class World {
 
-    private final ObservableList<Element> elements;
+    private ObservableList<Element> elements;
+    private final Creator creator = new CreatorRandom();
 
     public World() {
         elements = FXCollections.observableArrayList(creator.createWorld());
@@ -43,7 +45,7 @@ public class World {
     }
 
     public void delElement(Element element) {
-        elements.remove(element.getPos());
+        elements.remove(element);
     }
 
     public Bird getCurrentBird() {
@@ -76,6 +78,4 @@ public class World {
     private void sortList(List<Element> elements) {
         elements.sort(Comparator.comparingDouble(o -> o.getPos().getX()));
     }
-
-
 }
