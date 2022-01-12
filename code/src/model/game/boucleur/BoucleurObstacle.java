@@ -2,7 +2,7 @@ package model.game.boucleur;
 
 import javafx.application.Platform;
 
-public class BoucleurSimple extends Boucleur{
+public class BoucleurObstacle extends Boucleur{
 
     @Override
     public void run() {
