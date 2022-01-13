@@ -27,5 +27,5 @@ public abstract class Displacer {
         this.collider = collider;
     }
 
-    public abstract boolean move(Element element);
+    public abstract boolean move(Element element,Double move);
 }

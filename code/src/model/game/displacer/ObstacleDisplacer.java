@@ -11,11 +11,11 @@ public class ObstacleDisplacer extends Displacer {
     }
 
     @Override
-    public boolean move(Element element) {
+    public boolean move(Element element,Double move) {
         Collider col = getCollider();
         if(col.canMove(col.getWorld().getCurrentBird().getPos())) {
             Position pos = element.getPos();
-            pos.setX(pos.getX()-5);
+            pos.setX(pos.getX()-move);
             element.setPos(pos);
 
             return true;

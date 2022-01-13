@@ -12,9 +12,9 @@ public class BackgroundDisplacer extends Displacer {
     }
 
     @Override
-    public boolean move(Element element) {
+    public boolean move(Element element,Double move) {
         Position pos = element.getPos();
-        pos.setX(pos.getX()-1);
+        pos.setX(pos.getX()-move);
         element.setPos(pos);
         return true;
     }

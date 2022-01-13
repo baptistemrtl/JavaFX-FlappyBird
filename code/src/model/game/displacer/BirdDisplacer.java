@@ -43,19 +43,19 @@ public class BirdDisplacer extends Displacer{
     }
 
     @Override
-    public boolean move(Element element) {
+    public boolean move(Element element,Double move) {
         if (isEnableMove()){
             if (element instanceof Bird) {
-                return fly((Bird) element);
+                return fly((Bird) element,move);
             }
         }
        return false;
     }
 
-    public boolean fly(Bird bird) {   // c'est les memes faudra check ça
+    public boolean fly(Bird bird,Double move) {   // c'est les memes faudra check ça
         Position pos = bird.getPos();       // Position other = new Position(pos.getX(),pos.getY());
         if(getCollider().canMove(pos)) {
-            pos.setY(pos.getY()-35);
+            pos.setY(pos.getY()-move);
             bird.setPos(pos);
 
             return true;
@@ -63,7 +63,7 @@ public class BirdDisplacer extends Displacer{
         return false;
     }
 
-//    TODO: check usage of return
+ //  Sert à check la collision meme quand on ne presse pas espace, sinon pas de collision en descente
     public boolean drop(Bird bird) {
         Position pos = bird.getPos();
         pos.setY(pos.getY()+10);

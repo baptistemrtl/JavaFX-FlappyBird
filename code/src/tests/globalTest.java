@@ -39,17 +39,17 @@ public class globalTest {
 
         //Test de deplacement de l'oiseau
         displacer.setEnableMove(true);
-        displacer.move(bird);
+        displacer.move(bird,15.0);
         System.out.println("Bird 1er deplacement -> x :" + bird.getPos().getX() + " y :" + bird.getPos().getY());
 
         //Test de la collision
         int i = 1;
-        boolean coll = displacer.move(bird);
+        boolean coll = displacer.move(bird,15.0);
         System.out.println(coll);
         while (coll){
             System.out.println("Bird" + i + " deplacement -> x :" + bird.getPos().getX() + " y :" + bird.getPos().getY());
             ++i;
-            coll = displacer.move(bird);
+            coll = displacer.move(bird,15.0);
             currentThread().sleep(500);
         }
 

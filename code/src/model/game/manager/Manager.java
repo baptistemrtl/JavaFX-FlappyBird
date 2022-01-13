@@ -29,7 +29,7 @@ import javafx.scene.input.KeyCode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager implements InvalidationListener {
+public class Manager {
 
 
     private BooleanProperty gameOver = new SimpleBooleanProperty();
@@ -131,7 +131,7 @@ public class Manager implements InvalidationListener {
     //Boucle
     public void startBoucle() {
         setGameOver(true);
-        boucleur.addListener(this);
+        //boucleur.addListener(this);
         boucleur.setRunning(true);
         birdDeplaceur.setEnableMove(true);
         new Thread(boucleur).start();
@@ -141,33 +141,13 @@ public class Manager implements InvalidationListener {
         boucleur.setRunning(false);
     }
 
-    @Override
-    public void invalidated(Observable observable) {
-            for (Element element : getCurrentWorld().getElements()) {
-                if (element instanceof Obstacle) {
-                    if (!obstacleDisplacer.move(element)) {
-                        birdDeplaceur.setEnableMove(false);
-                        stopBoucle();
-                        setGameOver(false);
-                    }
-                }
-            }
-        if (compteurBoucl%2 == 1){
-            birdDeplaceur.drop(getCurrentBird());
-        }
-        if (compteurBoucl%50 == 0){
-            currentWorld.addObstacles();
-            collider.setWorld(currentWorld);
-        }
-        compteurBoucl++;
-    }
 
     public void keyMove(KeyCode keyCode) {
         if (!getGameOver()){
             return;
         }
         if (keyCode == KeyCode.SPACE) {
-            if (!birdDeplaceur.move(currentBird)) {
+            if (!birdDeplaceur.move(currentBird,15.0)) { //animation
                 birdDeplaceur.setEnableMove(false);
                 gameOver.set(false);
                 stopBoucle();
