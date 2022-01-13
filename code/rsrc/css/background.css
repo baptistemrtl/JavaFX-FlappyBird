@@ -1,5 +1,5 @@
 #mainWindow{
-    -fx-background-image: url("image/background.png");
+    -fx-background-image: url("image/background.jpg");
     -fx-background-repeat: repeat;
     -fx-background-size: cover, auto;
 }
@@ -19,4 +19,9 @@
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
     -fx-cell-size: cover,auto;
     -fx-alignment: center;
+}
+
+.score-text{
+    text-align: center;
+    -fx-font-size: 30px;
 }

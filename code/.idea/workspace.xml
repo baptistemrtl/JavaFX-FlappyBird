@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="cleanup et ajout de TODO">
+    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="Merge Fini">
+      <change afterPath="$PROJECT_DIR$/rsrc/image/thirdmedal.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/World/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/creator/Creator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/creator/Creator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rsrc/css/background.css" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/css/background.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launcher/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launcher/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/animation/AnimationBird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/animation/AnimationBird.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,12 +85,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="22bfNSBakS7gXNPuEi1VWwifw8L" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -96,7 +108,7 @@
     <configuration name="Projet" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="launcher.Launch" />
       <module name="flop_flop" />
-      <option name="VM_PARAMETERS" value="--module-path ${PATH_VARIABLE} --add-modules javafx.fxml,javafx.controls" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_VARIABLE} --add-modules javafx.fxml,javafx.controls," />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,7 +163,7 @@
       <workItem from="1641869407860" duration="68000" />
       <workItem from="1641870176158" duration="345000" />
       <workItem from="1641928236696" duration="6270000" />
-      <workItem from="1642026931346" duration="2374000" />
+      <workItem from="1642026931346" duration="14643000" />
     </task>
     <task id="LOCAL-00001" summary="rapide cleanup">
       <created>1641967419535</created>
@@ -167,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641970297819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge Fini">
+      <created>1642030763139</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1642030763139</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,8 +226,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="rapide cleanup" />
     <MESSAGE value="cleanup et ajout de TODO" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup et ajout de TODO" />
+    <MESSAGE value="Merge Fini" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge Fini" />
   </component>
 </project>

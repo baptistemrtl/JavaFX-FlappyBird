@@ -1,12 +1,12 @@
 package launcher;
 
-import model.game.manager.Manager;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import model.game.manager.Manager;
 import model.game.manager.Navigator;
 
 import java.io.IOException;
@@ -18,11 +18,9 @@ public class Launch extends Application {
     public static Stage getStage(){ return stage; }
 
     private static final Manager man = new Manager();
-
     public static Manager getManager() { return man; }
 
     private static Navigator nav;
-
     static {
         try {
             nav = new Navigator();
@@ -36,17 +34,10 @@ public class Launch extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainWindow.fxml")));
-        //Scene scene = new Scene(parent);
-        //primaryStage.setScene(scene);
-        //primaryStage.show();
-
-        Scene scene = nav.getOnUseScene();
+    public void start(Stage primaryStage) {
         stage = primaryStage;
-        nav.navigateTo("MainWindow",primaryStage);
-
-
+        stage.setResizable(false);
+        nav.navigateTo("MainWindow", stage);
     }
 
     @Override

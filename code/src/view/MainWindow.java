@@ -2,14 +2,10 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 import launcher.Launch;
 import model.game.manager.Manager;
@@ -19,17 +15,13 @@ import model.game.element.Background;
 
 public class MainWindow {
 
-    private final Image gameTitle = new Image("image/flopflop.png");
     private final Manager man = Launch.getManager();
 
-    @FXML private Button startButton;
     @FXML private TextField pseudoJoueur;
-    @FXML private Button scoreboardButton;
     @FXML private BorderPane gameBp;
 
     @FXML
     public void initialize() {
-
         Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
         ImageView background = new ImageView(bg.getImage());
         background.setFitHeight(bg.getHeight());
@@ -44,22 +36,25 @@ public class MainWindow {
         flopflop.setX(80);
         flopflop.setY(0);
         gameBp.getChildren().add(1,flopflop);
-
-       // Launch.getManager().createWorld();
     }
 
     @FXML
-    public void startGame(ActionEvent actionEvent) throws Exception {
+    public void startGame(ActionEvent actionEvent) {
         actionEvent.consume();
-        Launch.getNavigator().navigateTo("Game",(Stage) startButton.getScene().getWindow());
+        Launch.getNavigator().navigateTo("Game", Launch.getStage());
         Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
         Launch.getManager().startBoucle();
     }
 
+    @FXML
+    public void openScoreboard(ActionEvent actionEvent) {
+        actionEvent.consume();
+        Launch.getNavigator().navigateTo("ScoreBoard", Launch.getStage());
+    }
 
     @FXML
-    public void openScoreboard(ActionEvent actionEvent) throws IOException {
+    public void exitGame(ActionEvent actionEvent) {
         actionEvent.consume();
-        Launch.getNavigator().navigateTo("ScoreBoard",(Stage) startButton.getScene().getWindow());
+        Launch.getStage().close();
     }
 }

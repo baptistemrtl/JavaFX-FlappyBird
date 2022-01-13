@@ -2,7 +2,7 @@ package model.game.animation;
 
 import model.game.boucleur.BoucleurBird;
 
-public class AnimationBird extends Animation{
+public class AnimationBird extends Animation {
 
     //Position : ax^2 + bx + c
     //vitesse : ax+b
