@@ -69,7 +69,6 @@ public class CreatorRandom extends Creator{
     public List<Element> createWorld() {
         List<Element> list = new ArrayList<Element>();
         list.add(new Bird(birdFirstWidth,birdFirstHeight, new Position(birdFirstX,birdFirstY),birdImage));
-
         return list;
     }
 }

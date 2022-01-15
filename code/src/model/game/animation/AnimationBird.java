@@ -27,10 +27,10 @@ public class AnimationBird extends Animation implements InvalidationListener {
         this.dropBoucleur = drop;
         dropBoucleur.addListener(this);
         this.boucleur.addListener(this);
-        threadFly = new Thread(boucleur);
-        threadDrop = new Thread(dropBoucleur);
     }
 
+    public Thread getThreadFly(){ return threadFly; }
+    public Thread getThreadDrop(){ return threadDrop; }
 
 
     //Position : ax^2 + bx + c
@@ -42,51 +42,58 @@ public class AnimationBird extends Animation implements InvalidationListener {
 
     @Override
     public void animate() {
-        System.out.println("animate");
         dropBoucleur.setRunning(false);
         threadDrop.interrupt();
         currentY = collider.getWorld().getCurrentBird().getPos().getY();
-        System.out.println(currentY);
-        yToReach = currentY - 50.0;
-        System.out.println(yToReach);
+
+        yToReach = currentY - 100.0;
         displacer.setEnableMove(true);
         boucleur.setRunning(true);
         isDropping = false;
+        threadFly = new Thread(this.boucleur);
         threadFly.start();
-        System.out.println("FLY");
+    }
+
+    public void initalizeAnimation(){
+        currentY = collider.getWorld().getCurrentBird().getPos().getY();
+        displacer.setEnableMove(true);
+        dropBoucleur.setRunning(true);
+        isDropping = true;
+        threadDrop = new Thread(dropBoucleur);
+        threadDrop.start();
     }
 
     @Override
     public void invalidated(Observable observable) {
        if (!isDropping){
-           if (currentY == yToReach){
-               if (!displacer.move(collider.getWorld().getCurrentBird(),0.2)){
+           if (currentY <= yToReach){
+               if (!displacer.move(collider.getWorld().getCurrentBird(),0.0)){
                    stopAll();
                }
                else{
+
                    stopAnimation();
                }
            }
            else {
-               if (!displacer.move(collider.getWorld().getCurrentBird(),-1.0)){
-                   System.out.println("2");
+               if (!displacer.move(collider.getWorld().getCurrentBird(),-10.0)){
                    stopAll();
                }
                else
-                   currentY = currentY -1;
+                   currentY = currentY - 10;
                    //currentY = collider.getWorld().getCurrentBird().getPos().getY();
            }
        }
        else
        {
-           System.out.println(collider.getWorld().getCurrentBird().getPos().getY());
-           if (currentY == yToReach){
+           //System.out.println(collider.getWorld().getCurrentBird().getPos().getY());
+           if (currentY >= 700){
                stopAll();
            }
            else{
-               if (displacer.move(collider.getWorld().getCurrentBird(),1.5)){
+               if (displacer.move(collider.getWorld().getCurrentBird(),+ 2.8)){
                    //currentY = collider.getWorld().getCurrentBird().getPos().getY();
-                   currentY += 1.5;
+                   currentY = currentY + 2.8;
                }
                else{
                    stopAll();
@@ -95,22 +102,21 @@ public class AnimationBird extends Animation implements InvalidationListener {
        }
     }
 
+    @Override
     public void stopAnimation(){
-        System.out.println("stop anim");
-        yToReach = 700;
         boucleur.setRunning(false);
         threadFly.interrupt();
         isDropping = true;
         dropBoucleur.setRunning(true);
+        threadDrop = new Thread(dropBoucleur);
         threadDrop.start();
     }
 
     public void stopAll(){
-        System.out.println("stopall");
         threadFly.interrupt();
         threadDrop.interrupt();
         boucleur.setRunning(false);
         dropBoucleur.setRunning(false);
-        System.out.println(collider.getWorld().getCurrentBird().getPos().getY());
+        System.out.println("STOP");
     }
 }

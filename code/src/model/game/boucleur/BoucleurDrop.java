@@ -17,9 +17,4 @@ public class BoucleurDrop extends Boucleur{
         }
     }
 
-    @Override
-    public void beep(){
-        //listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
-        listeners.forEach(o-> o.invalidated(this));
-    }
 }

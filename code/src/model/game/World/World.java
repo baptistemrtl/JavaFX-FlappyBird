@@ -21,9 +21,6 @@ public class World {
 
     public World() {
         elements = FXCollections.observableArrayList(creator.createWorld());
-        for (Element elem : elements) {
-            System.out.println(elem.getImage());
-        }
     }
 
     public void restartWorld() {
@@ -46,6 +43,7 @@ public class World {
 
     public void delElement(Element element) {
         elements.remove(element);
+        System.out.println("remove world");
     }
 
     public Bird getCurrentBird() {

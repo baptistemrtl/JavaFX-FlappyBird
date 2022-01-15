@@ -1,5 +1,6 @@
 package model.game.manager;
 
+import javafx.scene.Node;
 import launcher.Launch;
 import model.game.element.Element;
 import model.game.renderer.Renderer;
@@ -9,6 +10,8 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.util.Iterator;
 
 public class FXControler {
 
@@ -53,6 +56,16 @@ public class FXControler {
             while (change.next()) {
                 for (Element obs : change.getAddedSubList()) {
                     renderer.renderImageView(gameBorderPane,obs);
+                }
+                for (Element obs : change.getRemoved()){
+                    renderer.renderImageView(gameBorderPane,obs);
+                    /*Iterator<Node> iterator = gameBorderPane.getChildren().iterator();
+                    while (iterator.hasNext()) {
+                        Node leNode = iterator.next();
+                        if (leNode.getUserData() == obs) {
+                            iterator.remove();
+                        }
+                    }*/
                 }
             }
         });

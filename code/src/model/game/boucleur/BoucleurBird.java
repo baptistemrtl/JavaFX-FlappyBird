@@ -12,7 +12,7 @@ public class BoucleurBird extends Boucleur{
         while(isRunning()) {
             beep();
             try {
-                Thread.sleep(10);
+                Thread.sleep(20);
             }
             catch (InterruptedException e){
                 setRunning(false);
@@ -20,9 +20,4 @@ public class BoucleurBird extends Boucleur{
         }
     }
 
-    @Override
-    public void beep() {
-        //listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
-        listeners.forEach(o-> o.invalidated(this));
-    }
 }

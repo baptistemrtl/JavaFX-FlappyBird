@@ -9,7 +9,7 @@ public class BoucleurObstacle extends Boucleur{
         while(isRunning()) {
             beep();
             try {
-                Thread.sleep(50);
+                Thread.sleep(45);
             }
             catch (InterruptedException e){
                 setRunning(false);
@@ -17,8 +17,4 @@ public class BoucleurObstacle extends Boucleur{
         }
     }
 
-    @Override
-    public void beep() {
-        listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
-    }
 }

@@ -55,7 +55,7 @@ public class BirdDisplacer extends Displacer{
     public boolean fly(Bird bird,Double move) {   // c'est les memes faudra check ça
         Position pos = bird.getPos();       // Position other = new Position(pos.getX(),pos.getY());
         if(getCollider().canMove(pos)) {
-            pos.setY(pos.getY()-move);
+            pos.setY(pos.getY()+move);
             bird.setPos(pos);
 
             return true;

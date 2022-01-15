@@ -45,8 +45,8 @@ public class managerTest {
         man.startBoucle();*/
 
         man.createWorld();
-        /*man.getCurrentWorld().addObstacles();
-        man.getCurrentWorld().addObstacles();*/
+        man.getCurrentWorld().addObstacles();
+        man.getCurrentWorld().addObstacles();
         Collider coll = new ColliderSimple(man.getCurrentWorld());
         for (Element elem : coll.getWorld().getElements()){
             System.out.println(elem.getImage());
@@ -61,8 +61,8 @@ public class managerTest {
         Animation obsAnim = new AnimationObstacle((ObstacleDisplacer) obs,coll,(BoucleurObstacle) obsBcl);
         obsAnim.setCollider(coll);
 
-        birdAnim.animate();
-        //obsAnim.animate();
+        //birdAnim.animate();
+        obsAnim.animate();
 
     }
 }

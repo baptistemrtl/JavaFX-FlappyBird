@@ -12,32 +12,44 @@ import model.game.element.Obstacle;
 
 public class AnimationObstacle extends Animation implements InvalidationListener {
 
+    private Thread moveThread;
+    private int compteurBoucle = 0;
+    private int moduloBoucle;
 
     public AnimationObstacle(ObstacleDisplacer displacer, Collider coll, BoucleurObstacle boucleur) {
         super(displacer, coll, boucleur);
+        this.boucleur.addListener(this);
+        moveThread = new Thread(boucleur);
     }
 
     @Override
     public void animate() {
-        System.out.println("animObs");
-        boucleur.addListener(this);
+        moduloBoucle = 125;
         boucleur.setRunning(true);
+        moveThread.start();
     }
 
     @Override
     public void invalidated(Observable observable) {
-        System.out.println("Obstacle anim");
-        for (Element element : Launch.getManager().getCurrentWorld().getElements()) {
+        for (Element element : collider.getWorld().getElements()) {
             if (element instanceof Obstacle) {
                 if (!displacer.move(element,5.0)) {
                     stopAnimation();
                 }
             }
         }
+        if (compteurBoucle%moduloBoucle == 0){
+            collider.getWorld().addObstacles();
+        }
+        if (compteurBoucle%1600 == 0){
+            moduloBoucle = moduloBoucle - 2;
+        }
+        ++compteurBoucle;
     }
 
+    @Override
     public void stopAnimation(){
         boucleur.setRunning(false);
-        boucleur.removeListener(this);
+        moveThread.interrupt();
     }
 }

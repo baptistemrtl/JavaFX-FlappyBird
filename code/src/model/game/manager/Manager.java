@@ -6,7 +6,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import model.Player;
 import model.game.World.World;
+import model.game.animation.Animation;
+import model.game.animation.AnimationBird;
+import model.game.animation.AnimationObstacle;
 import model.game.boucleur.Boucleur;
+import model.game.boucleur.BoucleurBird;
+import model.game.boucleur.BoucleurDrop;
 import model.game.boucleur.BoucleurObstacle;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
@@ -33,7 +38,7 @@ public class Manager {
 
 
     private BooleanProperty gameOver = new SimpleBooleanProperty();
-        public Boolean getGameOver(){ return gameOver.get();}
+        public Boolean isGameOver(){ return gameOver.get();}
         public void setGameOver(Boolean bool){ gameOver.set(bool);}
         public BooleanProperty gameOverProperty(){ return gameOver; }
 
@@ -42,9 +47,12 @@ public class Manager {
     private Bird currentBird;
     private final Collider collider;
     private final Boucleur boucleur = new BoucleurObstacle();
+    private final Boucleur birdBoucleur = new BoucleurBird();
     private Log currentLog;
     private final BirdDisplacer birdDeplaceur ;
     private final  Displacer obstacleDisplacer;
+    private Animation animationObs;
+    private AnimationBird animationBird;
 
     private LoaderBinaire loader;
     private SaverBinaire saver;
@@ -68,18 +76,20 @@ public class Manager {
         birdDeplaceur = new BirdDisplacer(collider);
         obstacleDisplacer = new ObstacleDisplacer(collider);
         currentLog = new LogSimple();
-    }
-
-    public Boolean isGameOver() {
-        return gameOver.get();
+        animationObs = new AnimationObstacle((ObstacleDisplacer) obstacleDisplacer,collider,(BoucleurObstacle) boucleur);
+        animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
     }
 
     //Initialisation
 
     public void createWorld(){
+        System.out.println("----------");
         currentWorld.restartWorld();
+        currentWorld.addObstacles();
         collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
+        animationObs.setCollider(collider);
+        animationBird.setCollider(collider);
     }
 
     public void setCurrentPlayer(String pseudo) {
@@ -129,28 +139,26 @@ public class Manager {
     }
 
     //Boucle
-    public void startBoucle() {
-        setGameOver(true);
-        //boucleur.addListener(this);
-        boucleur.setRunning(true);
-        birdDeplaceur.setEnableMove(true);
-        new Thread(boucleur).start();
+    public void startBoucle() { // = startGame
+        setGameOver(false);
+        animationObs.animate();
+        animationBird.initalizeAnimation();
     }
 
-    public void stopBoucle() {
-        boucleur.setRunning(false);
+    public void stopBoucle() { // = stopGame
+        animationBird.stopAll();
+        animationObs.stopAnimation();
     }
 
 
     public void keyMove(KeyCode keyCode) {
-        if (!getGameOver()){
+        if (isGameOver()){
             return;
         }
         if (keyCode == KeyCode.SPACE) {
-            if (!birdDeplaceur.move(currentBird,15.0)) { //animation
-                birdDeplaceur.setEnableMove(false);
-                gameOver.set(false);
-                stopBoucle();
+            animationBird.animate();
+            if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()){
+                gameOver.set(true);
             }
         }
     }
