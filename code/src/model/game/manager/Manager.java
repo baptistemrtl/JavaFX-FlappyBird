@@ -23,8 +23,6 @@ import model.game.element.Obstacle;
 import model.game.logs.Log;
 import model.game.logs.LogSimple;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 
@@ -156,20 +154,19 @@ public class Manager {
 
     public void stopBoucle() { // = stopGame
         animationBird.stopAll();
-        animationObs.stopAnimation();
+//        animationObs.stopAnimation();
     }
 
-
     public void keyMove(KeyCode keyCode) {
-        if (isGameOver()){
+        if (isGameOver()) {
             return;
         }
+
         if (keyCode == KeyCode.SPACE) {
             animationBird.animate();
-            if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()){
+            if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()) {
                 gameOver.set(true);
-            }
-            else{
+            } else {
                 setScoreCourant(currentWorld.getNumberOfObstaclePassed());
                 setStringScore(scoreCourant);
             }

@@ -31,6 +31,10 @@ public class World {
         creator.createObstacle(elements);
     }
 
+    public ObservableList<Element> getElements() {
+        return elements;
+    }
+
     public void addElement(Element element) {
         elements.add(element);
     }
@@ -56,22 +60,16 @@ public class World {
         return null;
     }
 
-    public int getNumberOfObstaclePassed(){
+    public int getNumberOfObstaclePassed() {
         int value = 0;
         Bird cb = getCurrentBird();
-        for (Element elem : elements){
-            if (elem instanceof Obstacle){
-                if (cb.getPos().getX() >= (elem.getPos().getX()-20)){
+        for (Element elem : elements) {
+            if (elem instanceof Obstacle) {
+                if (cb.getPos().getX() >= (elem.getPos().getX()-20)) {
                     ++value;
                 }
             }
         }
         return value/2;
     }
-
-    public ObservableList<Element> getElements() {
-        return elements;
-    }
-
-
 }

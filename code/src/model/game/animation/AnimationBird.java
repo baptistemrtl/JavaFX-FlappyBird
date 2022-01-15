@@ -18,7 +18,7 @@ public class AnimationBird extends Animation implements InvalidationListener {
     private Thread threadFly;
     private Thread threadDrop;
 
-    private Boucleur dropBoucleur;
+    private final Boucleur dropBoucleur;
 
     private Boolean isDropping;
 
@@ -65,45 +65,34 @@ public class AnimationBird extends Animation implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
-       if (!isDropping){
-           if (currentY <= yToReach){
+       if (!isDropping) {
+           if (currentY <= yToReach) {
                if (!displacer.move(collider.getWorld().getCurrentBird(),0.0)){
                    stopAll();
-               }
-               else{
-
+               } else {
                    stopAnimation();
                }
-           }
-           else {
-               if (!displacer.move(collider.getWorld().getCurrentBird(),-10.0)){
+           } else if (!displacer.move(collider.getWorld().getCurrentBird(),-10.0)) {
                    stopAll();
-               }
-               else
-                   currentY = currentY - 10;
-                   //currentY = collider.getWorld().getCurrentBird().getPos().getY();
+           } else {
+               currentY = currentY - 10;
+               //currentY = collider.getWorld().getCurrentBird().getPos().getY();
            }
-       }
-       else
-       {
+       } else {
            //System.out.println(collider.getWorld().getCurrentBird().getPos().getY());
-           if (currentY >= 700){
+           if (currentY >= 700) {
                stopAll();
-           }
-           else{
-               if (displacer.move(collider.getWorld().getCurrentBird(),+ 2.8)){
+           } else if (displacer.move(collider.getWorld().getCurrentBird(),+ 2.8)) {
                    //currentY = collider.getWorld().getCurrentBird().getPos().getY();
                    currentY = currentY + 2.8;
-               }
-               else{
+           } else {
                    stopAll();
-               }
            }
        }
     }
 
     @Override
-    public void stopAnimation(){
+    public void stopAnimation() {
         boucleur.setRunning(false);
         threadFly.interrupt();
         isDropping = true;
@@ -112,9 +101,14 @@ public class AnimationBird extends Animation implements InvalidationListener {
         threadDrop.start();
     }
 
-    public void stopAll(){
-        threadFly.interrupt();
-        threadDrop.interrupt();
+    public void stopAll() {
+        if (threadFly != null) {
+            threadFly.interrupt();
+        }
+        if (threadDrop != null) {
+            threadDrop.interrupt();
+        }
+
         boucleur.setRunning(false);
         dropBoucleur.setRunning(false);
         System.out.println("STOP");

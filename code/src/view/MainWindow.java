@@ -1,12 +1,15 @@
 package view;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import launcher.Launch;
 import model.game.manager.Manager;
 import model.game.element.Position;
@@ -41,6 +44,18 @@ public class MainWindow {
     @FXML
     public void startGame(ActionEvent actionEvent) {
         actionEvent.consume();
+        if (pseudoJoueur.getText().isEmpty()) {
+            Stage dialog = new Stage();
+            dialog.initOwner(Launch.getStage());
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setTitle("Erreur");
+            dialog.setResizable(false);
+            Launch.getNavigator().navigateTo("Error", dialog);
+//            dialog.showAndWait();
+
+            return;
+        }
+
         Launch.getNavigator().navigateTo("Game", Launch.getStage());
         Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
         Launch.getManager().startBoucle();

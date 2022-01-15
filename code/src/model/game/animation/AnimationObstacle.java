@@ -2,17 +2,16 @@ package model.game.animation;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import launcher.Launch;
+
 import model.game.boucleur.BoucleurObstacle;
 import model.game.collider.Collider;
-import model.game.displacer.Displacer;
 import model.game.displacer.ObstacleDisplacer;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
 public class AnimationObstacle extends Animation implements InvalidationListener {
 
-    private Thread moveThread;
+    private final Thread moveThread;
     private int compteurBoucle = 0;
     private int moduloBoucle;
 
@@ -38,17 +37,18 @@ public class AnimationObstacle extends Animation implements InvalidationListener
                 }
             }
         }
-        if (compteurBoucle%moduloBoucle == 0){
+        if (compteurBoucle%moduloBoucle == 0) {
             collider.getWorld().addObstacles();
         }
-        if (compteurBoucle%1600 == 0){
+        if (compteurBoucle%1600 == 0) {
             moduloBoucle = moduloBoucle - 2;
         }
+
         ++compteurBoucle;
     }
 
     @Override
-    public void stopAnimation(){
+    public void stopAnimation() {
         boucleur.setRunning(false);
         moveThread.interrupt();
     }

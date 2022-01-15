@@ -28,11 +28,11 @@ public class globalTest {
 
         //Verification de ce que contient le monde -> OK
         ObservableList<Element> elements = world.getElements();
-        for (Element element : elements){
-            if (element instanceof Obstacle){
+        for (Element element : elements) {
+            if (element instanceof Obstacle) {
                 System.out.println("Obstacle -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
-            if (element instanceof Bird){
+            if (element instanceof Bird) {
                 System.out.println("Bird -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
         }
@@ -50,29 +50,30 @@ public class globalTest {
             System.out.println("Bird" + i + " deplacement -> x :" + bird.getPos().getX() + " y :" + bird.getPos().getY());
             ++i;
             coll = displacer.move(bird,15.0);
-            currentThread().sleep(500);
+            sleep(500);
         }
 
         World world1 = new World();
         elements = world1.getElements();
-        for (Element element : elements){
-            if (element instanceof Bird){
+        for (Element element : elements) {
+            if (element instanceof Bird) {
                 System.out.println("Bird -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
-            if (element instanceof Obstacle){
+            if (element instanceof Obstacle) {
                 System.out.println("Obstacle -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
         }
         System.out.println("-------------------------");
         world1.restartWorld();
-        for (Element element : world1.getElements()){
-            if (element instanceof Bird){
+        for (Element element : world1.getElements()) {
+            if (element instanceof Bird) {
                 System.out.println("Bird -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
-            if (element instanceof Obstacle){
+            if (element instanceof Obstacle) {
                 System.out.println("Obstacle -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
         }
+
         System.out.println("-------------------------");
         world1.addObstacles();
         world1.addObstacles();
@@ -84,11 +85,11 @@ public class globalTest {
         world1.addObstacles();
         world1.addObstacles();
         world1.addObstacles();
-        for (Element element : world1.getElements()){
-            if (element instanceof Bird){
+        for (Element element : world1.getElements()) {
+            if (element instanceof Bird) {
                 System.out.println("Bird -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
-            if (element instanceof Obstacle){
+            if (element instanceof Obstacle) {
                 System.out.println("Obstacle -> x :" + element.getPos().getX() + " y :" + element.getPos().getY());
             }
         }

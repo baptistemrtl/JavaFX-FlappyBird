@@ -20,6 +20,7 @@ public class Navigator {
         mapScenes.put("Game",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")))));
         mapScenes.put("MainWindow",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainWindow.fxml")))));
         mapScenes.put("ScoreBoard", new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/ScoreBoard.fxml")))));
+        mapScenes.put("Error", new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Error.fxml")))));
         setDefaultScene();
     }
 
@@ -32,8 +33,6 @@ public class Navigator {
         }
         onUseScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         stage.setScene(onUseScene);
-        stage.setWidth(450);
-        stage.setHeight(700);
         stage.show();
     }
 

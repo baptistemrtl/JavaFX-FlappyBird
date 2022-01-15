@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="Merge Fini">
-      <change afterPath="$PROJECT_DIR$/rsrc/image/thirdmedal.png" afterDir="false" />
+    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="Modification ScoreBoard et improve FXML et Launch">
+      <change afterPath="$PROJECT_DIR$/rsrc/FXML/error.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Error.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/css/background.css" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/css/background.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launcher/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launcher/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/World/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/World/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/animation/Animation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/animation/Animation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/animation/AnimationBird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/animation/AnimationBird.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/animation/AnimationObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/animation/AnimationObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/boucleur/BoucleurObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/globalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/globalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/managerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/managerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +165,9 @@
       <workItem from="1641869407860" duration="68000" />
       <workItem from="1641870176158" duration="345000" />
       <workItem from="1641928236696" duration="6270000" />
-      <workItem from="1642026931346" duration="14643000" />
+      <workItem from="1642026931346" duration="14944000" />
+      <workItem from="1642132193195" duration="55000" />
+      <workItem from="1642221595624" duration="6035000" />
     </task>
     <task id="LOCAL-00001" summary="rapide cleanup">
       <created>1641967419535</created>
@@ -186,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642030763139</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Modification ScoreBoard et improve FXML et Launch">
+      <created>1642046357008</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1642046357008</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +241,7 @@
     <MESSAGE value="rapide cleanup" />
     <MESSAGE value="cleanup et ajout de TODO" />
     <MESSAGE value="Merge Fini" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge Fini" />
+    <MESSAGE value="Modification ScoreBoard et improve FXML et Launch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification ScoreBoard et improve FXML et Launch" />
   </component>
 </project>

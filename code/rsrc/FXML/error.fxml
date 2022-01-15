@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="view.Error"
+          alignment="CENTER"
+          prefHeight="150.0" prefWidth="225.0">
+    <rowConstraints>
+        <RowConstraints minHeight="75.0" maxHeight="75.0"/>
+    </rowConstraints>
+
+    <Text GridPane.rowIndex="0" textAlignment="CENTER"
+          text="Erreur, veuillez entrez un pseudo"/>
+
+    <Button fx:id="closeButton" GridPane.rowIndex="1"
+            GridPane.halignment="CENTER" alignment="CENTER"
+            text="OK" onAction="#close"/>
+</GridPane>

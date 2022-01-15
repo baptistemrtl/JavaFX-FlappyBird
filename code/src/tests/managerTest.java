@@ -21,7 +21,7 @@ import model.game.element.Obstacle;
 
 public class managerTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         //Test
 
@@ -48,17 +48,18 @@ public class managerTest {
         man.getCurrentWorld().addObstacles();
         man.getCurrentWorld().addObstacles();
         Collider coll = new ColliderSimple(man.getCurrentWorld());
-        for (Element elem : coll.getWorld().getElements()){
+        for (Element elem : coll.getWorld().getElements()) {
             System.out.println(elem.getImage());
         }
-        Displacer bird = new BirdDisplacer(coll);
-        Displacer obs = new ObstacleDisplacer(coll);
-        Boucleur birdBcl = new BoucleurBird();
-        Boucleur obsBcl = new BoucleurObstacle();
-        Boucleur drop = new BoucleurDrop();
-        Animation birdAnim = new AnimationBird((BirdDisplacer) bird,coll,(BoucleurBird) birdBcl,(BoucleurDrop) drop);
+
+        BirdDisplacer bird = new BirdDisplacer(coll);
+        ObstacleDisplacer obs = new ObstacleDisplacer(coll);
+        BoucleurBird birdBcl = new BoucleurBird();
+        BoucleurObstacle obsBcl = new BoucleurObstacle();
+        BoucleurDrop drop = new BoucleurDrop();
+        Animation birdAnim = new AnimationBird(bird,coll, birdBcl, drop);
         birdAnim.setCollider(coll);
-        Animation obsAnim = new AnimationObstacle((ObstacleDisplacer) obs,coll,(BoucleurObstacle) obsBcl);
+        Animation obsAnim = new AnimationObstacle(obs,coll, obsBcl);
         obsAnim.setCollider(coll);
 
         //birdAnim.animate();

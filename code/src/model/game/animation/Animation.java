@@ -6,18 +6,16 @@ import model.game.displacer.Displacer;
 
 public abstract class Animation {
 
-
     protected Displacer displacer;
     protected Collider collider;
     protected Boucleur boucleur;
 
-    public Animation(Displacer displacer,Collider coll,Boucleur boucleur){
+    public Animation(Displacer displacer,Collider coll,Boucleur boucleur) {
         this.displacer = displacer;
-        this.collider = collider;
         this.boucleur = boucleur;
     }
 
-    public void setCollider(Collider collider){
+    public void setCollider(Collider collider) {
         this.collider = collider;
     }
 
