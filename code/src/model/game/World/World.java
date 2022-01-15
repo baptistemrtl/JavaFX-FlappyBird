@@ -56,24 +56,22 @@ public class World {
         return null;
     }
 
+    public int getNumberOfObstaclePassed(){
+        int value = 0;
+        Bird cb = getCurrentBird();
+        for (Element elem : elements){
+            if (elem instanceof Obstacle){
+                if (cb.getPos().getX() >= (elem.getPos().getX()-20)){
+                    ++value;
+                }
+            }
+        }
+        return value/2;
+    }
+
     public ObservableList<Element> getElements() {
         return elements;
     }
 
-    private int getIndexOfObstacles(Obstacle obs, LinkedList<Obstacle> obstacles) {
-        int index = 0;
-        for (Obstacle value : obstacles) {
-                if (obs.getPos().getX() > value.getPos().getX()) {
-                    ++index;
-                } else {
-                    return index;
-                }
-        }
 
-        return index;
-    }
-
-    private void sortList(List<Element> elements) {
-        elements.sort(Comparator.comparingDouble(o -> o.getPos().getX()));
-    }
 }

@@ -2,8 +2,7 @@ package model.game.manager;
 
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.*;
 import model.Player;
 import model.game.World.World;
 import model.game.animation.Animation;
@@ -26,8 +25,6 @@ import model.game.logs.LogSimple;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 
@@ -60,14 +57,25 @@ public class Manager {
     private int compteurBoucl = 0;
     private int compteurCrea = 0;
 
-    public IntegerProperty scoreCourant = new SimpleIntegerProperty();
-    public IntegerProperty ScoreCourantProperty() {
+   /* public IntegerProperty scoreCourant = new SimpleIntegerProperty();
+        public IntegerProperty scoreCourantProperty() {
         return scoreCourant;
     }
-    public int getScoreCourant() {
+        public int getScoreCourant() {
         return scoreCourant.get();
     }
-    public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant);}
+        public void setScoreCourant(int scoreCourant) {this.scoreCourant.set(scoreCourant);
+        }*/
+
+    private int scoreCourant;
+        public int getScoreCourant() {return scoreCourant;}
+        public void setScoreCourant(int scoreCourant) {this.scoreCourant = scoreCourant;}
+
+    public StringProperty stringScore = new SimpleStringProperty();
+        public StringProperty stringScoreProperty(){ return stringScore; }
+        public void setStringScore(int score){ stringScore.set(String.valueOf(score)); }
+        public String getStringScore(){ return stringScore.get(); }
+
 
     public Manager() {
         currentWorld = new World();
@@ -85,7 +93,6 @@ public class Manager {
     public void createWorld(){
         System.out.println("----------");
         currentWorld.restartWorld();
-        currentWorld.addObstacles();
         collider.setWorld(currentWorld);
         currentBird = currentWorld.getCurrentBird();
         animationObs.setCollider(collider);
@@ -141,6 +148,8 @@ public class Manager {
     //Boucle
     public void startBoucle() { // = startGame
         setGameOver(false);
+        scoreCourant = 0;
+        setStringScore(scoreCourant);
         animationObs.animate();
         animationBird.initalizeAnimation();
     }
@@ -159,6 +168,10 @@ public class Manager {
             animationBird.animate();
             if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()){
                 gameOver.set(true);
+            }
+            else{
+                setScoreCourant(currentWorld.getNumberOfObstaclePassed());
+                setStringScore(scoreCourant);
             }
         }
     }

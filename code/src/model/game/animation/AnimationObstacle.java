@@ -24,7 +24,7 @@ public class AnimationObstacle extends Animation implements InvalidationListener
 
     @Override
     public void animate() {
-        moduloBoucle = 125;
+        moduloBoucle = 60;
         boucleur.setRunning(true);
         moveThread.start();
     }

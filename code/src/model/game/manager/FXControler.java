@@ -1,6 +1,10 @@
 package model.game.manager;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import launcher.Launch;
 import model.game.element.Element;
 import model.game.renderer.Renderer;
@@ -11,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Iterator;
 
 public class FXControler {
@@ -44,8 +50,8 @@ public class FXControler {
     Game Management
      */
 
-    public void initializeGame(Button restartButton, Button homeButton) {
-        initNodes(restartButton,homeButton);
+    public void initializeGame(Button restartButton, Button homeButton, Text scoreText) {
+        initNodes(restartButton,homeButton,scoreText);
         renderer = getRendererSupplier().createRenderer();
         Launch.getManager().createWorld();
         renderer.renderWorld(gameBorderPane,Launch.getManager().getCurrentWorld());
@@ -71,22 +77,24 @@ public class FXControler {
         });
     }
 
-    private void initNodes(Button restartButton, Button homeButton){
+    private void initNodes(Button restartButton, Button homeButton,Text scoreText){
         restartButton.setOnAction(e -> {
             if (Launch.getManager().isGameOver()) {
-                //restart
+               // Launch.getManager().restart();
             }
         });
-        restartButton.opacityProperty().set(0);
-        restartButton.disableProperty().set(true);
+        restartButton.opacityProperty().set(100);
+        restartButton.disableProperty().set(false);
         homeButton.setOnAction(e -> {
                 if (Launch.getManager().isGameOver()) {
-                    System.out.println("try");
-                   // Launch.getNavigator().navigateTo("MainWindow",mainStage);
+                   Launch.getNavigator().navigateTo("MainWindow",mainStage);
                 }
         });
-       homeButton.opacityProperty().set(0);
-        homeButton.disableProperty().set(true);
+       homeButton.opacityProperty().set(100);
+       homeButton.disableProperty().set(false);
+       scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());
+       scoreText.setX(150);
+       scoreText.setFont(Font.loadFont("https://www.dafont.com/fr/flappybirdy.font",30.0));
     }
 
     //Getters & Setters

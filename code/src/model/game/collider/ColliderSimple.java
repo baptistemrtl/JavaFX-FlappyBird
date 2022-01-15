@@ -31,20 +31,6 @@ public class ColliderSimple extends Collider{
         Bird bird = getWorld().getCurrentBird();
 
 
-       /* Rectangle rBird = new Rectangle((int)pos.getX(),(int)pos.getY(),bird.getWidth(),bird.getHeight());
-        for (Map.Entry<Position, Element> entry : elements.entrySet()){
-            Element element = entry.getValue();
-            if (element instanceof Obstacle){
-                Position elemPos = entry.getKey();
-                Rectangle rPipe = new Rectangle((int)elemPos.getX(),(int)elemPos.getY(),element.getWidth(),element.getHeight());
-                if (rBird.intersects(rBird.getX(),rBird.getY(),rBird.getWidth(),rBird.getHeight())){
-                    return false;
-                }
-            }
-        }
-        return true;*/
-
-
         for (Element elm : elements){
             if (elm instanceof Obstacle){
                 if (bird.getPos().getX()+40 >= elm.getPos().getX() &&

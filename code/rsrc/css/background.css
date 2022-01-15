@@ -21,7 +21,7 @@
     -fx-alignment: center;
 }
 
-.score-text{
-    text-align: center;
+#scoreText{
     -fx-font-size: 30px;
+    -fx-font-weight: bold;
 }

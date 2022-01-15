@@ -29,17 +29,12 @@ public class Navigator {
             setDefaultScene();
         } else {
             setOnUseScene(selectedScene);
-            onUseScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         }
-
+        onUseScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         stage.setScene(onUseScene);
         stage.setWidth(450);
         stage.setHeight(700);
         stage.show();
-
-        if (scene.equals("Game")) {
-            onUseScene.setOnKeyPressed(keyEvent -> Launch.getManager().keyMove(keyEvent.getCode()));
-        }
     }
 
     public void setOnUseScene(Scene onUseScene) {

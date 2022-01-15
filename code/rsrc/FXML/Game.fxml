@@ -2,6 +2,9 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextArea?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.Game"
@@ -15,6 +18,7 @@
         <Button fx:id="homeButton">
             restart
         </Button>
+        <Text fx:id="scoreText" fill="antiquewhite"/>
     </top>
 </BorderPane>
 
