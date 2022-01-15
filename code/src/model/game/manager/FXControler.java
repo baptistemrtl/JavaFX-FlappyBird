@@ -2,7 +2,9 @@ package model.game.manager;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import launcher.Launch;
@@ -64,37 +66,58 @@ public class FXControler {
                     renderer.renderImageView(gameBorderPane,obs);
                 }
                 for (Element obs : change.getRemoved()){
-                    renderer.renderImageView(gameBorderPane,obs);
-                    /*Iterator<Node> iterator = gameBorderPane.getChildren().iterator();
+                    Iterator<Node> iterator = gameBorderPane.getChildren().iterator();
                     while (iterator.hasNext()) {
                         Node leNode = iterator.next();
-                        if (leNode.getUserData() == obs) {
-                            iterator.remove();
+                        if (leNode instanceof ImageView) {
+                            ImageView iv = (ImageView) leNode;
+                            if (!iv.getImage().getUrl().contains("background")){
+                                gameBorderPane.getChildren().remove(leNode);
+                                break;
+                            }
                         }
-                    }*/
+                    }
                 }
+            }
+            for (Element elem : Launch.getManager().getCurrentWorld().getElements()){
+                renderer.renderImageView(gameBorderPane,elem);
             }
         });
     }
 
     private void initNodes(Button restartButton, Button homeButton,Text scoreText){
+        restartButton.opacityProperty().set(0);
         restartButton.setOnAction(e -> {
-            if (Launch.getManager().isGameOver()) {
-               // Launch.getManager().restart();
+            if (Launch.getManager().isGameOver()){
+                Launch.getManager().restartGame();
             }
         });
-        restartButton.opacityProperty().set(100);
-        restartButton.disableProperty().set(false);
+        restartButton.disableProperty().set(true);
+
+
+       homeButton.opacityProperty().set(00);
         homeButton.setOnAction(e -> {
-                if (Launch.getManager().isGameOver()) {
-                   Launch.getNavigator().navigateTo("MainWindow",mainStage);
-                }
+            if (Launch.getManager().isGameOver()) {
+                Launch.getNavigator().navigateTo("MainWindow",mainStage);
+            }
         });
-       homeButton.opacityProperty().set(100);
-       homeButton.disableProperty().set(false);
+       homeButton.disableProperty().set(true);
+
+
        scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());
-       scoreText.setX(150);
-       scoreText.setFont(Font.loadFont("https://www.dafont.com/fr/flappybirdy.font",30.0));
+       scoreText.xProperty().set(200);
+
+        Launch.getManager().gameOverProperty().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
+            if(newValue) {
+                //Launch.getNavigator().navigateTo("ScoreBoard", Launch.getStage());
+                restartButton.opacityProperty().set(20);
+                restartButton.disableProperty().set(false);
+            }
+            else{
+                restartButton.opacityProperty().set(0);
+                restartButton.disableProperty().set(true);
+            }
+        });
     }
 
     //Getters & Setters

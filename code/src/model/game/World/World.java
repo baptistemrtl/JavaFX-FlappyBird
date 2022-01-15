@@ -24,6 +24,9 @@ public class World {
     }
 
     public void restartWorld() {
+        while (!elements.isEmpty()){
+            elements.remove(0);
+        }
         elements = FXCollections.observableArrayList(creator.createWorld());
     }
 
@@ -47,7 +50,6 @@ public class World {
 
     public void delElement(Element element) {
         elements.remove(element);
-        System.out.println("remove world");
     }
 
     public Bird getCurrentBird() {
@@ -65,7 +67,7 @@ public class World {
         Bird cb = getCurrentBird();
         for (Element elem : elements) {
             if (elem instanceof Obstacle) {
-                if (cb.getPos().getX() >= (elem.getPos().getX()-20)) {
+                if (cb.getPos().getX() >= (elem.getPos().getX())) {
                     ++value;
                 }
             }

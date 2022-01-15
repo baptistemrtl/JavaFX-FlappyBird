@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import model.game.manager.Manager;
@@ -17,7 +18,7 @@ public class Launch extends Application {
     private static Stage stage;
     public static Stage getStage(){ return stage; }
 
-    private static final Manager man = new Manager();
+    private static Manager man = new Manager();
     public static Manager getManager() { return man; }
 
     private static Navigator nav;
@@ -37,6 +38,7 @@ public class Launch extends Application {
     public void start(Stage primaryStage) {
         stage = primaryStage;
         stage.setResizable(false);
+        stage.getIcons().add(new Image("/image/flopflop.png"));
         nav.navigateTo("MainWindow", stage);
     }
 

@@ -52,14 +52,15 @@ public class managerTest {
             System.out.println(elem.getImage());
         }
 
-        BirdDisplacer bird = new BirdDisplacer(coll);
+        //Abstrait a = new Concret() --> Principe O de SOLID
+        Displacer bird = new BirdDisplacer(coll);
         ObstacleDisplacer obs = new ObstacleDisplacer(coll);
-        BoucleurBird birdBcl = new BoucleurBird();
-        BoucleurObstacle obsBcl = new BoucleurObstacle();
-        BoucleurDrop drop = new BoucleurDrop();
-        Animation birdAnim = new AnimationBird(bird,coll, birdBcl, drop);
+        Boucleur birdBcl = new BoucleurBird();
+        Boucleur obsBcl = new BoucleurObstacle();
+        Boucleur drop = new BoucleurDrop();
+        Animation birdAnim = new AnimationBird((BirdDisplacer) bird,coll, (BoucleurBird) birdBcl, (BoucleurDrop) drop);
         birdAnim.setCollider(coll);
-        Animation obsAnim = new AnimationObstacle(obs,coll, obsBcl);
+        Animation obsAnim = new AnimationObstacle(obs,coll, (BoucleurObstacle) obsBcl);
         obsAnim.setCollider(coll);
 
         //birdAnim.animate();

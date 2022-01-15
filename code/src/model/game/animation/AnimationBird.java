@@ -108,9 +108,8 @@ public class AnimationBird extends Animation implements InvalidationListener {
         if (threadDrop != null) {
             threadDrop.interrupt();
         }
-
         boucleur.setRunning(false);
         dropBoucleur.setRunning(false);
-        System.out.println("STOP");
+        Launch.getManager().setGameOver(true);
     }
 }

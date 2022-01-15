@@ -23,13 +23,5 @@ public class Game {
     public void initialize() {
         FXControler fxControler = new FXControler(gameBp,Launch.getStage());
         fxControler.initializeGame(restartButton,homeButton,scoreText);
-
-//        TODO: trouver comment bien bind la valeur de gameOver
-        man.gameOverProperty().addListener((ChangeListener<? super Boolean>) (observable, oldValue, newValue) -> {
-            System.out.println("Yuuus");
-            if(newValue) {
-                Launch.getNavigator().navigateTo("ScoreBoard", Launch.getStage());
-            }
-        });
     }
 }
