@@ -5,7 +5,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Player {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Player implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 6142582114280110044L;
 
     private final StringProperty pseudo = new SimpleStringProperty();
         public String getPseudo(){ return pseudo.get(); }

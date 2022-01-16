@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import model.game.World.World;
 
-public class ScoreChecker implements Runnable{
+public class ScoreChecker implements Runnable {
 
     public IntegerProperty scoreCourant = new SimpleIntegerProperty();
         public int getScoreCourant(){ return scoreCourant.get();}
@@ -31,16 +31,15 @@ public class ScoreChecker implements Runnable{
         }
     }
 
-    public void checkScore(){
+    public void checkScore() {
         setScoreCourant(world.getNumberOfObstaclePassed());
     }
 
-    public Boolean isRunning(){
+    public Boolean isRunning() {
         return running;
     }
 
     public void setRunning(Boolean value){
         running = value;
     }
-
 }

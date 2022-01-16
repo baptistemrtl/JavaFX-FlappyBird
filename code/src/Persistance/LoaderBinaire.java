@@ -26,7 +26,7 @@ public class LoaderBinaire implements Load {
     @Override
     public List<Player> loadData() {
         List<Player> players = new ArrayList<>();
-        try {
+        /*try {
             File file = new File(filePath);
             if(!file.exists()) {
                 throw new Exception("Le fichier n'existe pas");
@@ -45,10 +45,17 @@ public class LoaderBinaire implements Load {
                 players.add(player);
                 pseudo = (String)o.readObject();
             }
-        }
-        catch(Exception e) {
+        }*/
+        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) { // check si marche avec Serializable de Player
+            while (ois.available() > 0) {
+                if (ois.readObject() instanceof Player player) {
+                    players.add(player);
+                }
+            }
+        } catch(Exception e) {
             e.printStackTrace();
         }
+
         return FXCollections.observableArrayList(players);
     }
 }

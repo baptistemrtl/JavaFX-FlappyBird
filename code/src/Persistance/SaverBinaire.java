@@ -19,8 +19,8 @@ public class SaverBinaire implements Save {
     }
 
     @Override
-    public void saveData(List<Player> players) {
-        try {
+    public void saveData(List<Player> players) { // test si avec serializable sur Player ça marche
+/*        try {
             FileOutputStream file = new FileOutputStream(filePath); // ouvrir un tube en écriture
             BufferedOutputStream buff = new BufferedOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(buff);
@@ -31,6 +31,14 @@ public class SaverBinaire implements Save {
             oos.close();
             buff.close(); // ou bien fermer le file tout court
             file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)))) {
+            for (Player player : players) {
+                oos.writeObject(player);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

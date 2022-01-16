@@ -139,7 +139,7 @@ public class Manager {
         animationBird.initalizeAnimation();
         scoreChecker.setRunning(true);
         scoreChecker.setScoreCourant(0);
-        stringScore.bindBidirectional(scoreChecker.scoreCourantProperty(), new StringConverter<Number>() {
+        stringScore.bindBidirectional(scoreChecker.scoreCourantProperty(), new StringConverter<>() {
             @Override
             public String toString(Number object) {
                 return " " + object.toString();
