@@ -13,9 +13,7 @@
             prefHeight="700.0" prefWidth="450.0"
             fx:id="gameBp">
     <top>
-
-        <Text fx:id="scoreText" fill="antiquewhite"/>
-
+        <Text fx:id="scoreText" fill="antiquewhite" x="180"/>
     </top>
     <center>
         <Button fx:id="restartButton" minWidth="100" minHeight="20">

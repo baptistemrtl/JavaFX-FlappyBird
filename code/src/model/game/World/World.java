@@ -24,10 +24,11 @@ public class World {
     }
 
     public void restartWorld() {
-        while (!elements.isEmpty()){
+        while(!elements.isEmpty()){
             elements.remove(0);
         }
-        elements = FXCollections.observableArrayList(creator.createWorld());
+        elements.addAll(creator.createWorld());
+
     }
 
     public void addObstacles() {

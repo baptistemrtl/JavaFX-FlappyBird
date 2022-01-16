@@ -19,7 +19,12 @@ public class Player implements Serializable {
     public StringProperty pseudoProperty(){ return pseudo; }
 
     private IntegerProperty scoreMax = new SimpleIntegerProperty();
-        public int getScoreMax(){ return scoreMax.get(); }
+        public int getScoreMax(){
+            if (scoreMax == null){
+                setScoreMax(0);
+            }
+            return scoreMax.get();
+        }
         public void setScoreMax(int smax){ scoreMax.set(smax);}
     public IntegerProperty scoreProperty(){ return scoreMax; }
 

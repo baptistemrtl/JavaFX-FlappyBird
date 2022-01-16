@@ -65,6 +65,9 @@ public class AnimationBird extends Animation implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
+        if (isDropping == null){
+            isDropping = true;
+        }
        if (!isDropping) {
            if (currentY <= yToReach) {
                if (!displacer.move(collider.getWorld().getCurrentBird(),0.0)){

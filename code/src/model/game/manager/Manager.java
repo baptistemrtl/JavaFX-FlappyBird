@@ -41,15 +41,16 @@ public class Manager {
     private Player currentPlayer;
     private World currentWorld;
     private Bird currentBird;
-    private final Collider collider;
-    private final Boucleur boucleur = new BoucleurObstacle();
-    private final Boucleur birdBoucleur = new BoucleurBird();
+    private Collider collider;
+    private Boucleur boucleur = new BoucleurObstacle();
+    private Boucleur birdBoucleur = new BoucleurBird();
     private Log currentLog;
-    private final BirdDisplacer birdDeplaceur ;
-    private final  Displacer obstacleDisplacer;
+    private BirdDisplacer birdDeplaceur ;
+    private Displacer obstacleDisplacer;
     private Animation animationObs;
     private AnimationBird animationBird;
     private ScoreChecker scoreChecker;
+    private Thread threadScore;
 
     private LoaderBinaire loader;
     private SaverBinaire saver;
@@ -60,8 +61,8 @@ public class Manager {
     public StringProperty stringScore = new SimpleStringProperty();
 
    public StringProperty stringScoreProperty(){ return stringScore; }
-        /*public void setStringScore(){ stringScore.set(String.valueOf(score.get())); }
-        public String getStringScore(){ return String.valueOf(score.get()); }*/
+        /*public void setStringScore(){ stringScore.set(String.valueOf(score.get())); }*/
+        public int getStringScore(){ return Integer.parseInt(stringScore.get()); }
 
 
     public Manager() {
@@ -73,17 +74,28 @@ public class Manager {
         currentLog = new LogSimple();
         animationObs = new AnimationObstacle((ObstacleDisplacer) obstacleDisplacer,collider,(BoucleurObstacle) boucleur);
         animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
+
     }
 
     //Initialisation
 
     public void createWorld(){
-        System.out.println("----------");
         collider.getWorld().restartWorld();
         currentBird = collider.getWorld().getCurrentBird();
         animationObs.setCollider(collider);
         animationBird.setCollider(collider);
         scoreChecker = new ScoreChecker(collider.getWorld());
+        stringScore.bindBidirectional(scoreChecker.scoreCourantProperty(), new StringConverter<>() {
+            @Override
+            public String toString(Number object) {
+                return object.toString();
+            }
+
+            @Override
+            public Number fromString(String string) {
+                return Integer.parseInt(string);
+            }
+        });
     }
 
     public void setCurrentPlayer(String pseudo) {
@@ -139,35 +151,24 @@ public class Manager {
         animationBird.initalizeAnimation();
         scoreChecker.setRunning(true);
         scoreChecker.setScoreCourant(0);
-        stringScore.bindBidirectional(scoreChecker.scoreCourantProperty(), new StringConverter<>() {
-            @Override
-            public String toString(Number object) {
-                return " " + object.toString();
-            }
-
-            @Override
-            public Number fromString(String string) {
-                return null;
-            }
-        });
-        new Thread(scoreChecker).start();
+        threadScore = new Thread(scoreChecker);
+        threadScore.start();
     }
 
-    public void stopBoucle() {
+    public void stopBoucle() { // = end OF A PARTY
+        if (getStringScore() > currentPlayer.getScoreMax()){
+            currentPlayer.setScoreMax(getStringScore());
+        }
+        System.out.println(currentPlayer.getScoreMax());
         animationBird.stopAll();
+        threadScore.interrupt();
         scoreChecker.setRunning(false);
         animationObs.stopAnimation();
     }
 
     public void restartGame(){
-        stopBoucle();
         createWorld();
-        animationObs = new AnimationObstacle((ObstacleDisplacer) obstacleDisplacer,collider,(BoucleurObstacle) boucleur);
-        animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
-        animationObs.setCollider(collider);
-        animationBird.setCollider(collider);
         startBoucle();
-        setGameOver(false);
     }
 
 

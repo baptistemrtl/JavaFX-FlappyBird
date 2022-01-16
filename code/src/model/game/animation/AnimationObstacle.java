@@ -11,20 +11,20 @@ import model.game.element.Obstacle;
 
 public class AnimationObstacle extends Animation implements InvalidationListener {
 
-    private final Thread moveThread;
-    private int compteurBoucle = 0;
-    private int moduloBoucle;
+    private Thread moveThread;
+    private int compteurBoucle;
+    private int moduloBoucle = 60;
 
     public AnimationObstacle(ObstacleDisplacer displacer, Collider coll, BoucleurObstacle boucleur) {
         super(displacer, coll, boucleur);
         this.boucleur.addListener(this);
-        moveThread = new Thread(boucleur);
     }
 
     @Override
     public void animate() {
-        moduloBoucle = 60;
+        compteurBoucle = 1;
         boucleur.setRunning(true);
+        moveThread = new Thread(boucleur);
         moveThread.start();
     }
 
@@ -38,6 +38,7 @@ public class AnimationObstacle extends Animation implements InvalidationListener
             }
         }
         if (compteurBoucle%moduloBoucle == 0) {
+            System.out.println("add");
             collider.getWorld().addObstacles();
         }
         if (compteurBoucle%1600 == 0) {
