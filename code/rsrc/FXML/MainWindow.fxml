@@ -18,7 +18,7 @@
                 <RowConstraints maxHeight="50.0" minHeight="50.0"/>
                 <RowConstraints maxHeight="80.0" minHeight="80.0"/>
             </rowConstraints>
-            <Text GridPane.rowIndex="0" text="Saisir un pseudo :" >
+            <Text GridPane.rowIndex="0" text="Saisir un pseudo :" fx:id="pseudoInstruct">
                 <font>
                     <Font size="25"/>
                 </font>

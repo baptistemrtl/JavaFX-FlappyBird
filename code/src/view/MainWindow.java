@@ -12,12 +12,17 @@ import javafx.scene.layout.BorderPane;
 
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launcher.Launch;
 import model.game.manager.Manager;
 import model.game.element.Position;
 import model.game.element.Background;
+
+import java.io.File;
 
 
 public class MainWindow {

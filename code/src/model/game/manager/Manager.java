@@ -3,6 +3,9 @@ package model.game.manager;
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
 import javafx.beans.property.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.StringConverter;
 import model.Player;
 import model.game.World.World;
@@ -27,6 +30,7 @@ import model.game.logs.LogSimple;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,7 +174,6 @@ public class Manager {
 
     public void restartGame(){
         createWorld();
-        startBoucle();
     }
 
 

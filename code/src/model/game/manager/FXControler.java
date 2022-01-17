@@ -2,6 +2,9 @@ package model.game.manager;
 
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
@@ -12,6 +15,8 @@ import launcher.Launch;
 import model.game.element.Element;
 import model.game.renderer.Renderer;
 import model.game.renderer.RendererSupplier;
+
+import java.io.File;
 
 public class FXControler {
 
@@ -74,6 +79,7 @@ public class FXControler {
         restartButton.setOnMouseClicked(e -> {
             if (Launch.getManager().isGameOver()) {
                 Launch.getManager().restartGame();
+                Launch.getManager().startBoucle();
             }
         });
         restartButton.disableProperty().set(true);
@@ -83,6 +89,12 @@ public class FXControler {
         homeButton.setOnMouseClicked(e -> {
             if (Launch.getManager().isGameOver()) {
                 Launch.getNavigator().navigateTo("MainWindow",mainStage);
+                Launch.getManager().stopBoucle();
+                Launch.getManager().restartGame();
+                homeButton.opacityProperty().set(0);
+                homeButton.disableProperty().set(true);
+                restartButton.opacityProperty().set(0);
+                restartButton.disableProperty().set(true);
             }
         });
        homeButton.disableProperty().set(true);

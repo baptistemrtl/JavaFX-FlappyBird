@@ -5,7 +5,9 @@
 }
 
 #pseudoInstruct{
-    -fx-font: 30px Tahoma;
+    -fx-font: 27px Tahoma;
+    -fx-font-weight: bold;
+    -fx-fill: antiquewhite;
     -fx-text-fill: D2691E;
 }
 
@@ -21,7 +23,12 @@
     -fx-alignment: center;
 }
 
-.score-text {
-    -fx-font-size: 30px;
+#scoreText {
+    -fx-font-size: 70px;
     -fx-font-weight: bold;
+}
+
+#scoreboardtxt{
+    -fx-font-weight: bold;
+    -fx-fill: antiquewhite;
 }

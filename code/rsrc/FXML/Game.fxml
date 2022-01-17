@@ -12,9 +12,9 @@
             prefHeight="700.0" prefWidth="450.0"
             fx:id="gameBp">
     <top>
-        <Text fx:id="scoreText" fill="antiquewhite" x="180">
+        <Text fx:id="scoreText" fill="antiquewhite">
             <BorderPane.margin>
-                <Insets left="10.0"/>
+                <Insets left="193.0"/>
             </BorderPane.margin>
         </Text>
     </top>

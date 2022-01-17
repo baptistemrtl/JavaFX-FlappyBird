@@ -27,8 +27,7 @@ public class Launch extends Application {
         stage = primaryStage;
         stage.setResizable(false);
         nav = new Navigator();
-
-        stage.getIcons().add(new Image("/image/flopflop.png"));
+        stage.getIcons().add(new Image("/image/desktopicon.jpg"));
         nav.navigateTo("MainWindow", stage);
     }
 

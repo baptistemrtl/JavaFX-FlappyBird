@@ -12,7 +12,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.ScoreBoard">
     <top>
-        <Text BorderPane.alignment="CENTER" textAlignment="CENTER" text="Meilleurs Scores">
+        <Text BorderPane.alignment="CENTER" textAlignment="CENTER" text="Meilleurs Scores" fx:id="scoreboardtxt">
             <font>
                 <Font size="45.0"/>
             </font>
@@ -40,13 +40,13 @@
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
 
             <Text GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text"/>
+                  text="Nom" styleClass="score-text" fx:id="firstName"/>
 
             <Text GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text"/>
+                  text="Nom" styleClass="score-text" fx:id="secondName"/>
 
             <Text GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text"/>
+                  text="Nom" styleClass="score-text" fx:id="thirdName"/>
         </GridPane>
     </center>
 
