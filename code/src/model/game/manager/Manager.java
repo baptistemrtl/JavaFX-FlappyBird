@@ -74,7 +74,6 @@ public class Manager {
         currentLog = new LogSimple();
         animationObs = new AnimationObstacle((ObstacleDisplacer) obstacleDisplacer,collider,(BoucleurObstacle) boucleur);
         animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
-
     }
 
     //Initialisation
@@ -156,12 +155,15 @@ public class Manager {
     }
 
     public void stopBoucle() { // = end OF A PARTY
-        if (getStringScore() > currentPlayer.getScoreMax()){
+        if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()){
             currentPlayer.setScoreMax(getStringScore());
+            System.out.println(currentPlayer.getScoreMax());
         }
-        System.out.println(currentPlayer.getScoreMax());
+        if (threadScore != null) {
+            threadScore.interrupt();
+        }
+        
         animationBird.stopAll();
-        threadScore.interrupt();
         scoreChecker.setRunning(false);
         animationObs.stopAnimation();
     }

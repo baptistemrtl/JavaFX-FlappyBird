@@ -51,6 +51,9 @@ public class AnimationObstacle extends Animation implements InvalidationListener
     @Override
     public void stopAnimation() {
         boucleur.setRunning(false);
-        moveThread.interrupt();
+
+        if (moveThread != null) {
+            moveThread.interrupt();
+        }
     }
 }

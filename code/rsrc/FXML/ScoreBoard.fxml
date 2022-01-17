@@ -7,7 +7,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
 <BorderPane fx:id="scoreBp"
-            prefHeight="450.0" prefWidth="700.0"
+            prefWidth="450.0" prefHeight="700.0"
             xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.ScoreBoard">

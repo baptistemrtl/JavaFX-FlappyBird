@@ -2,38 +2,41 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="view.Game"
             prefHeight="700.0" prefWidth="450.0"
             fx:id="gameBp">
     <top>
-        <Text fx:id="scoreText" fill="antiquewhite" x="180"/>
+        <Text fx:id="scoreText" fill="antiquewhite" x="180">
+            <BorderPane.margin>
+                <Insets left="10.0"/>
+            </BorderPane.margin>
+        </Text>
     </top>
-    <center>
-        <Button fx:id="restartButton" minWidth="100" minHeight="20">
 
+    <center>
+        <Button fx:id="restartButton">
             <graphic>
-                <Text fill="antiquewhite">RESTART</Text>
-                <ImageView fitWidth="240" fitHeight="120">
-                    <image>
-                        <Image url="/image/restarticon.png"/>
-                    </image>
+                <ImageView fitWidth="120" fitHeight="60">
+                    <Image url="/image/restarticon.png"/>
                 </ImageView>
             </graphic>
         </Button>
     </center>
+
     <bottom>
-        <Button fx:id="homeButton" minWidth="100" minHeight="20" opacity="20" disable="true">
-            home
+        <Button fx:id="homeButton"  BorderPane.alignment="CENTER"
+                text="HOME">
+            <BorderPane.margin>
+                <Insets bottom="100.0"/>
+            </BorderPane.margin>
         </Button>
     </bottom>
-
 </BorderPane>
 
 

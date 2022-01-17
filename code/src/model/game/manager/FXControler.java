@@ -1,28 +1,17 @@
 package model.game.manager;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import launcher.Launch;
-import model.game.element.Element;
-import model.game.element.Obstacle;
-import model.game.renderer.Renderer;
-import model.game.renderer.RendererSupplier;
-
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import launcher.Launch;
+import model.game.element.Element;
+import model.game.renderer.Renderer;
+import model.game.renderer.RendererSupplier;
 
 public class FXControler {
 
@@ -67,32 +56,30 @@ public class FXControler {
                     renderer.renderImageView(gameBorderPane,obs);
                 }
                 for (Element obs : change.getRemoved()){
-                        Iterator<Node> iterator = gameBorderPane.getChildren().iterator();
-                        while (iterator.hasNext()) {
-                            Node leNode = iterator.next();
-                            if (leNode.getUserData() == obs) {
-                                gameBorderPane.getChildren().remove(leNode);
-                                break;
-                            }
+                    for (Node leNode : gameBorderPane.getChildren()) {
+                        if (leNode.getUserData() == obs) {
+                            gameBorderPane.getChildren().remove(leNode);
+                            break;
                         }
+                    }
                 }
             }
 
         });
     }
 
-    private void initNodes(Button restartButton, Button homeButton,Text scoreText){
+    private void initNodes(Button restartButton, Button homeButton,Text scoreText) {
         restartButton.opacityProperty().set(0);
         restartButton.setViewOrder(0);
         restartButton.setOnMouseClicked(e -> {
-            if (Launch.getManager().isGameOver()){
+            if (Launch.getManager().isGameOver()) {
                 Launch.getManager().restartGame();
             }
         });
         restartButton.disableProperty().set(true);
 
 
-       homeButton.opacityProperty().set(00);
+       homeButton.opacityProperty().set(0);
         homeButton.setOnMouseClicked(e -> {
             if (Launch.getManager().isGameOver()) {
                 Launch.getNavigator().navigateTo("MainWindow",mainStage);
@@ -108,10 +95,13 @@ public class FXControler {
                 Launch.getManager().stopBoucle();
                 restartButton.opacityProperty().set(20);
                 restartButton.disableProperty().set(false);
-            }
-            else{
+                homeButton.opacityProperty().set(20);
+                homeButton.disableProperty().set(false);
+            } else {
                 restartButton.opacityProperty().set(0);
                 restartButton.disableProperty().set(true);
+                homeButton.opacityProperty().set(0);
+                homeButton.disableProperty().set(true);
             }
         });
     }

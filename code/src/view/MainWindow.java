@@ -55,7 +55,6 @@ public class MainWindow {
             dialog.setResizable(false);
             dialog.getIcons().add(new Image("image/dialog-error-icon.png"));
             Launch.getNavigator().navigateTo("Error", dialog);
-//            dialog.showAndWait();
 
             return;
         }
