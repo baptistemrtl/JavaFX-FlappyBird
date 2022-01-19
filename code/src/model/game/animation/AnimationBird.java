@@ -4,14 +4,16 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import launcher.Launch;
+
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurBird;
 import model.game.boucleur.BoucleurDrop;
 import model.game.collider.Collider;
 import model.game.displacer.BirdDisplacer;
-import model.game.displacer.Displacer;
 
+/**
+ * La classe AnimationBird permet de gérer l'animation du Bird.
+ */
 public class AnimationBird extends Animation implements InvalidationListener {
 
     private double yToReach;
@@ -23,17 +25,50 @@ public class AnimationBird extends Animation implements InvalidationListener {
     private final Boucleur dropBoucleur;
 
     private Boolean isDropping;
-    private BooleanProperty stopProperty = new SimpleBooleanProperty();
-        public BooleanProperty propertyStop(){ return stopProperty; }
-        public Boolean getStop(){ return stopProperty.get(); }
-        public void setStop(Boolean value){ stopProperty.set(value);}
+    private final BooleanProperty stopProperty = new SimpleBooleanProperty();
+
+    /**
+     * Le BooleanProperty de stopProperty.
+     *
+     * @return Le BooleanProperty de stopProperty
+     */
+    public BooleanProperty propertyStop(){ return stopProperty; }
+
+    /**
+     * Get stop
+     *
+     * @return stop
+     */
+    public Boolean getStop(){ return stopProperty.get(); }
+
+    /**
+     * Set stop.
+     *
+     * @param value la nouvelle valeur de stop
+     */
+    public void setStop(Boolean value){ stopProperty.set(value);}
+
+    /**
+     * Get thread fly thread.
+     *
+     * @return the thread
+     */
+    public Thread getThreadFly(){ return threadFly; }
+
+    /**
+     * Get thread drop thread.
+     *
+     * @return the thread
+     */
+    public Thread getThreadDrop(){ return threadDrop; }
 
     /**
      * Redéfinition du constructeur
-     * @param displacer
-     * @param coll
-     * @param boucleur
-     * @param drop Deuxième boucleur pour gérer la descente de l'oiseau
+     *
+     * @param displacer le déplaceur de l'oiseau
+     * @param coll      le colisionneur de l'oiseau
+     * @param boucleur  le boucleur de l'oiseau
+     * @param drop      Deuxième boucleur pour gérer la descente de l'oiseau
      */
     public AnimationBird(BirdDisplacer displacer, Collider coll, BoucleurBird boucleur, BoucleurDrop drop) {
         super(displacer, coll, boucleur);
@@ -41,9 +76,6 @@ public class AnimationBird extends Animation implements InvalidationListener {
         dropBoucleur.addListener(this);
         this.boucleur.addListener(this);
     }
-
-    public Thread getThreadFly(){ return threadFly; }
-    public Thread getThreadDrop(){ return threadDrop; }
 
     /**
      * Méthode pour mettre en place une "animation" de saut de l'oiseau
@@ -85,7 +117,8 @@ public class AnimationBird extends Animation implements InvalidationListener {
      * Méthode appelée à chaque signal reçu par le boucleur
      * qui va gérer soit l'animation la chute, soit le saut en fonction du
      * booleen isDropping
-     * @param observable
+     *
+     * @param observable l'élément observable (ignoré)
      */
     @Override
     public void invalidated(Observable observable) {

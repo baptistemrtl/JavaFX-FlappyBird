@@ -1,5 +1,7 @@
 package tests;
+
 import javafx.collections.ObservableList;
+
 import model.game.World.World;
 import model.game.collider.Collider;
 import model.game.collider.ColliderSimple;
@@ -10,7 +12,6 @@ import model.game.element.Element;
 import model.game.element.Obstacle;
 import model.game.element.Position;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 public class globalTest {

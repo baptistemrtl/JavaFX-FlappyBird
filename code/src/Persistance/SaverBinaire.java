@@ -14,6 +14,8 @@ public class SaverBinaire implements Save {
     private final String filePath;
 
     /**
+     * Constructeur de la classe
+     *
      * @param filePath chemin d'accès du fichier de persistance
      */
     public SaverBinaire(String filePath) {
@@ -22,6 +24,7 @@ public class SaverBinaire implements Save {
 
     /**
      * Méthode qui sauvegarde nos données
+     *
      * @param players liste de joueurs
      */
     @Override

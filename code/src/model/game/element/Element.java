@@ -14,10 +14,90 @@ public abstract class Element {
 
     //Propriété pour se bind sur le filepath de l'image de l'élément
     private final StringProperty image = new SimpleStringProperty();
-        public String getImage() { return image.get(); }
-        public void setImage(String img) { image.set(img); }
+
+    /**
+     * Get l'image de l'élément
+     *
+     * @return son image
+     */
+    public String getImage() { return image.get(); }
+
+    /**
+     * Set l'image de l'élément
+     *
+     * @param img sa nouvelle image
+     */
+    public void setImage(String img) { image.set(img); }
+
+    /**
+     * ImageProperty de l'élément
+     *
+     * @return le StringProperty de l'image
+     */
     public StringProperty imageProperty() { return image; }
 
+    /**
+     * Get la position de l'élément
+     *
+     * @return sa position
+     */
+    public Position getPos() {
+        return pos;
+    }
+
+    /**
+     * Set la position de l'élément
+     *
+     * @param pos sa nouvelle position
+     */
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
+    /**
+     * Get la largeur de l'élément
+     *
+     * @return sa largeur
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Set la largeur de l'élément
+     *
+     * @param width sa nouvelle largeur
+     */
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    /**
+     * Get la hauteur de l'élément
+     *
+     * @return sa hauteur
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Set la hauteur de l'élément
+     *
+     * @param height sa nouvelle hauteur
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * Constructeur de l'élément
+     *
+     * @param width    la largeur de l'élément
+     * @param height   la hauteur de l'élément
+     * @param pos      la position de l'élément
+     * @param imageUrl l'image de l'élément
+     */
     public Element(int width, int height, Position pos, String imageUrl) {
         setWidth(width);
         setHeight(height);
@@ -25,34 +105,10 @@ public abstract class Element {
         setImage(imageUrl);
     }
 
-    public Position getPos() {
-        return pos;
-    }
-
-    public void setPos(Position pos) {
-        this.pos = pos;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     /**
      * Redéfinition de la fonction equals pour comparer des éléments en fonctions de leur position
-     * @param o
-     * @return
+     * @param o l'élément à comparer
+     * @return true si les éléments sont égaux, false sinon
      */
     @Override
     public boolean equals(Object o) {

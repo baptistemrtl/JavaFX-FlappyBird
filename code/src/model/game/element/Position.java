@@ -10,22 +10,70 @@ import javafx.beans.property.SimpleDoubleProperty;
 public class Position {
 
     //Propriété représentant l'abcisse
-    private DoubleProperty x = new SimpleDoubleProperty();
-        public double getX() { return x.get(); }
-        public void setX(double x2) { x.set(x2); }
+    private final DoubleProperty x = new SimpleDoubleProperty();
+
+    /**
+     * Gets le x
+     *
+     * @return son x
+     */
+    public double getX() { return x.get(); }
+
+    /**
+     * Set le x
+     *
+     * @param x2 sa nouvelle valeur
+     */
+    public void setX(double x2) { x.set(x2); }
+
+    /**
+     * La DoubleProperty représentant l'abscisse
+     *
+     * @return La DoubleProperty
+     */
     public DoubleProperty xProperty() { return x; }
 
     //Propriété représentant l'ordonnée
-    private DoubleProperty y = new SimpleDoubleProperty();
-        public double getY() { return y.get(); }
-        public void setY(double y2) { y.set(y2); }
+    private final DoubleProperty y = new SimpleDoubleProperty();
+
+    /**
+     * Get le y
+     *
+     * @return son y
+     */
+    public double getY() { return y.get(); }
+
+    /**
+     * Set le y
+     *
+     * @param y2 sa nouvelle valeur
+     */
+    public void setY(double y2) { y.set(y2); }
+
+    /**
+     * La DoubleProperty représentant l'ordonnée
+     *
+     * @return La DoubleProperty
+     */
     public DoubleProperty yProperty() { return y; }
 
+    /**
+     * Constructeur d'une position
+     *
+     * @param x l'abscisse
+     * @param y l'ordonnée
+     */
     public Position(double x, double y) {
         setX(x);
         setY(y);
     }
 
+    /**
+     * Set la position
+     *
+     * @param x sa nouvelle abscisse
+     * @param y sa nouvelle ordonnée
+     */
     public void setPosition(double x, double y) {
         setX(x);
         setY(y);
@@ -33,8 +81,8 @@ public class Position {
 
     /**
      * Redéfinition de la méthode equals
-     * @param o
-     * @return
+     * @param o l'objet à comparer
+     * @return true si les deux objets sont égaux
      */
     @Override
     public boolean equals(Object o) {
@@ -46,7 +94,7 @@ public class Position {
 
     /**
      * Redéfinition de la méthode hashcode
-     * @return
+     * @return le hashcode
      */
     @Override
     public int hashCode() {

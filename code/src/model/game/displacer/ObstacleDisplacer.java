@@ -11,7 +11,8 @@ public class ObstacleDisplacer extends Displacer {
 
     /**
      * Redéfiniton du constructeur
-     * @param collider
+     *
+     * @param collider Le collisionneur
      */
     public ObstacleDisplacer(Collider collider) {
         super(collider);
@@ -19,6 +20,7 @@ public class ObstacleDisplacer extends Displacer {
 
     /**
      * Redéfinition de la méthode de déplacement d'un obstacle
+     *
      * @param element Obstacle à faire bouger
      * @param move Valeur du déplacement
      * @return false si collision avec l'oiseau, false sinon

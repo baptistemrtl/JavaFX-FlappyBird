@@ -9,6 +9,9 @@ import model.game.displacer.ObstacleDisplacer;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
+/**
+ * La classe AnimationObstacle permet de gérer les animations d'un obstacle.
+ */
 public class AnimationObstacle extends Animation implements InvalidationListener {
 
     private Thread moveThread;
@@ -17,9 +20,10 @@ public class AnimationObstacle extends Animation implements InvalidationListener
 
     /**
      * Redéfinition du constructeur
-     * @param displacer
-     * @param coll
-     * @param boucleur
+     *
+     * @param displacer le déplaceur de l'obstacle
+     * @param coll      le colisionneur de l'obstacle
+     * @param boucleur  le boucleur de l'obstacle
      */
     public AnimationObstacle(ObstacleDisplacer displacer, Collider coll, BoucleurObstacle boucleur) {
         super(displacer, coll, boucleur);
@@ -38,8 +42,9 @@ public class AnimationObstacle extends Animation implements InvalidationListener
     }
 
     /**
-     * Méthode appelé à chaque signal reçu
-     * @param observable
+     * Méthode appelée à chaque signal reçu
+     *
+     * @param observable l'objet observable (ignoré)
      */
     @Override
     public void invalidated(Observable observable) {

@@ -1,24 +1,20 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import launcher.Launch;
 import model.game.element.Background;
 import model.game.element.Position;
 import model.game.manager.FXControler;
 
-import java.io.IOException;
-import java.util.Objects;
-
+/**
+ * Controller pour le scoreBoard
+ */
 public class ScoreBoard {
 
     private final Image firstmedal = new Image("image/firstmedal.png");
@@ -26,18 +22,18 @@ public class ScoreBoard {
     private final Image thirdmedal = new Image("image/thirdmedal.png");
 
     @FXML private ImageView first;
+    @FXML private Text firstName;
+    @FXML private Text scoreFirst;
+
     @FXML private ImageView second;
+    @FXML private Text secondName;
+    @FXML private Text scoreSecond;
+
     @FXML private ImageView third;
+    @FXML private Text thirdName;
+    @FXML private Text scoreThird;
+
     @FXML private BorderPane scoreBp;
-
-    @FXML Text firstName;
-    @FXML Text secondName;
-    @FXML Text thirdName;
-
-    @FXML Text scoreFirst;
-    @FXML Text scoreSecond;
-    @FXML Text scoreThird;
-
 
     /**
      * Méthode à l'instanciation de la Scene de scoreBoard
@@ -45,7 +41,7 @@ public class ScoreBoard {
     @FXML
     public void initialize() {
         //Instanciation et ajout des éléments de base de cette vue
-         Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
+         Background bg = new Background(450,700,new Position(0,0), "image/background.png");
          ImageView background = new ImageView(bg.getImage());
          background.setFitHeight(bg.getHeight());
          background.setFitWidth(bg.getWidth());
@@ -56,14 +52,15 @@ public class ScoreBoard {
          second.setImage(secondmedal);
          third.setImage(thirdmedal);
 
-         //Gestion du binding du top 3
+//        Gestion du binding du top 3
         FXControler fxControler = new FXControler(scoreBp,Launch.getStage());
         fxControler.initializeScoreBoard(firstName,secondName,thirdName,scoreFirst,scoreSecond,scoreThird);
     }
 
     /**
      * Redirection vers la MainWindow
-     * @param actionEvent
+     *
+     * @param actionEvent the action event
      */
     @FXML
     public void retourButtonAction(ActionEvent actionEvent) {

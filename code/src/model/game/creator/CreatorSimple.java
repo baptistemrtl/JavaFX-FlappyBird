@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Classe qui va créer un monde à partir d'un fichier
  */
-
 public class CreatorSimple extends Creator {
 
     final String path = "rsrc/testFinishedWorlds/world1.txt";
@@ -20,7 +19,7 @@ public class CreatorSimple extends Creator {
     /**
      *  Méthode qui lit le fichier caractère par caractère pour créer une liste d'éléments
      *  On se limite ici à un monde fini
-     * @return
+     * @return La liste d'éléments créée
      */
     @Override
     public List<Element> createWorld() {

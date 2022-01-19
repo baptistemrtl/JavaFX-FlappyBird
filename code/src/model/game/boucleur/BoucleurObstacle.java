@@ -1,7 +1,5 @@
 package model.game.boucleur;
 
-import javafx.application.Platform;
-
 /**
  * Boucleur sur le déplacement des obstacles
  */

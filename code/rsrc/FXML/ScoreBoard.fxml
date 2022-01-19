@@ -12,7 +12,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.ScoreBoard">
     <top>
-        <Text BorderPane.alignment="CENTER" textAlignment="CENTER" text="Meilleurs Scores" fx:id="scoreboardtxt">
+        <Text BorderPane.alignment="CENTER" textAlignment="CENTER" text="Meilleurs Scores">
             <font>
                 <Font size="45.0"/>
             </font>
@@ -30,18 +30,24 @@
                 <RowConstraints minHeight="90" maxHeight="90"/>
                 <RowConstraints minHeight="90" maxHeight="90"/>
             </rowConstraints>
+
             <ImageView fx:id="first" GridPane.rowIndex="0" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
+
             <ImageView fx:id="second" GridPane.rowIndex="1" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
+
             <ImageView fx:id="third" GridPane.rowIndex="2" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
-            <Text GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="firstName"/>
-            <Text GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreFirst"/>
-            <Text GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="secondName"/>
-            <Text GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreSecond"/>
-            <Text GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="thirdName"/>
-            <Text GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreThird"/>
+
+            <Text fx:id="firstName" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+            <Text fx:id="scoreFirst" GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+            <Text fx:id="secondName" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+            <Text fx:id="scoreSecond" GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+            <Text fx:id="thirdName" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+            <Text fx:id="scoreThird" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
         </GridPane>
     </center>
 

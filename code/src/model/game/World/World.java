@@ -22,8 +22,14 @@ public class World {
     /**
      * Liste d'Element
      */
-    private ObservableList<Element> elements;
+    private final ObservableList<Element> elements;
     private final Creator creator = new CreatorRandom();
+
+    /**
+     * Gets elements.
+     *
+     * @return the elements
+     */
     public ObservableList<Element> getElements() {
         return elements;
     }
@@ -58,7 +64,8 @@ public class World {
 
     /**
      * Ajout d'un seul élément à la liste d'Elément
-     * @param element
+     *
+     * @param element the element
      */
     public void addElement(Element element) {
         elements.add(element);
@@ -66,7 +73,8 @@ public class World {
 
     /**
      * Récupération de l'oiseau instancié dans la liste d'Element
-     * @return
+     *
+     * @return current bird
      */
     public Bird getCurrentBird() {
         for(Element element : elements) {
@@ -80,6 +88,7 @@ public class World {
 
     /**
      * Récupération du nombre d'obstacle passé par l'oiseau
+     *
      * @return implicitement, le score actuel
      */
     public int getNumberOfObstaclePassed() {

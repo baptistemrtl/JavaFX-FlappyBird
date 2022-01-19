@@ -5,20 +5,21 @@ import model.Player;
 import javafx.collections.FXCollections;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe pour la chargement de nos données
+ * Classe pour le chargement de nos données
  */
 public class LoaderBinaire implements Load {
 
     private final String filePath;
 
     /**
+     * Constructeur de la classe LoaderBinaire
+     *
      * @param filePath chemin du fichier de persistance
      */
     public LoaderBinaire(String filePath) {
@@ -28,6 +29,7 @@ public class LoaderBinaire implements Load {
 
     /**
      * Méthode de chargement de nos données à partir d'un fichier
+     *
      * @return une liste de joueurs
      */
     @Override
@@ -43,7 +45,6 @@ public class LoaderBinaire implements Load {
         } catch(Exception e) {
             e.printStackTrace();
             e.getCause();
-            e.getMessage();
         }
 
         return FXCollections.observableArrayList(players);

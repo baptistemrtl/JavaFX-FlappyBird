@@ -1,31 +1,43 @@
 package model.game.logs;
 
 import javafx.beans.property.ListProperty;
-import javafx.collections.ObservableList;
+
 import model.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe qui va enregistrer nos utilisateurs et leur scoreMax
+ * Interface qui va enregistrer nos utilisateurs et leur scoreMax
  * pour la persistance et l'utilisation de nos données
  */
-public abstract class Log {
+public interface Log {
 
-    private final List<Player> players = new ArrayList<>();
+    /**
+     * Ajout d'un joueur
+     *
+     * @param player le joueur à ajouter
+     */
+     void addPlayer(Player player);
 
-    public abstract void addPlayer(Player player);
+    /**
+     * ListProperty de players.
+     *
+     * @return La ListProperty
+     */
+     ListProperty<Player> playersProperty();
 
-    public abstract void setPlayers(ObservableList<Player> players);
+    /**
+     * Get la liste des joueurs.
+     *
+     * @return la liste des joueurs
+     */
+     List<Player> getPlayers();
 
-    public abstract ListProperty<Player> playersProperty();
-
-//    public abstract void sort(ObservableList<Player> plyrs);
-
-    public abstract List<Player> getPlayers();
-
-    public abstract boolean logged(Player player);
-
-    public abstract Player searchPlayer(String pseudo);
+    /**
+     * Cherche un joueur dans la liste des joueurs.
+     *
+     * @param pseudo le pseudo du joueur
+     * @return un joueur
+     */
+    Player searchPlayer(String pseudo);
 }

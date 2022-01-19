@@ -39,7 +39,7 @@ public class Renderer {
                 return;
             }
         }
-        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
+        Background bg = new Background(450,700,new Position(0,0), "image/background.png");
         ImageView background = new ImageView(bg.getImage());
         background.setViewOrder(1);
         background.setUserData(bg);

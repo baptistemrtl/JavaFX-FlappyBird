@@ -32,8 +32,8 @@ public abstract class Boucleur implements Runnable, Observable {
     }
 
     /**
-     * Ajout d'un écouteur à qui envoyer un signal
-     * @param listener
+     * Ajout d'un listener à qui envoyer un signal
+     * @param listener l'objet qui va être notifié
      */
     @Override
     public void addListener(InvalidationListener listener) {
@@ -41,8 +41,8 @@ public abstract class Boucleur implements Runnable, Observable {
     }
 
     /**
-     * Suppression d'un écouteur
-     * @param listener
+     * Suppression d'un listener
+     * @param listener l'objet qui ne va plus être notifié
      */
     @Override
     public void removeListener(InvalidationListener listener) {
@@ -50,10 +50,10 @@ public abstract class Boucleur implements Runnable, Observable {
     }
 
     /***
-     * Méthode qui envoie le signal à l'écouteur des classes filles
+     * Méthode qui envoie le signal au listener des classes filles
      */
     public void beep(){
         listeners.forEach(o-> Platform.runLater(()-> o.invalidated(this)));
-    };
+    }
 
 }

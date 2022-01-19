@@ -1,10 +1,5 @@
 package model.game.boucleur;
 
-import javafx.application.Platform;
-import model.game.animation.AnimationBird;
-
-import java.util.function.Consumer;
-
 /**
  * Boucleur sur l'envol d'un oiseau
  */
