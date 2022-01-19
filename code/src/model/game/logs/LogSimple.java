@@ -10,10 +10,9 @@ import javafx.collections.ObservableList;
 
 public class LogSimple extends Log{
 
-    public ObservableList<Player> olPlayers = FXCollections.observableArrayList();
-    private final ListProperty<Player> players = new SimpleListProperty<>(olPlayers);
+    private final ListProperty<Player> players = new SimpleListProperty<>(FXCollections.observableArrayList());
         public ObservableList<Player> getPlayers() { return players.get(); }
-        public void setPlayers(ObservableList<Player> players) { this.players.set(players); }
+        private void setPlayers(ObservableList<Player> players) { this.players.set(players); }
     public ReadOnlyListProperty<Player> playersProperty() { return players; }
 
     public LogSimple(ObservableList<Player> players) {

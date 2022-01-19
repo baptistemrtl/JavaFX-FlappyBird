@@ -48,9 +48,10 @@ public class LoaderBinaire implements Load {
         }*/
         try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) { // check si marche avec Serializable de Player
             while (ois.available() > 0) {
-                if (ois.readObject() instanceof Player player) {
-                    players.add(player);
-                }
+                String pseudo = ois.readUTF();
+                int scoreMax = ois.readInt();
+                Player player = new Player(pseudo, scoreMax);
+                players.add(player);
             }
         } catch(Exception e) {
             e.printStackTrace();

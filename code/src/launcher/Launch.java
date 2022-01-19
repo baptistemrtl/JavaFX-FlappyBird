@@ -14,7 +14,7 @@ public class Launch extends Application {
     private static Stage stage;
     public static Stage getStage(){ return stage; }
 
-    private static Manager man = new Manager();
+     private static Manager man = new Manager();
     public static Manager getManager() { return man; }
 
     private static Navigator nav;
@@ -34,6 +34,7 @@ public class Launch extends Application {
     @Override
     public void stop() throws Exception {
         man.stopBoucle();
+        man.dataSave();
         super.stop();
     }
 }

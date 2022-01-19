@@ -67,7 +67,7 @@ public class MainWindow {
         Launch.getNavigator().navigateTo("Game", Launch.getStage());
         Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
         Launch.getManager().startBoucle();
-    }
+         }
 
     @FXML
     public void openScoreboard(ActionEvent actionEvent) {

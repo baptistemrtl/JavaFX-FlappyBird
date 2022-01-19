@@ -3,10 +3,10 @@ package model.game.manager;
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
 import javafx.beans.property.*;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.StringConverter;
+import javafx.collections.ObservableList;
+import javafx.scene.input.KeyCode;
+
 import model.Player;
 import model.game.World.World;
 import model.game.animation.Animation;
@@ -27,15 +27,10 @@ import model.game.element.Obstacle;
 import model.game.logs.Log;
 import model.game.logs.LogSimple;
 
-import javafx.collections.ObservableList;
-import javafx.scene.input.KeyCode;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Manager {
-
 
     private BooleanProperty gameOver = new SimpleBooleanProperty();
         public Boolean isGameOver(){ return gameOver.get();}
@@ -49,7 +44,7 @@ public class Manager {
     private Boucleur boucleur = new BoucleurObstacle();
     private Boucleur birdBoucleur = new BoucleurBird();
     private Log currentLog;
-    private BirdDisplacer birdDeplaceur ;
+    private BirdDisplacer birdDeplaceur;
     private Displacer obstacleDisplacer;
     private Animation animationObs;
     private AnimationBird animationBird;
@@ -64,10 +59,9 @@ public class Manager {
 
     public StringProperty stringScore = new SimpleStringProperty();
 
-   public StringProperty stringScoreProperty(){ return stringScore; }
+    public StringProperty stringScoreProperty(){ return stringScore; }
         /*public void setStringScore(){ stringScore.set(String.valueOf(score.get())); }*/
         public int getStringScore(){ return Integer.parseInt(stringScore.get()); }
-
 
     public Manager() {
         currentWorld = new World();
@@ -75,9 +69,11 @@ public class Manager {
         currentBird = currentWorld.getCurrentBird();
         birdDeplaceur = new BirdDisplacer(collider);
         obstacleDisplacer = new ObstacleDisplacer(collider);
-        currentLog = new LogSimple();
         animationObs = new AnimationObstacle((ObstacleDisplacer) obstacleDisplacer,collider,(BoucleurObstacle) boucleur);
         animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
+        loader = new LoaderBinaire("save.bin");
+        saver = new SaverBinaire("save.bin");
+        dataLoad();
     }
 
     //Initialisation
@@ -126,7 +122,7 @@ public class Manager {
         ObservableList<Element> elements = collider.getWorld().getElements();
 
         for (Element obstacle : elements) {
-            if (obstacle instanceof Obstacle){
+            if (obstacle instanceof Obstacle) {
                 list.add((Obstacle) obstacle);
             }
         }
@@ -159,7 +155,7 @@ public class Manager {
     }
 
     public void stopBoucle() { // = end OF A PARTY
-        if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()){
+        if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()) {
             currentPlayer.setScoreMax(getStringScore());
             System.out.println(currentPlayer.getScoreMax());
         }
@@ -172,10 +168,9 @@ public class Manager {
         animationObs.stopAnimation();
     }
 
-    public void restartGame(){
+    public void restartGame() {
         createWorld();
     }
-
 
     public void keyMove(KeyCode keyCode) {
         if (isGameOver()) {

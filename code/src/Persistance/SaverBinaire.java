@@ -37,7 +37,8 @@ public class SaverBinaire implements Save {
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)))) {
             for (Player player : players) {
-                oos.writeObject(player);
+                oos.writeUTF(player.getPseudo());
+                oos.writeInt(player.getScoreMax());
             }
         } catch (IOException e) {
             e.printStackTrace();

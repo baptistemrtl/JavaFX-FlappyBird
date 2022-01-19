@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="modifications des méthodes de Load et Save + class Player serializable">
+    <list default="true" id="38fa042c-6578-428b-9b79-68a334b51338" name="Changes" comment="-débogage du retour menu et résolution des erreurs d'arrêts quand jeu non lancé">
+      <change afterPath="$PROJECT_DIR$/save.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/FXML/ScoreBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rsrc/css/background.css" beforeDir="false" afterPath="$PROJECT_DIR$/rsrc/css/background.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistance/LoaderBinaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistance/LoaderBinaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistance/SaverBinaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistance/SaverBinaire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/launcher/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/launcher/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/animation/AnimationObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/animation/AnimationObstacle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/manager/FXControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/FXControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/game/logs/LogSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/logs/LogSimple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/game/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/game/manager/Navigator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,6 +166,9 @@
       <workItem from="1642221595624" duration="6409000" />
       <workItem from="1642309229603" duration="4539000" />
       <workItem from="1642398476900" duration="3574000" />
+      <workItem from="1642402103902" duration="386000" />
+      <workItem from="1642528734946" duration="699000" />
+      <workItem from="1642530200064" duration="8011000" />
     </task>
     <task id="LOCAL-00001" summary="rapide cleanup">
       <created>1641967419535</created>
@@ -211,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642313802587</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="-débogage du retour menu et résolution des erreurs d'arrêts quand jeu non lancé">
+      <created>1642402484106</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642402484106</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +266,26 @@
     <MESSAGE value="Modification ScoreBoard et improve FXML et Launch" />
     <MESSAGE value="Ajout d'une vue d'erreur (pas de pseudo pour lancer le jeu) + essaie de gameOvers (bonne piste mais ne fonctonne pas)" />
     <MESSAGE value="modifications des méthodes de Load et Save + class Player serializable" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifications des méthodes de Load et Save + class Player serializable" />
+    <MESSAGE value="-débogage du retour menu et résolution des erreurs d'arrêts quand jeu non lancé" />
+    <option name="LAST_COMMIT_MESSAGE" value="-débogage du retour menu et résolution des erreurs d'arrêts quand jeu non lancé" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Persistance/LoaderBinaire.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="players" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Flop_Flop$Projet.ic" NAME="Projet Coverage Results" MODIFIED="1642554146919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
