@@ -16,9 +16,6 @@ public class LogSimple extends Log{
         public ObservableList<Player> getPlayers() { return players.get(); }
         public void setPlayers(ObservableList<Player> plyrs) {
             sort(plyrs);
-            for (Player p : plyrs){
-                System.out.println(p.getPseudo() + " " + p.getScoreMax());
-            }
             this.players.set(plyrs);
         }
     public ListProperty<Player> playersProperty() { return players; }
@@ -120,5 +117,6 @@ public class LogSimple extends Log{
     @Override
     public void addPlayer(Player player) {
         players.add(player);
+        sort(players);
     }
 }

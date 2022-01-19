@@ -159,15 +159,15 @@ public class Manager {
         threadScore = new Thread(scoreChecker);
         threadScore.start();
         animationBird.propertyStop().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
-            if(newValue) {
-                setGameOver(true);
+            if(newValue){
+                setGameOver(newValue);
+                soundPlayer.setFilePath("rsrc/sound/resources_sounds_hit.wav");
+                soundPlayer.play();
             }
         });
     }
 
     public void stopBoucle() { // = end OF A PARTY
-        soundPlayer.setFilePath("rsrc/sound/resources_sounds_hit.wav");
-        soundPlayer.play();
         if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()) {
             currentPlayer.setScoreMax(getStringScore());
             dataSave();
@@ -192,7 +192,7 @@ public class Manager {
 
         if (keyCode == KeyCode.SPACE) {
             animationBird.animate();
-            soundPlayer.setFilePath("sound/resources_sounds_wing.wav");
+            soundPlayer.setFilePath("rsrc/sound/resources_sounds_wing.wav");
             soundPlayer.play();
             if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()) {
                 gameOver.set(true);
