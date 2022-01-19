@@ -46,7 +46,7 @@ public class LoaderBinaire implements Load {
                 pseudo = (String)o.readObject();
             }
         }*/
-        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) { // check si marche avec Serializable de Player
+        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) {
             while (ois.available() > 0) {
                 String pseudo = ois.readUTF();
                 int scoreMax = ois.readInt();
@@ -55,6 +55,8 @@ public class LoaderBinaire implements Load {
             }
         } catch(Exception e) {
             e.printStackTrace();
+            e.getCause();
+            e.getMessage();
         }
 
         return FXCollections.observableArrayList(players);

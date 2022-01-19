@@ -3,6 +3,7 @@ package model.game.manager;
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
 import javafx.beans.property.*;
+import javafx.collections.ListChangeListener;
 import javafx.util.StringConverter;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
@@ -37,13 +38,15 @@ public class Manager {
         public void setGameOver(Boolean bool){ gameOver.set(bool);}
         public BooleanProperty gameOverProperty(){ return gameOver; }
 
+
+
     private Player currentPlayer;
     private World currentWorld;
     private Bird currentBird;
     private Collider collider;
     private Boucleur boucleur = new BoucleurObstacle();
     private Boucleur birdBoucleur = new BoucleurBird();
-    private Log currentLog;
+    private Log currentLog = new LogSimple();
     private BirdDisplacer birdDeplaceur;
     private Displacer obstacleDisplacer;
     private Animation animationObs;
@@ -54,13 +57,10 @@ public class Manager {
     private LoaderBinaire loader;
     private SaverBinaire saver;
 
-    private int compteurBoucl = 0;
-    private int compteurCrea = 0;
 
     public StringProperty stringScore = new SimpleStringProperty();
 
     public StringProperty stringScoreProperty(){ return stringScore; }
-        /*public void setStringScore(){ stringScore.set(String.valueOf(score.get())); }*/
         public int getStringScore(){ return Integer.parseInt(stringScore.get()); }
 
     public Manager() {
@@ -74,6 +74,28 @@ public class Manager {
         loader = new LoaderBinaire("save.bin");
         saver = new SaverBinaire("save.bin");
         dataLoad();
+    }
+
+    //Getters
+    public Bird getCurrentBird() {
+        return collider.getWorld().getCurrentBird();
+    }
+    public Log getLog() {
+        return this.currentLog;
+    }
+    public World getCurrentWorld() {
+        return collider.getWorld();
+    }
+
+    //Setter
+    public void setCurrentPlayer(String pseudo) {
+        currentPlayer = currentLog.searchPlayer(pseudo);
+        if (currentPlayer == null) {
+            currentPlayer = new Player(pseudo);
+            currentLog.addPlayer(currentPlayer);
+            dataSave();
+        }
+        System.out.println(currentPlayer.getPseudo());
     }
 
     //Initialisation
@@ -97,46 +119,19 @@ public class Manager {
         });
     }
 
-    public void setCurrentPlayer(String pseudo) {
-        currentPlayer = currentLog.searchPlayer(pseudo);
-        if (currentPlayer == null) {
-            currentPlayer = new Player(pseudo);
-            currentLog.addPlayer(currentPlayer);
-           // saver.saveData(currentLog.getPlayers());
-        }
-
-        System.out.println(currentPlayer.getPseudo());
-    }
-
-    public Bird getCurrentBird() {
-        return collider.getWorld().getCurrentBird();
-    }
-
-
-    public World getCurrentWorld() {
-        return collider.getWorld();
-    }
-
-    public List<Obstacle> getAllObstacles() {
-        List<Obstacle> list = new ArrayList<>();
-        ObservableList<Element> elements = collider.getWorld().getElements();
-
-        for (Element obstacle : elements) {
-            if (obstacle instanceof Obstacle) {
-                list.add((Obstacle) obstacle);
-            }
-        }
-
-        return list;
-    }
-
-    public Log getLog() {
-        return this.currentLog;
-    }
 
     //Persistance
     public void dataLoad() {
         currentLog = new LogSimple((ObservableList<Player>) loader.loadData());
+        currentLog.playersProperty().addListener((ListChangeListener<? super Player>) change ->{
+            while (change.next()){
+                for (Player pl : change.getAddedSubList()){
+                    currentLog.sort(currentLog.playersProperty().get());
+                    break;
+                }
+            }
+            dataSave();
+        });
     }
 
     public void dataSave() {
@@ -157,7 +152,7 @@ public class Manager {
     public void stopBoucle() { // = end OF A PARTY
         if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()) {
             currentPlayer.setScoreMax(getStringScore());
-            System.out.println(currentPlayer.getScoreMax());
+            dataSave();
         }
         if (threadScore != null) {
             threadScore.interrupt();
@@ -184,4 +179,6 @@ public class Manager {
             }
         }
     }
+
+
 }

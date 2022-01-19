@@ -32,21 +32,16 @@
             </rowConstraints>
             <ImageView fx:id="first" GridPane.rowIndex="0" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
-
             <ImageView fx:id="second" GridPane.rowIndex="1" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
-
             <ImageView fx:id="third" GridPane.rowIndex="2" GridPane.columnIndex="0"
                        fitWidth="80" fitHeight="80" preserveRatio="true"/>
-
-            <Text GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text" fx:id="firstName"/>
-
-            <Text GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text" fx:id="secondName"/>
-
-            <Text GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                  text="Nom" styleClass="score-text" fx:id="thirdName"/>
+            <Text GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="firstName"/>
+            <Text GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreFirst"/>
+            <Text GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="secondName"/>
+            <Text GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreSecond"/>
+            <Text GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" fx:id="thirdName"/>
+            <Text GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.halignment="CENTER" fx:id="scoreThird"/>
         </GridPane>
     </center>
 

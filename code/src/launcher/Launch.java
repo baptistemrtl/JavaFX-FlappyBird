@@ -34,7 +34,6 @@ public class Launch extends Application {
     @Override
     public void stop() throws Exception {
         man.stopBoucle();
-        man.dataSave();
         super.stop();
     }
 }

@@ -8,11 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import launcher.Launch;
 import model.game.element.Background;
 import model.game.element.Position;
+import model.game.manager.FXControler;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -28,6 +30,15 @@ public class ScoreBoard {
     @FXML private ImageView third;
     @FXML private BorderPane scoreBp;
 
+    @FXML Text firstName;
+    @FXML Text secondName;
+    @FXML Text thirdName;
+
+    @FXML Text scoreFirst;
+    @FXML Text scoreSecond;
+    @FXML Text scoreThird;
+
+
     @FXML
     public void initialize() {
          Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
@@ -41,6 +52,9 @@ public class ScoreBoard {
          first.setImage(firstmedal);
          second.setImage(secondmedal);
          third.setImage(thirdmedal);
+
+        FXControler fxControler = new FXControler(scoreBp,Launch.getStage());
+        fxControler.initializeScoreBoard(firstName,secondName,thirdName,scoreFirst,scoreSecond,scoreThird);
     }
 
     @FXML
