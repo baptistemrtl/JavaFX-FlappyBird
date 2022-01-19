@@ -41,9 +41,9 @@ import java.util.List;
 public class Manager {
 
     private BooleanProperty gameOver = new SimpleBooleanProperty();
-        public Boolean isGameOver(){ return gameOver.get();}
-        public void setGameOver(Boolean bool){ gameOver.set(bool);}
-        public BooleanProperty gameOverProperty(){ return gameOver; }
+    public Boolean isGameOver(){ return gameOver.get();}
+    public void setGameOver(Boolean bool){ gameOver.set(bool);}
+    public BooleanProperty gameOverProperty(){ return gameOver; }
 
 
 
@@ -69,7 +69,7 @@ public class Manager {
     public StringProperty stringScore = new SimpleStringProperty();
 
     public StringProperty stringScoreProperty(){ return stringScore; }
-        public int getStringScore(){ return Integer.parseInt(stringScore.get()); }
+    public int getStringScore(){ return Integer.parseInt(stringScore.get()); }
 
     public Manager() {
         currentWorld = new World();
@@ -175,7 +175,7 @@ public class Manager {
         if (threadScore != null) {
             threadScore.interrupt();
         }
-        
+
         animationBird.stopAll();
         scoreChecker.setRunning(false);
         animationObs.stopAnimation();

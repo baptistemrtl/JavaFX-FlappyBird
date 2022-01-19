@@ -117,6 +117,5 @@ public class LogSimple extends Log{
     @Override
     public void addPlayer(Player player) {
         players.add(player);
-        sort(players);
     }
 }

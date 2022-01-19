@@ -95,7 +95,7 @@ public class FXControler {
         restartButton.disableProperty().set(true);
 
         //Initialisation du bouton de retour à la fenêtre principal
-       homeButton.opacityProperty().set(0);
+        homeButton.opacityProperty().set(0);
         homeButton.setOnMouseClicked(e -> {
             if (Launch.getManager().isGameOver()) {
                 Launch.getNavigator().navigateTo("MainWindow",mainStage);
@@ -107,8 +107,8 @@ public class FXControler {
                 restartButton.disableProperty().set(true);
             }
         });
-       homeButton.disableProperty().set(true);
-       scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());//Binding du scoreText sur le scoreCourant
+        homeButton.disableProperty().set(true);
+        scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());//Binding du scoreText sur le scoreCourant
         //Ajout d'un listener sur la propriété gameOver du manager pour afficher les boutons home et restart à la mort de l'oiseau
         Launch.getManager().gameOverProperty().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
             if(newValue) {
