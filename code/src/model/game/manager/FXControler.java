@@ -1,12 +1,7 @@
 package model.game.manager;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
@@ -18,8 +13,6 @@ import model.Player;
 import model.game.element.Element;
 import model.game.renderer.Renderer;
 import model.game.renderer.RendererSupplier;
-
-import java.io.File;
 
 public class FXControler {
 

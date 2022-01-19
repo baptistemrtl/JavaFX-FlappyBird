@@ -132,7 +132,7 @@ public class Manager {
     //Persistance
     public void dataLoad() {
         currentLog = new LogSimple((ObservableList<Player>) loader.loadData());
-        currentLog.playersProperty().addListener((ListChangeListener<? super Player>) change ->{
+/*        currentLog.playersProperty().addListener((ListChangeListener<? super Player>) change ->{
             while (change.next()){
                 for (Player pl : change.getAddedSubList()){
                     currentLog.sort(currentLog.playersProperty().get());
@@ -140,7 +140,7 @@ public class Manager {
                 }
             }
             dataSave();
-        });
+        });*/
     }
 
     public void dataSave() {

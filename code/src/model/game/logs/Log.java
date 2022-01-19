@@ -21,7 +21,7 @@ public abstract class Log {
 
     public abstract ListProperty<Player> playersProperty();
 
-    public abstract void sort(ObservableList<Player> plyrs);
+//    public abstract void sort(ObservableList<Player> plyrs);
 
     public abstract List<Player> getPlayers();
 

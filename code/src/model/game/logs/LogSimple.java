@@ -7,6 +7,8 @@ import model.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Comparator;
+
 public class LogSimple extends Log{
 
     /**
@@ -15,16 +17,16 @@ public class LogSimple extends Log{
     private final ListProperty<Player> players = new SimpleListProperty<>(FXCollections.observableArrayList());
         public ObservableList<Player> getPlayers() { return players.get(); }
         public void setPlayers(ObservableList<Player> plyrs) {
-            sort(plyrs);
+//            sort(plyrs);
             this.players.set(plyrs);
         }
     public ListProperty<Player> playersProperty() { return players; }
 
 
-    /**
+/*    /**
      * Fonction qui check létat de la liste avant de la trier
      * @param plyrs
-     */
+     *//*
     public void sort(ObservableList<Player> plyrs) {
         if (plyrs ==null || plyrs.isEmpty()){
             return;
@@ -37,7 +39,7 @@ public class LogSimple extends Log{
      * @param low index du début de la liste
      * @param high index de la fin de liste
      * @param plyrs liste de joueurs
-     */
+     *//*
     private void quicksort(int low, int high,ObservableList<Player> plyrs) {
         int i = low, j = high;
         Player pivot = plyrs.get(low + (high-low)/2);
@@ -65,14 +67,14 @@ public class LogSimple extends Log{
      * @param i
      * @param j
      * @param plyrs
-     */
+     *//*
     private void exchange(int i, int j,ObservableList<Player> plyrs) {
         Player temp = plyrs.get(i);
         plyrs.get(i).setScoreMax(plyrs.get(j).getScoreMax());
         plyrs.get(i).setPseudo(plyrs.get(j).getPseudo());
         plyrs.get(j).setScoreMax(temp.getScoreMax());
         plyrs.get(j).setPseudo(temp.getPseudo());
-    }
+    }*/
 
     /**
      * Constructeurs d'un LogSimple
@@ -117,5 +119,6 @@ public class LogSimple extends Log{
     @Override
     public void addPlayer(Player player) {
         players.add(player);
+        players.sort(Comparator.comparing(Player::getScoreMax));
     }
 }
