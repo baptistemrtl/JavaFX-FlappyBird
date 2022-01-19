@@ -11,41 +11,28 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe pour la chargement de nos données
+ */
 public class LoaderBinaire implements Load {
 
     private final String filePath;
 
+    /**
+     * @param filePath chemin du fichier de persistance
+     */
     public LoaderBinaire(String filePath) {
         this.filePath = filePath;
     }
 
-    public LoaderBinaire() {
-        this("");
-    }
 
+    /**
+     * Méthode de chargement de nos données à partir d'un fichier
+     * @return une liste de joueurs
+     */
     @Override
     public List<Player> loadData() {
         List<Player> players = new ArrayList<>();
-        /*try {
-            File file = new File(filePath);
-            if(!file.exists()) {
-                throw new Exception("Le fichier n'existe pas");
-            }
-
-            FileInputStream fis = new FileInputStream(filePath);
-            BufferedInputStream buff = new BufferedInputStream(fis);
-            ObjectInputStream o = new ObjectInputStream(buff);
-            String pseudo = (String)o.readObject();
-
-            while(pseudo!=null) { //tant qu'il y a quelque chose à lire
-                //String pseudo= (String)o.readObject();
-                String motDePAsse=(String) o.readObject();
-                int scoreMax = (int)o.readObject();
-                Player player = new Player(pseudo,scoreMax);
-                players.add(player);
-                pseudo = (String)o.readObject();
-            }
-        }*/
         try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)))) {
             while (ois.available() > 0) {
                 String pseudo = ois.readUTF();

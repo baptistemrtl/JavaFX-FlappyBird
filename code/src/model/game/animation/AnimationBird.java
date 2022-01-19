@@ -2,6 +2,8 @@ package model.game.animation;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import launcher.Launch;
 import model.game.boucleur.Boucleur;
 import model.game.boucleur.BoucleurBird;
@@ -21,7 +23,18 @@ public class AnimationBird extends Animation implements InvalidationListener {
     private final Boucleur dropBoucleur;
 
     private Boolean isDropping;
+    private BooleanProperty stopProperty = new SimpleBooleanProperty();
+        public BooleanProperty propertyStop(){ return stopProperty; }
+        public Boolean getStop(){ return stopProperty.get(); }
+        public void setStop(Boolean value){ stopProperty.set(value);}
 
+    /**
+     * Redéfinition du constructeur
+     * @param displacer
+     * @param coll
+     * @param boucleur
+     * @param drop Deuxième boucleur pour gérer la descente de l'oiseau
+     */
     public AnimationBird(BirdDisplacer displacer, Collider coll, BoucleurBird boucleur, BoucleurDrop drop) {
         super(displacer, coll, boucleur);
         this.dropBoucleur = drop;
@@ -32,79 +45,97 @@ public class AnimationBird extends Animation implements InvalidationListener {
     public Thread getThreadFly(){ return threadFly; }
     public Thread getThreadDrop(){ return threadDrop; }
 
-
-    //Position : ax^2 + bx + c
-    //vitesse : ax+b
-    //acceleration : a
-
-    //vitesse : distance * temps <=> temps = vitesse/distance (on aurait juste à ajouter un private double velocity)
-    //sachant que le temps va rester le même mais que a chaque beep la distance va diminuer (currentBirdY - yToReach)
-
+    /**
+     * Méthode pour mettre en place une "animation" de saut de l'oiseau
+     */
     @Override
     public void animate() {
+        //Arrêt du thread de drop étant donné qu'il est lancé dès le lancement du jeu
         dropBoucleur.setRunning(false);
-        threadDrop.interrupt();
-        currentY = collider.getWorld().getCurrentBird().getPos().getY();
-
-        yToReach = currentY - 100.0;
-        displacer.setEnableMove(true);
-        boucleur.setRunning(true);
         isDropping = false;
+        threadDrop.interrupt();
+
+        currentY = collider.getWorld().getCurrentBird().getPos().getY();
+        yToReach = currentY - 100.0; // On veut que l'oiseau se déplace d'une hauteur de 100
+        displacer.setEnableMove(true); //On autorise le déplaceur à faire bouger l'oiseau
+
+        //Lancement du boucleur de saut
+        boucleur.setRunning(true);
         threadFly = new Thread(this.boucleur);
         threadFly.start();
     }
 
+    /**
+     * Méthode appelée dès le lancement d'une partie
+     * qui va directement faire tomber l'oiseau
+     */
     public void initalizeAnimation(){
+        setStop(false);
         currentY = collider.getWorld().getCurrentBird().getPos().getY();
-        displacer.setEnableMove(true);
+        displacer.setEnableMove(true); //Autorisation du déplaceur à faire bouger l'oiseau
+
+        //Lancement du boucleur de chute
         dropBoucleur.setRunning(true);
         isDropping = true;
         threadDrop = new Thread(dropBoucleur);
         threadDrop.start();
     }
 
+    /**
+     * Méthode appelée à chaque signal reçu par le boucleur
+     * qui va gérer soit l'animation la chute, soit le saut en fonction du
+     * booleen isDropping
+     * @param observable
+     */
     @Override
     public void invalidated(Observable observable) {
         if (isDropping == null){
-            isDropping = true;
+            isDropping = true; //On ré-établi que de base, l'oiseau chute
         }
        if (!isDropping) {
            if (currentY <= yToReach) {
                if (!displacer.move(collider.getWorld().getCurrentBird(),0.0)){
-                   stopAll();
+                   stopAll(); //si l'oiseau a atteint le plus haut point de son vol mais qu'il heure un obstacle, on stoppe tout
                } else {
-                   stopAnimation();
+                   stopAnimation(); //sinon on relance l'animation de drop
                }
            } else if (!displacer.move(collider.getWorld().getCurrentBird(),-10.0)) {
-                   stopAll();
+                   stopAll(); //si l'oiseau est en saut, mais qu'il heure un obstacle, on stoppe tout
            } else {
-               currentY = currentY - 10;
-               //currentY = collider.getWorld().getCurrentBird().getPos().getY();
+               currentY = currentY - 10; //l'oiseau se déplace de -10 y à chaque signal
            }
        } else {
-           //System.out.println(collider.getWorld().getCurrentBird().getPos().getY());
            if (currentY >= 700) {
-               stopAll();
+               stopAll(); //si l'oiseau n'est plus sur l'écran
            } else if (displacer.move(collider.getWorld().getCurrentBird(),+ 2.8)) {
-                   //currentY = collider.getWorld().getCurrentBird().getPos().getY();
-                   currentY = currentY + 2.8;
+                   currentY = currentY + 2.8; //En chute, l'oiseau tombe de 2.8 à chasue signal
            } else {
-                   stopAll();
+                   stopAll(); //S'il a heurté un obstacle pendant sa chute, on stop
            }
        }
     }
 
+    /**
+     * Méthode qui à la fin d'un saut, rétabli le mouvement de l'oiseau en chute
+     */
     @Override
     public void stopAnimation() {
+        //Arrêt du de vol
         boucleur.setRunning(false);
         threadFly.interrupt();
+
+        //Lancement de la chute
         isDropping = true;
         dropBoucleur.setRunning(true);
         threadDrop = new Thread(dropBoucleur);
         threadDrop.start();
     }
 
+    /**
+     * Méthode qui va indiquer que la partie est finie
+     */
     public void stopAll() {
+        //Interruption des deux threads
         if (threadFly != null) {
             threadFly.interrupt();
         }
@@ -113,6 +144,8 @@ public class AnimationBird extends Animation implements InvalidationListener {
         }
         boucleur.setRunning(false);
         dropBoucleur.setRunning(false);
-        Launch.getManager().setGameOver(true);
+
+        //Indique la fin de partie au Manager
+        setStop(true);
     }
 }

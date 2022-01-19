@@ -7,6 +7,10 @@ import model.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe qui va enregistrer nos utilisateurs et leur scoreMax
+ * pour la persistance et l'utilisation de nos données
+ */
 public abstract class Log {
 
     private final List<Player> players = new ArrayList<>();

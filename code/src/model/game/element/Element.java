@@ -4,10 +4,15 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Classe qui représente un Element de la vue
+ */
 public abstract class Element {
     private Position pos;
     private int width;
     private int height;
+
+    //Propriété pour se bind sur le filepath de l'image de l'élément
     private final StringProperty image = new SimpleStringProperty();
         public String getImage() { return image.get(); }
         public void setImage(String img) { image.set(img); }
@@ -44,6 +49,11 @@ public abstract class Element {
         this.height = height;
     }
 
+    /**
+     * Redéfinition de la fonction equals pour comparer des éléments en fonctions de leur position
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

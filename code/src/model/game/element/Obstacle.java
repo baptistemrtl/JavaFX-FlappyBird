@@ -1,5 +1,8 @@
 package model.game.element;
 
+/**
+ * Obstacle du jeu
+ */
 public class Obstacle extends Element {
 
     public Obstacle (int width, int height, Position pos, String imageUrl) {

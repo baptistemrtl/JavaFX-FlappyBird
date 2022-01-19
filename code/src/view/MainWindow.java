@@ -32,6 +32,9 @@ public class MainWindow {
     @FXML private TextField pseudoJoueur;
     @FXML private BorderPane gameBp;
 
+    /**
+     * Méthode à l'instanciation de la Scene qui va définir les élements de bases de la vue
+     */
     @FXML
     public void initialize() {
         Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
@@ -50,31 +53,44 @@ public class MainWindow {
         gameBp.getChildren().add(1,flopflop);
     }
 
+    /**
+     * Événement lancé au clique sur le startButton
+     * @param actionEvent
+     */
     @FXML
     public void startGame(ActionEvent actionEvent) {
         actionEvent.consume();
+        //On regarde la validité du pseudo rentré
         if (pseudoJoueur.getText().isEmpty() || pseudoJoueur.getText().isBlank()) {
+            //Affichage d'une fenêtre d'erreur si le pseudo est mal renseigné
             Stage dialog = new Stage();
             dialog.initOwner(Launch.getStage());
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setResizable(false);
             dialog.getIcons().add(new Image("image/dialog-error-icon.png"));
             Launch.getNavigator().navigateTo("Error", dialog);
-
             return;
         }
-        Launch.getManager().setCurrentPlayer(pseudoJoueur.getText());
-        Launch.getNavigator().navigateTo("Game", Launch.getStage());
+        Launch.getManager().setCurrentPlayer(pseudoJoueur.getText()); //Instanciation du joueur actuel
+        Launch.getNavigator().navigateTo("Game", Launch.getStage()); //Navigation sur la scene de Jeu
         Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
-        Launch.getManager().startBoucle();
-         }
+        Launch.getManager().startBoucle(); //Lancement du jeu
+    }
 
+    /**
+     * Redirection sur la fenêtre de scoreboard
+      * @param actionEvent
+     */
     @FXML
     public void openScoreboard(ActionEvent actionEvent) {
         actionEvent.consume();
         Launch.getNavigator().navigateTo("ScoreBoard", Launch.getStage());
     }
 
+    /**
+     * Fermeture de l'application
+     * @param actionEvent
+     */
     @FXML
     public void exitGame(ActionEvent actionEvent) {
         actionEvent.consume();

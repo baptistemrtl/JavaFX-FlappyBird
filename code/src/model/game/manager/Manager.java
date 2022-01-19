@@ -3,11 +3,15 @@ package model.game.manager;
 import Persistance.LoaderBinaire;
 import Persistance.SaverBinaire;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.StringConverter;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 
+import launcher.Launch;
 import model.Player;
 import model.game.World.World;
 import model.game.animation.Animation;
@@ -27,7 +31,10 @@ import model.game.element.Element;
 import model.game.element.Obstacle;
 import model.game.logs.Log;
 import model.game.logs.LogSimple;
+import model.game.renderer.ISound;
+import model.game.renderer.SoundPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +60,7 @@ public class Manager {
     private AnimationBird animationBird;
     private ScoreChecker scoreChecker;
     private Thread threadScore;
+    private SoundPlayer soundPlayer;
 
     private LoaderBinaire loader;
     private SaverBinaire saver;
@@ -73,6 +81,7 @@ public class Manager {
         animationBird = new AnimationBird(birdDeplaceur,collider,(BoucleurBird) birdBoucleur,new BoucleurDrop());
         loader = new LoaderBinaire("save.bin");
         saver = new SaverBinaire("save.bin");
+        soundPlayer = new SoundPlayer("rsrc/sound/resources_sounds_swoosh.wav");
         dataLoad();
     }
 
@@ -140,6 +149,8 @@ public class Manager {
 
     //Boucle
     public void startBoucle() { // = startGame
+        soundPlayer.setFilePath("rsrc/sound/resources_sounds_swoosh.wav");
+        soundPlayer.play();
         setGameOver(false);
         animationObs.animate();
         animationBird.initalizeAnimation();
@@ -147,9 +158,16 @@ public class Manager {
         scoreChecker.setScoreCourant(0);
         threadScore = new Thread(scoreChecker);
         threadScore.start();
+        animationBird.propertyStop().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
+            if(newValue) {
+                setGameOver(true);
+            }
+        });
     }
 
     public void stopBoucle() { // = end OF A PARTY
+        soundPlayer.setFilePath("rsrc/sound/resources_sounds_hit.wav");
+        soundPlayer.play();
         if (currentPlayer != null && getStringScore() > currentPlayer.getScoreMax()) {
             currentPlayer.setScoreMax(getStringScore());
             dataSave();
@@ -174,6 +192,8 @@ public class Manager {
 
         if (keyCode == KeyCode.SPACE) {
             animationBird.animate();
+            soundPlayer.setFilePath("sound/resources_sounds_wing.wav");
+            soundPlayer.play();
             if (animationBird.getThreadFly().isInterrupted() && animationBird.getThreadDrop().isInterrupted()) {
                 gameOver.set(true);
             }

@@ -11,15 +11,17 @@ import java.util.List;
 
 /**
  * Classe qui va créer un monde à partir d'un fichier
- * avec des 0 qui sont des blocs vides et 1 qui sont des morceaux de tuyau
- * On va se limiter à un monde fini au début et on aura une autre classe CreateurRandom
- * qui générera des blocs aléatoirement
  */
 
 public class CreatorSimple extends Creator {
 
     final String path = "rsrc/testFinishedWorlds/world1.txt";
 
+    /**
+     *  Méthode qui lit le fichier caractère par caractère pour créer une liste d'éléments
+     *  On se limite ici à un monde fini
+     * @return
+     */
     @Override
     public List<Element> createWorld() {
         BufferedReader reader;
@@ -52,6 +54,10 @@ public class CreatorSimple extends Creator {
         return elements;
     }
 
+    /*
+    On ne se sert pas de cette méthode car cette classe faisait office
+    de classe test pour le déplacement sur la vue d'Element
+     */
     @Override
     public void createObstacle(List<Element> elements) {
 

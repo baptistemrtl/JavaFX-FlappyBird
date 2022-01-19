@@ -14,6 +14,11 @@ public class Navigator {
     private final Map<String, Scene> mapScenes = new HashMap<>();
     private Scene onUseScene;
 
+    /**
+     * Constructeur de la classe navigator
+     * On instancie une map<String,Scene> pour se rediriger facilement
+     * @throws IOException
+     */
     public Navigator() throws IOException {
         mapScenes.put("Game",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")))));
         mapScenes.put("MainWindow",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainWindow.fxml")))));
@@ -22,13 +27,19 @@ public class Navigator {
         setDefaultScene();
     }
 
+    /**
+     * Méthode qui redirige en fonction d'un String passé en paramètres
+     * @param scene
+     * @param stage
+     */
     public void navigateTo(String scene, Stage stage) {
         Scene selectedScene = mapScenes.get(scene);
         if (selectedScene == null) {
-            setDefaultScene();
+            setDefaultScene(); //Par défaut, la scene est MainWindow
         } else {
             setOnUseScene(selectedScene);
         }
+        //On affiche la scene
         onUseScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/background.css")).toExternalForm());
         stage.setScene(onUseScene);
         stage.show();

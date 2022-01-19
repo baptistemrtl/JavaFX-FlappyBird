@@ -15,11 +15,20 @@ public class AnimationObstacle extends Animation implements InvalidationListener
     private int compteurBoucle;
     private int moduloBoucle = 60;
 
+    /**
+     * Redéfinition du constructeur
+     * @param displacer
+     * @param coll
+     * @param boucleur
+     */
     public AnimationObstacle(ObstacleDisplacer displacer, Collider coll, BoucleurObstacle boucleur) {
         super(displacer, coll, boucleur);
         this.boucleur.addListener(this);
     }
 
+    /**
+     * Lancement du déplacement d'obstacles continu
+     */
     @Override
     public void animate() {
         compteurBoucle = 1;
@@ -28,26 +37,34 @@ public class AnimationObstacle extends Animation implements InvalidationListener
         moveThread.start();
     }
 
+    /**
+     * Méthode appelé à chaque signal reçu
+     * @param observable
+     */
     @Override
     public void invalidated(Observable observable) {
         for (Element element : collider.getWorld().getElements()) {
             if (element instanceof Obstacle) {
                 if (!displacer.move(element,5.0)) {
-                    stopAnimation();
+                    stopAnimation(); //Si l'obstacle n'a pas pu se déplacer, on stop l'animation
                 }
             }
         }
+        //Ajout d'obstacle tous les moduloBoucle signals reçus
         if (compteurBoucle%moduloBoucle == 0) {
-            System.out.println("add");
             collider.getWorld().addObstacles();
         }
+        //Accélération de l'ajout d'obstacle
         if (compteurBoucle%1600 == 0) {
-            moduloBoucle = moduloBoucle - 2;
+            moduloBoucle = moduloBoucle - 1;
         }
 
         ++compteurBoucle;
     }
 
+    /**
+     * Méthode qui stop thread et boucleur
+     */
     @Override
     public void stopAnimation() {
         boucleur.setRunning(false);

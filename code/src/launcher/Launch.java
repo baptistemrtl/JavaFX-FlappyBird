@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class Launch extends Application {
 
+
     private static Stage stage;
     public static Stage getStage(){ return stage; }
 
@@ -22,6 +23,11 @@ public class Launch extends Application {
         return nav;
     }
 
+    /**
+     * Méthode start pour le lancement de l'application
+     * @param primaryStage
+     * @throws IOException
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
@@ -31,6 +37,10 @@ public class Launch extends Application {
         nav.navigateTo("MainWindow", stage);
     }
 
+    /**
+     * Méthode stop à la fermeture de l'application
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         man.stopBoucle();

@@ -39,8 +39,12 @@ public class ScoreBoard {
     @FXML Text scoreThird;
 
 
+    /**
+     * Méthode à l'instanciation de la Scene de scoreBoard
+     */
     @FXML
     public void initialize() {
+        //Instanciation et ajout des éléments de base de cette vue
          Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
          ImageView background = new ImageView(bg.getImage());
          background.setFitHeight(bg.getHeight());
@@ -48,15 +52,19 @@ public class ScoreBoard {
          background.setX(bg.getPos().getX());
          background.setY(bg.getPos().getY());
          scoreBp.getChildren().add(0,background);
-
          first.setImage(firstmedal);
          second.setImage(secondmedal);
          third.setImage(thirdmedal);
 
+         //Gestion du binding du top 3
         FXControler fxControler = new FXControler(scoreBp,Launch.getStage());
         fxControler.initializeScoreBoard(firstName,secondName,thirdName,scoreFirst,scoreSecond,scoreThird);
     }
 
+    /**
+     * Redirection vers la MainWindow
+     * @param actionEvent
+     */
     @FXML
     public void retourButtonAction(ActionEvent actionEvent) {
         actionEvent.consume();

@@ -15,6 +15,9 @@ public class Game {
     @FXML private Button homeButton;
     @FXML private Text scoreText;
 
+    /**
+     * Méthode à l'instanciation de la Scene qui va permettre préparer la vue au lancement d'une partie
+     */
     @FXML
     public void initialize() {
         FXControler fxControler = new FXControler(gameBp,Launch.getStage());

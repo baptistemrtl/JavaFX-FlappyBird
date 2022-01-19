@@ -8,71 +8,71 @@ import model.game.collider.Collider;
 import model.game.element.Bird;
 import model.game.element.Element;
 
+/**
+ * Classe qui va gérer le déplacement d'un oiseau
+ */
 public class BirdDisplacer extends Displacer{
 
     private double velocityX;
     private double velocityY;
-    private Node birdIv;
 
+    /**
+     * Redéfinition du constructeur
+     * @param collider
+     */
     public BirdDisplacer(Collider collider) {
         super(collider);
 
     }
 
+    /*
+    Tentative d'implémentation d'une vitesse pour faire accéléer
+     */
     public void setVelocity(double velocityX, double velocityY) {
         this.velocityX = velocityX;
         this.velocityY = velocityY;
     }
-
     public void addVelocity(double x, double y) {
         this.velocityX += x;
         this.velocityY += y;
     }
-
     public double getVelocityX() {
         return velocityX;
     }
-
     public double getVelocityY() {
         return velocityY;
     }
 
-    public void render(GraphicsContext gc,Bird bird) {
-        Image image = new Image(bird.getImage(),bird.getWidth(),bird.getHeight(),false,false);
-        gc.drawImage(image, bird.getPos().getX(),bird.getPos().getY());
-    }
-
+    /**
+     * Méthode qui va déléguer pour déplacer l'oiseau
+     * @param element Oiseau actuelle
+     * @param move Valeur du déplacement de l'oiseau
+     * @return true si non-collision, false sinon
+     */
     @Override
     public boolean move(Element element,Double move) {
         if (isEnableMove()){
             if (element instanceof Bird) {
-                return fly((Bird) element,move);
+                return displace((Bird) element,move);
             }
         }
        return false;
     }
 
-    public boolean fly(Bird bird,Double move) {   // c'est les memes faudra check ça
-        Position pos = bird.getPos();       // Position other = new Position(pos.getX(),pos.getY());
+    /**
+     * Méthode qui va faire déplacer l'oiseau
+     * @param bird Oiseau à faire bouger
+     * @param move Valeur du déplacement
+     * @return la possibilité de déplacement
+     */
+    private boolean displace(Bird bird,Double move) {
+        Position pos = bird.getPos();
         if(getCollider().canMove(pos)) {
             pos.setY(pos.getY()+move);
             bird.setPos(pos);
-
             return true;
         }
-        return false;
-    }
-
- //  Sert à check la collision meme quand on ne presse pas espace, sinon pas de collision en descente
-    public boolean drop(Bird bird) {
-        Position pos = bird.getPos();
-        pos.setY(pos.getY()+10);
-        if(getCollider().canMove(pos)) {
-            bird.setPos(pos);
-
-            return true;
-        }
-
         return false;
     }
 }
+

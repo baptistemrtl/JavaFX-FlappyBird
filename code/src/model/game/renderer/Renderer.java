@@ -12,8 +12,16 @@ import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
+/**
+ * Classe qui va ajouter les Element à la vue et gérer le binding entre Element et Node
+ */
 public class Renderer {
 
+    /**
+     * Méthode qui va déléguer pour mettre à jour le background et les éléments du monde
+     * @param pane
+     * @param world
+     */
     public void renderWorld(BorderPane pane, World world) {
         renderBackground(pane);
         for (Element element : world.getElements()) {
@@ -21,6 +29,10 @@ public class Renderer {
         }
     }
 
+    /**
+     * Méthode qui set le background du jeu si ce n'est pas déjà fait
+     * @param gameBp
+     */
     public void renderBackground(BorderPane gameBp) {
         for (Node node : gameBp.getChildren()) {
             if (node.getUserData() instanceof Background) {
@@ -38,14 +50,27 @@ public class Renderer {
         gameBp.getChildren().add(0,background);
     }
 
+    /**
+     * Méthode qui va ajouter une ImageView d'un élément dans le layout
+     * et bindles propriétés nécéssaires
+     * @param gameBp
+     * @param element
+     */
     public void renderImageView(BorderPane gameBp,Element element) {
         ImageView elementIv = new ImageView();
         elementIv.setImage(new Image(element.getImage()));
-        elementIv.setUserData(element);
+        elementIv.setUserData(element); //On attache l'ImageView à l'élément pour la suppression dans le FXController
         elementIv.setFitWidth(element.getWidth());
         elementIv.setFitHeight(element.getHeight());
-        elementIv.setViewOrder(0.5);
-        gameBp.getChildren().add(elementIv);
+        //On fait en sorte que l'oiseau soit toujours sur un plan inférieur aux obstacles
+        if (element instanceof Obstacle){
+            elementIv.setViewOrder(0.50);
+        }
+        if (element instanceof Bird){
+            elementIv.setViewOrder(0.60);
+        }
+        gameBp.getChildren().add(elementIv); //Ajout du Node au layout
+        //Binding sur les propriétés x et y
         elementIv.layoutXProperty().bindBidirectional(element.getPos().xProperty());
         elementIv.layoutYProperty().bindBidirectional(element.getPos().yProperty());
     }
