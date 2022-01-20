@@ -19,7 +19,7 @@ public class Navigator {
 
     /**
      * Constructeur de la classe navigator
-     * On instancie une map<String,Scene> pour se rediriger facilement
+     * On instancie une map String,Scene pour se rediriger facilement
      *
      * @throws IOException the io exception
      */
