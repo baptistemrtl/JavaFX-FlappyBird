@@ -7,7 +7,6 @@ import model.game.element.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Classe qui va créer un monde et le remplir d'obstacles aléatoirement
@@ -34,8 +33,9 @@ public class CreatorRandom extends Creator{
 
     /**
      * Méthode qui va retourner l'Elément avec le X le plus grand d'une liste d'Element
-     * @param elements
-     * @return
+     *
+     * @param elements the elements
+     * @return last element x
      */
     public Element getLastElementX(List<Element> elements) {
         int maxX = 0;
@@ -57,12 +57,13 @@ public class CreatorRandom extends Creator{
     /**
      * Méthode qui génère aléatoirement un couple d'obstacles {UP;DOWN}
      * en se basant sur le dernier obstacle créé
-     * @param elements Liste d'éléments du monde actuelle
+     *
+     * @param elements Liste des nouveaux obstacles
      */
     public void createObstacle(List<Element> elements) {
         Element last = getLastElementX(elements); //Récupération de l'obstacle avec le x le plus élevé
 
-        //Si celui est null, c'est à dire, généralement au lancement d'une partie, on crée le premier couple d'obstacle
+        //Si celui est null, c'est-à-dire, généralement au lancement d'une partie, on crée le premier couple d'obstacle
         if (last == null) {
             last = new Obstacle(PIPE_WIDTH, MIN_PIPE_HEIGHT, new Position(200, 0), DOWN_PIPE);
             elements.add(last);
@@ -85,7 +86,8 @@ public class CreatorRandom extends Creator{
     /**
      * Méthode qui va instancier uniquement l'oiseau qui va être jouable
      * et l'ajouter à la liste d'éléments, qui sera celle du World actuel
-     * @return
+     *
+     * @return la liste d'éléments
      */
     @Override
     public List<Element> createWorld() {

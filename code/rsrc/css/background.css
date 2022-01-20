@@ -1,5 +1,5 @@
 #mainWindow{
-    -fx-background-image: url("image/background.jpg");
+    -fx-background-image: url("image/background.png");
     -fx-background-repeat: repeat;
     -fx-background-size: cover, auto;
 }

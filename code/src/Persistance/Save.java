@@ -8,6 +8,11 @@ import java.util.List;
  */
 public interface Save {
 
+    /**
+     * Sauvegarde les données dans un fichier
+     *
+     * @param players Liste des joueurs
+     */
     void saveData(List<Player> players);
 
 }

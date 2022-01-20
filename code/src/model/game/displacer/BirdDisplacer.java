@@ -1,8 +1,5 @@
 package model.game.displacer;
 
-import javafx.scene.Node;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import model.game.element.Position;
 import model.game.collider.Collider;
 import model.game.element.Bird;
@@ -13,39 +10,20 @@ import model.game.element.Element;
  */
 public class BirdDisplacer extends Displacer{
 
-    private double velocityX;
-    private double velocityY;
-
     /**
      * Redéfinition du constructeur
-     * @param collider
+     *
+     * @param collider le colisionneur
      */
     public BirdDisplacer(Collider collider) {
         super(collider);
 
     }
 
-    /*
-    Tentative d'implémentation d'une vitesse pour faire accéléer
-     */
-    public void setVelocity(double velocityX, double velocityY) {
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-    }
-    public void addVelocity(double x, double y) {
-        this.velocityX += x;
-        this.velocityY += y;
-    }
-    public double getVelocityX() {
-        return velocityX;
-    }
-    public double getVelocityY() {
-        return velocityY;
-    }
-
     /**
      * Méthode qui va déléguer pour déplacer l'oiseau
-     * @param element Oiseau actuelle
+     *
+     * @param element Oiseau actuel
      * @param move Valeur du déplacement de l'oiseau
      * @return true si non-collision, false sinon
      */
@@ -61,6 +39,7 @@ public class BirdDisplacer extends Displacer{
 
     /**
      * Méthode qui va faire déplacer l'oiseau
+     *
      * @param bird Oiseau à faire bouger
      * @param move Valeur du déplacement
      * @return la possibilité de déplacement

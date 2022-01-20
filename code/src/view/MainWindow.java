@@ -1,30 +1,22 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import launcher.Launch;
 import model.game.manager.Manager;
 import model.game.element.Position;
 import model.game.element.Background;
 
-import java.io.File;
-
-
+/**
+ * Controller pour la fenêtre principale
+ */
 public class MainWindow {
 
     private final Manager man = Launch.getManager();
@@ -33,11 +25,11 @@ public class MainWindow {
     @FXML private BorderPane gameBp;
 
     /**
-     * Méthode à l'instanciation de la Scene qui va définir les élements de bases de la vue
+     * Initialise la fenêtre principale
      */
     @FXML
     public void initialize() {
-        Background bg = new Background(450,700,new Position(0,0),"image/background2.png");
+        Background bg = new Background(450,700,new Position(0,0), "image/background.png");
         ImageView background = new ImageView(bg.getImage());
         background.setFitHeight(bg.getHeight());
         background.setFitWidth(bg.getWidth());
@@ -54,8 +46,9 @@ public class MainWindow {
     }
 
     /**
-     * Événement lancé au clique sur le startButton
-     * @param actionEvent
+     * Redirection sur la fenêtre de création de partie
+     *
+     * @param actionEvent l'action event (ignoré)
      */
     @FXML
     public void startGame(ActionEvent actionEvent) {
@@ -69,8 +62,10 @@ public class MainWindow {
             dialog.setResizable(false);
             dialog.getIcons().add(new Image("image/dialog-error-icon.png"));
             Launch.getNavigator().navigateTo("Error", dialog);
+
             return;
         }
+
         Launch.getManager().setCurrentPlayer(pseudoJoueur.getText()); //Instanciation du joueur actuel
         Launch.getNavigator().navigateTo("Game", Launch.getStage()); //Navigation sur la scene de Jeu
         Launch.getNavigator().getOnUseScene().setOnKeyPressed(keyEvent -> man.keyMove(keyEvent.getCode()));
@@ -79,7 +74,8 @@ public class MainWindow {
 
     /**
      * Redirection sur la fenêtre de scoreboard
-      * @param actionEvent
+     *
+     * @param actionEvent l'action event (ignoré)
      */
     @FXML
     public void openScoreboard(ActionEvent actionEvent) {
@@ -89,7 +85,8 @@ public class MainWindow {
 
     /**
      * Fermeture de l'application
-     * @param actionEvent
+     *
+     * @param actionEvent l'action event (ignoré)
      */
     @FXML
     public void exitGame(ActionEvent actionEvent) {

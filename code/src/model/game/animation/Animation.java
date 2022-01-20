@@ -15,15 +15,22 @@ public abstract class Animation {
 
     /**
      * Constructeur de la classe qui ne va pas changer
+     *
      * @param displacer Déplaceur d'élément
-     * @param coll Gérant des collisions
-     * @param boucleur Boucleur écouté
+     * @param coll      Gérant des collisions
+     * @param boucleur  Boucleur écouté
      */
     public Animation(Displacer displacer,Collider coll,Boucleur boucleur) {
         this.displacer = displacer;
+        this.collider = coll;
         this.boucleur = boucleur;
     }
 
+    /**
+     * Set le colisionneur
+     *
+     * @param collider le nouveau colisionneur
+     */
     public void setCollider(Collider collider) {
         this.collider = collider;
     }

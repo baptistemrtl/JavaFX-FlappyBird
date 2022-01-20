@@ -13,21 +13,54 @@ public class ScoreChecker implements Runnable {
      * Propriété de scoreCourant pour le binding
      */
     public IntegerProperty scoreCourant = new SimpleIntegerProperty();
-        public int getScoreCourant(){ return scoreCourant.get();}
-        public void setScoreCourant(int value){ scoreCourant.set(value);}
-        public IntegerProperty scoreCourantProperty() { return scoreCourant; }
+
+    /**
+     * Get le scoreCourant
+     *
+     * @return le scoreCourant
+     */
+    public int getScoreCourant(){ return scoreCourant.get();}
+
+    /**
+     * Set le scoreCourant
+     *
+     * @param value la nouvelle valeur
+     */
+    public void setScoreCourant(int value){ scoreCourant.set(value);}
+
+    /**
+     * L'IntegerProperty du scoreCourant
+     *
+     * @return L'IntegerProperty
+     */
+    public IntegerProperty scoreCourantProperty() { return scoreCourant; }
 
     private Boolean running;
-    private World world;
+    private final World world;
 
+    /**
+     * Constructeur de ScoreChecker
+     *
+     * @param world le monde
+     */
     public ScoreChecker(World world){
         this.world = world;
     }
 
+    /**
+     * Getter de running
+     *
+     * @return la boolean running
+     */
     public Boolean isRunning() {
         return running;
     }
 
+    /**
+     * Set running
+     *
+     * @param value la nouvelle valeur
+     */
     public void setRunning(Boolean value){
         running = value;
     }

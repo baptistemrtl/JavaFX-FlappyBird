@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Controller pour la fenêtre d'erreur
+ */
 public class Error {
 
     @FXML private Button closeButton;

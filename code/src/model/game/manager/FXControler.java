@@ -1,12 +1,7 @@
 package model.game.manager;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
@@ -19,24 +14,47 @@ import model.game.element.Element;
 import model.game.renderer.Renderer;
 import model.game.renderer.RendererSupplier;
 
-import java.io.File;
-
+/**
+ * La classe FXControler permet de gérer nos éléments graphiques.
+ */
 public class FXControler {
 
-
-    private Stage mainStage;
-    private BorderPane gameBorderPane;
+    private final Stage mainStage;
     private RendererSupplier rendererSupplier;
     private Renderer renderer;
 
     /**
+     * Get le renderer
+     *
+     * @return le renderer
+     */
+    public Renderer getRenderer(){ return renderer; }
+
+    /**
+     * Get le rendererSupplier
+     *
+     * @return le renderer supplier
+     */
+    public RendererSupplier getRendererSupplier() {
+        return rendererSupplier;
+    }
+
+    /**
+     * Set le renderer supplier.
+     *
+     * @param newRendererSupplier le nouveau renderer supplier
+     */
+    public void setRendererSupplier(RendererSupplier newRendererSupplier) {
+        rendererSupplier = newRendererSupplier;
+    }
+
+    /**
      * Constructeur du FXController
-     * @param pane layout actuel
+     *
      * @param stage Stage principal
      */
-    public FXControler(BorderPane pane, Stage stage) {
+    public FXControler(Stage stage) {
         rendererSupplier = Renderer::new; //Instanciation d'un renderer grâce à l'interface fonctionelle
-        gameBorderPane = pane;
         mainStage = stage;
     }
 
@@ -44,11 +62,12 @@ public class FXControler {
      * Méthode qui va initialiser les propriétés de la vue de jeu
      * en déléguant au renderer pour le binding et à la méthode initNodes pour initialiser
      * les propriétés des éléments de la vue (passés en paramètres)
-     * @param restartButton
-     * @param homeButton
-     * @param scoreText
+     *
+     * @param restartButton Bouton de restart
+     * @param homeButton    Bouton de retour à la fenêtre principale
+     * @param scoreText     Texte du score
      */
-    public void initializeGame(Button restartButton, Button homeButton, Text scoreText) {
+    public void initializeGame(Button restartButton, Button homeButton, Text scoreText, BorderPane gameBorderPane) {
         initNodes(restartButton,homeButton,scoreText); //initialisation des propriétés des Nodes
         renderer = getRendererSupplier().createRenderer(); //création d'un renderer
         Launch.getManager().createWorld(); //création d'un monde pour préparer au lancement du jeu
@@ -77,9 +96,9 @@ public class FXControler {
 
     /**
      * Initialisation des composants
-     * @param restartButton
-     * @param homeButton
-     * @param scoreText
+     * @param restartButton Bouton de restart
+     * @param homeButton Bouton de retour à la fenêtre principale
+     * @param scoreText Texte du score
      */
     private void initNodes(Button restartButton, Button homeButton,Text scoreText) {
         //Initialisation du bouton de restart d'une partie
@@ -95,7 +114,7 @@ public class FXControler {
         restartButton.disableProperty().set(true);
 
         //Initialisation du bouton de retour à la fenêtre principal
-       homeButton.opacityProperty().set(0);
+        homeButton.opacityProperty().set(0);
         homeButton.setOnMouseClicked(e -> {
             if (Launch.getManager().isGameOver()) {
                 Launch.getNavigator().navigateTo("MainWindow",mainStage);
@@ -107,8 +126,8 @@ public class FXControler {
                 restartButton.disableProperty().set(true);
             }
         });
-       homeButton.disableProperty().set(true);
-       scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());//Binding du scoreText sur le scoreCourant
+        homeButton.disableProperty().set(true);
+        scoreText.textProperty().bind(Launch.getManager().stringScoreProperty());//Binding du scoreText sur le scoreCourant
         //Ajout d'un listener sur la propriété gameOver du manager pour afficher les boutons home et restart à la mort de l'oiseau
         Launch.getManager().gameOverProperty().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
             if(newValue) {
@@ -127,13 +146,14 @@ public class FXControler {
     }
 
     /**
-     * Initalisation du scoreBoard et de l'affichage du Top3
-     * @param first
-     * @param second
-     * @param third
-     * @param scoreFirst
-     * @param scoreSecond
-     * @param scoreThird
+     * Initialisation du scoreBoard et de l'affichage du Top3
+     *
+     * @param first       Premier joueur
+     * @param second      Second joueur
+     * @param third       Troisième joueur
+     * @param scoreFirst  Score du premier joueur
+     * @param scoreSecond Score du second joueur
+     * @param scoreThird  Score du troisième joueur
      */
     public void initializeScoreBoard(Text first,Text second,Text third,Text scoreFirst,Text scoreSecond,Text scoreThird){
         switchBindValue(first,second,third,scoreFirst,scoreSecond,scoreThird,Launch.getManager().getLog().getPlayers().size());
@@ -149,62 +169,49 @@ public class FXControler {
      *Méthode qui permet de mettre à jour le binding du scoreboard
      */
     private void switchBindValue(Text first,Text second,Text third,Text scoreFirst,Text scoreSecond,Text scoreThird,int size){
-        switch (size){
-            case 0:
+        switch (size) {
+            case 0 -> {
                 setDefaultText(first);
                 setDefaultText(second);
                 setDefaultText(third);
                 setDefaultText(scoreFirst);
                 setDefaultText(scoreSecond);
                 setDefaultText(scoreThird);
-                break;
-            case 1:
+            }
+            case 1 -> {
                 first.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).pseudoProperty());
                 scoreFirst.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).scoreProperty().asString());
                 setDefaultText(second);
                 setDefaultText(third);
                 setDefaultText(scoreSecond);
                 setDefaultText(scoreThird);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 first.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).pseudoProperty());
                 scoreFirst.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).scoreProperty().asString());
                 second.textProperty().bind(Launch.getManager().getLog().getPlayers().get(1).pseudoProperty());
                 scoreSecond.textProperty().bind(Launch.getManager().getLog().getPlayers().get(1).scoreProperty().asString());
                 setDefaultText(third);
                 setDefaultText(scoreThird);
-                break;
-            default:
+            }
+            default -> {
                 first.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).pseudoProperty());
                 scoreFirst.textProperty().bind(Launch.getManager().getLog().getPlayers().get(0).scoreProperty().asString());
                 second.textProperty().bind(Launch.getManager().getLog().getPlayers().get(1).pseudoProperty());
                 scoreSecond.textProperty().bind(Launch.getManager().getLog().getPlayers().get(1).scoreProperty().asString());
                 third.textProperty().bind(Launch.getManager().getLog().getPlayers().get(2).pseudoProperty());
                 scoreThird.textProperty().bind(Launch.getManager().getLog().getPlayers().get(2).scoreProperty().asString());
-                break;
+            }
         }
     }
 
     /**
      * On set le text du Node à ? si on ne connait valeur qu'il est censé contenir
-     * @param node
+     *
+     * @param text Text à set
      */
-    private void setDefaultText(Text node){
-        node.textProperty().set("?");
+    private void setDefaultText(Text text){
+        text.textProperty().set("?");
     }
 
-    //Getters & Setters
-    public Renderer getRenderer(){ return renderer; }
-    public RendererSupplier getRendererSupplier() {
-        return rendererSupplier;
-    }
-    public void setRendererSupplier(RendererSupplier newRendererSupplier) {
-        rendererSupplier = newRendererSupplier;
-    }
-    public void setGameBorderPane(BorderPane gameBorderPane) {
-        this.gameBorderPane = gameBorderPane;
-    }
-    public BorderPane getGameBorderPane() {
-        return gameBorderPane;
-    }
 }

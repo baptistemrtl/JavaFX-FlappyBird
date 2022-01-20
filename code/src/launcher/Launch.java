@@ -9,25 +9,41 @@ import model.game.manager.Navigator;
 
 import java.io.IOException;
 
+/**
+ * Le launcher du jeu.
+ */
 public class Launch extends Application {
 
 
     private static Stage stage;
+
+    /**
+     * Get lestage.
+     *
+     * @return le stage
+     */
     public static Stage getStage(){ return stage; }
 
-     private static Manager man = new Manager();
+    private static final Manager man = new Manager();
+
+    /**
+     * Get le manager.
+     *
+     * @return le manager
+     */
     public static Manager getManager() { return man; }
 
     private static Navigator nav;
+
+    /**
+     * Get le navigator.
+     *
+     * @return le navigator
+     */
     public static Navigator getNavigator() {
         return nav;
     }
 
-    /**
-     * Méthode start pour le lancement de l'application
-     * @param primaryStage
-     * @throws IOException
-     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
@@ -38,8 +54,7 @@ public class Launch extends Application {
     }
 
     /**
-     * Méthode stop à la fermeture de l'application
-     * @throws Exception
+     * Arrête l'application.
      */
     @Override
     public void stop() throws Exception {

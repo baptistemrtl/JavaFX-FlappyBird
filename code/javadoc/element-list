@@ -1,0 +1,15 @@
+launcher
+model
+model.game.animation
+model.game.boucleur
+model.game.collider
+model.game.creator
+model.game.displacer
+model.game.element
+model.game.logs
+model.game.manager
+model.game.renderer
+model.game.World
+Persistance
+tests
+view

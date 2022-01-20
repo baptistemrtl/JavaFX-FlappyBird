@@ -8,6 +8,9 @@ import javafx.scene.text.Text;
 import launcher.Launch;
 import model.game.manager.FXControler;
 
+/**
+ * Controller pour la vue du jeu
+ */
 public class Game {
 
     @FXML private BorderPane gameBp;
@@ -16,11 +19,11 @@ public class Game {
     @FXML private Text scoreText;
 
     /**
-     * Méthode à l'instanciation de la Scene qui va permettre préparer la vue au lancement d'une partie
+     * Méthode à l'instanciation de la Scene qui va permettre de préparer la vue au lancement d'une partie
      */
     @FXML
     public void initialize() {
-        FXControler fxControler = new FXControler(gameBp,Launch.getStage());
-        fxControler.initializeGame(restartButton,homeButton,scoreText);
+        FXControler fxControler = new FXControler(Launch.getStage());
+        fxControler.initializeGame(restartButton,homeButton,scoreText, gameBp);
     }
 }

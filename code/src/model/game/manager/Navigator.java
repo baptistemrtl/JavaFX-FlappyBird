@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * La classe Navigator permet de gérer les changements de vue.
+ */
 public class Navigator {
 
     private final Map<String, Scene> mapScenes = new HashMap<>();
@@ -16,8 +19,9 @@ public class Navigator {
 
     /**
      * Constructeur de la classe navigator
-     * On instancie une map<String,Scene> pour se rediriger facilement
-     * @throws IOException
+     * On instancie une map String,Scene pour se rediriger facilement
+     *
+     * @throws IOException the io exception
      */
     public Navigator() throws IOException {
         mapScenes.put("Game",new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Game.fxml")))));
@@ -29,8 +33,9 @@ public class Navigator {
 
     /**
      * Méthode qui redirige en fonction d'un String passé en paramètres
-     * @param scene
-     * @param stage
+     *
+     * @param scene la vue à afficher
+     * @param stage le stage de la vue
      */
     public void navigateTo(String scene, Stage stage) {
         Scene selectedScene = mapScenes.get(scene);
@@ -45,18 +50,11 @@ public class Navigator {
         stage.show();
     }
 
-    public void setOnUseScene(Scene onUseScene) {
-        this.onUseScene = onUseScene;
-    }
-
-    private void setDefaultScene() {
-        onUseScene = mapScenes.get("MainWindow");
-    }
-
-    private Scene getDefaultScene() {
-        return mapScenes.get("MainWindow");
-    }
-
+    /**
+     * Get la scene en cours d'utilisation
+     *
+     * @return la scene en cours d'utilisation
+     */
     public Scene getOnUseScene() {
         if (onUseScene == null) {
             setDefaultScene();
@@ -66,5 +64,31 @@ public class Navigator {
 
         return onUseScene;
     }
+
+    /**
+     * Set la scene en cours d'utilisation
+     *
+     * @param onUseScene la scene en cours d'utilisation
+     */
+    public void setOnUseScene(Scene onUseScene) {
+        this.onUseScene = onUseScene;
+    }
+
+    /**
+     * Set la scene par défaut
+     */
+    private void setDefaultScene() {
+        onUseScene = mapScenes.get("MainWindow");
+    }
+
+    /**
+     * Get la scene par défaut
+     *
+     * @return la scene par défaut
+     */
+    private Scene getDefaultScene() {
+        return mapScenes.get("MainWindow");
+    }
+
 }
 
