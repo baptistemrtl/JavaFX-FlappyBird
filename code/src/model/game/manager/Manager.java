@@ -198,6 +198,12 @@ public class Manager {
         scoreChecker.setScoreCourant(0);
         threadScore = new Thread(scoreChecker);
         threadScore.start();
+        scoreChecker.scoreCourantProperty().addListener((ChangeListener<? super Number>)(observable, oldValue, newValue) ->{
+            if (newValue.intValue() > oldValue.intValue()) {
+                soundPlayer.setFilePath("rsrc/sound/resources_sounds_score.wav");
+                soundPlayer.play();    
+            }
+        });
         animationBird.propertyStop().addListener((ChangeListener<? super Boolean>)(observable, oldValue, newValue) -> {
             if(newValue){
                 setGameOver(newValue);

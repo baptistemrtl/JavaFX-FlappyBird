@@ -72,7 +72,7 @@ public class ScoreChecker implements Runnable {
     public void run() {
         while(isRunning()) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(530);
                 checkScore();
             }
             catch (InterruptedException e){
