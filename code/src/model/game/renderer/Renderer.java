@@ -19,8 +19,9 @@ public class Renderer {
 
     /**
      * Méthode qui va déléguer pour mettre à jour le background et les éléments du monde
-     * @param pane
-     * @param world
+     *
+     * @param pane  le BorderPane
+     * @param world le monde
      */
     public void renderWorld(BorderPane pane, World world) {
         renderBackground(pane);
@@ -31,7 +32,8 @@ public class Renderer {
 
     /**
      * Méthode qui set le background du jeu si ce n'est pas déjà fait
-     * @param gameBp
+     *
+     * @param gameBp le BorderPane
      */
     public void renderBackground(BorderPane gameBp) {
         for (Node node : gameBp.getChildren()) {
@@ -52,9 +54,10 @@ public class Renderer {
 
     /**
      * Méthode qui va ajouter une ImageView d'un élément dans le layout
-     * et bindles propriétés nécéssaires
-     * @param gameBp
-     * @param element
+     * et bind les propriétés nécessaires
+     *
+     * @param gameBp  le BorderPane
+     * @param element l'élément
      */
     public void renderImageView(BorderPane gameBp,Element element) {
         ImageView elementIv = new ImageView();

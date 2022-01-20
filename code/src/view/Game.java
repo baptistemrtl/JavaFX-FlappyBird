@@ -23,7 +23,7 @@ public class Game {
      */
     @FXML
     public void initialize() {
-        FXControler fxControler = new FXControler(gameBp,Launch.getStage());
-        fxControler.initializeGame(restartButton,homeButton,scoreText);
+        FXControler fxControler = new FXControler(Launch.getStage());
+        fxControler.initializeGame(restartButton,homeButton,scoreText, gameBp);
     }
 }

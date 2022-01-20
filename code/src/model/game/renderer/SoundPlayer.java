@@ -12,7 +12,12 @@ public class SoundPlayer implements ISound{
 
     private MediaPlayer mediaPlayer;
 
-    public SoundPlayer(String filepath){
+    /**
+     * Constructeur du SoundPlayer
+     *
+     * @param filepath l'emplacement du fichier audio
+     */
+    public SoundPlayer(String filepath) {
         mediaPlayer = new MediaPlayer(new Media(new File(filepath).toURI().toString()));
     }
 
@@ -23,7 +28,8 @@ public class SoundPlayer implements ISound{
 
     /**
      * Changement de l'audio à jouer
-     * @param filepath
+     *
+     * @param filepath le nouvel emplacement du fichier audio
      */
     public void setFilePath(String filepath){
         mediaPlayer = new MediaPlayer(new Media(new File(filepath).toURI().toString()));

@@ -9,26 +9,19 @@ import model.game.element.Bird;
 import model.game.element.Element;
 import model.game.element.Obstacle;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Classe qui représente notre monde,
  * et qui contient donc une liste d'Element
  */
 public class World {
 
-    /**
-     * Liste d'Element
-     */
     private final ObservableList<Element> elements;
     private final Creator creator = new CreatorRandom();
 
     /**
-     * Gets elements.
+     * Get la liste d'élément
      *
-     * @return the elements
+     * @return la liste d'élément
      */
     public ObservableList<Element> getElements() {
         return elements;
@@ -45,7 +38,7 @@ public class World {
     /**
      * Méthode qui reset le monde en supprimant tous les elements déjà présent et en en ajoutant des nouveaux
      * On ne redéfinit pas elements de la manière suivante : FXCollections.observableArrayList(creator.createWorld());
-     * car cela créérait des problèmes au niveau du listener
+     * car cela créerait des problèmes au niveau du listener
      */
     public void restartWorld() {
         while(!elements.isEmpty()){
@@ -63,9 +56,9 @@ public class World {
     }
 
     /**
-     * Ajout d'un seul élément à la liste d'Elément
+     * Ajout d'un seul élément à la liste d'Element
      *
-     * @param element the element
+     * @param element l'élément à ajouter
      */
     public void addElement(Element element) {
         elements.add(element);
@@ -74,7 +67,7 @@ public class World {
     /**
      * Récupération de l'oiseau instancié dans la liste d'Element
      *
-     * @return current bird
+     * @return l'oiseau instancié
      */
     public Bird getCurrentBird() {
         for(Element element : elements) {
@@ -87,7 +80,7 @@ public class World {
     }
 
     /**
-     * Récupération du nombre d'obstacle passé par l'oiseau
+     * Récupération du nombre d'obstacles passé par l'oiseau
      *
      * @return implicitement, le score actuel
      */

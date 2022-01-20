@@ -53,7 +53,7 @@ public class ScoreBoard {
          third.setImage(thirdmedal);
 
 //        Gestion du binding du top 3
-        FXControler fxControler = new FXControler(scoreBp,Launch.getStage());
+        FXControler fxControler = new FXControler(Launch.getStage());
         fxControler.initializeScoreBoard(firstName,secondName,thirdName,scoreFirst,scoreSecond,scoreThird);
     }
 
