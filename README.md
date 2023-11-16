@@ -10,7 +10,7 @@ Welcome to the JavaFX Game project! 🎮 This game was developed using Agile met
 1. Clone the repository.
 2. Run the game using [instructions here].
 
-For more details about the development process and project insights, check out my LinkedIn profile [here](link-to-LinkedIn-profile).
+For more details about the development process and project insights, check out my LinkedIn profile [here](https://www.linkedin.com/in/baptiste-martel/details/projects/).
 
 Feel free to explore the code, provide feedback, or connect with me on LinkedIn for a deeper dive into the project!
 
